@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- Workaround for noupdate="1" on res_country data -->
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('model','=','res.country'), ('name','=','ca')]"/>
+            </function>
+            <value eval="{'noupdate': False}"/>
+        </function>
+        <!-- Change the VAT label -->
+        <record model="res.country" id="base.ca">
+            <field name="vat_label">GST/HST</field>
+        </record>
+        <!-- Clean up -->
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('model','=','res.country'), ('name','=','ca')]"/>
+            </function>
+            <value eval="{'noupdate': True}"/>
+        </function>
+    </data>
+</odoo>

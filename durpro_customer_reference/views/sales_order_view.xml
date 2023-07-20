@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="view_customer_reference_main" model="ir.ui.view">
+                <field name="name">durpro_customer_reference.view_order_form</field>
+                <field name="model">sale.order</field>
+                <field name="inherit_id" ref="sale.view_order_form"/>
+                <field name="arch" type="xml">
+                        <xpath expr="//field[@name='payment_term_id']"
+                               position="after">
+				                <field name="client_order_ref"/>
+                        </xpath>
+                        <xpath expr="//group[@name='sales_person']/field[@name='client_order_ref']"
+                               position="replace"/>
+                </field>
+        </record>
+</odoo>
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="after">
+            <div class="row mt32 mb32" id="informations2">
+                <div name="payment_term" t-if="doc.payment_term_id"  class="col-3 mb-2">
+                    <strong>Payment Terms</strong>
+                    <p t-field="doc.payment_term_id"/>
+                </div>
+                <div t-if="doc.pricelist_id.currency_id"  class="col-3 mb-2">
+                    <strong>Currency</strong>
+                    <p t-field="doc.pricelist_id.currency_id"/>
+                </div>
+                <div t-if="doc.carrier" class="col-3 mb-2" >
+                    <strong>Carrier</strong>
+                    <p t-field="doc.carrier"/>
+                </div>
+                <div t-if="doc.carrier_account"  class="col-3 mb-2" >
+                    <strong>Carrier Account</strong>
+                    <p t-field="doc.carrier_account"/>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//th[@name='th_taxes']" position="replace"></xpath>
+        <xpath expr="//td[@name='td_taxes']" position="replace"></xpath>
+    </template>
+</odoo>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Work Order Form View -->
+    <record id="work_order_view_form" model="ir.ui.view">
+        <field name="name">durpro_fso.work_order.form</field>
+        <field name="model">durpro_fso.work_order</field>
+        <field name="arch" type="xml">
+            <form string="Work Order">
+
+                <header>
+                    <button name="action_confirm" string="Confirm" class="btn-primary" type="object"
+                            attrs="{'invisible': [('stage_id', 'not in', [
+                                %(durpro_fso.work_order_stage_draft)d
+                            ])]}"/>
+
+                    <button name="action_set_to_schedule" string="Set to Schedule" class="btn-primary" type="object"
+                            attrs="{'invisible': [('stage_id', 'not in', [
+                                %(durpro_fso.work_order_stage_draft)d,
+                                %(durpro_fso.work_order_stage_waiting_parts)d
+                            ])]}"/>
+
+                    <button name="action_schedule" string="Schedule" class="btn-primary" type="object"
+                            attrs="{'invisible': [('stage_id', 'not in', [
+                                %(durpro_fso.work_order_stage_draft)d,
+                                %(durpro_fso.work_order_stage_waiting_parts)d,
+                                %(durpro_fso.work_order_stage_to_schedule)d
+                            ])]}"/>
+
+                    <button name="action_make_ready" string="Make Ready" class="btn-primary" type="object"
+                            attrs="{'invisible': [('stage_id', 'not in', [
+                                %(durpro_fso.work_order_stage_draft)d,
+                                %(durpro_fso.work_order_stage_waiting_parts)d,
+                                %(durpro_fso.work_order_stage_to_schedule)d,
+                                %(durpro_fso.work_order_stage_scheduled)d
+                            ])]}"/>
+
+                    <button name="action_mark_done" string="Mark Done" class="btn-primary" type="object"
+                            attrs="{'invisible': [('stage_id', 'not in', [
+                                %(durpro_fso.work_order_stage_ready)d
+                            ])]}"/>
+
+                    <button name="action_invoice" string="Set Invoiced" class="btn-primary" type="object"
+                            attrs="{'invisible': [('stage_id', 'not in', [
+                                %(durpro_fso.work_order_stage_done)d
+                            ])]}"/>
+
+                    <button name="action_set_draft" string="Set Draft" class="btn-primary" type="object"
+                            attrs="{'invisible': [('stage_id', 'not in', [
+                                %(durpro_fso.work_order_stage_exception)d
+                            ])]}"/>
+
+                    <button name="action_set_exception" string="Set Exception" class="btn-primary" type="object"
+                            attrs="{'invisible': [('stage_id', 'in', [
+                                %(durpro_fso.work_order_stage_exception)d
+                            ])]}"/>
+
+                    <button name="action_navigate_to" string="Navigate To" class="btn-primary" type="object"
+                            attrs="{'invisible': [('customer_shipping_id', '=', False)]}"/>
+
+                    <field name="stage_id" widget="statusbar" clickable="1" />
+
+                </header>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                            <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                        </button>
+                        <button name="action_view_delivery" type="object" class="oe_stat_button" icon="fa-truck" attrs="{'invisible': [('delivery_count', '=', 0)]}">
+                            <field name="delivery_count" widget="statinfo" string="Deliveries"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" attrs="{'readonly': 1}"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="left">
+                            <field name="name" invisible="1"/>
+<!--                            <field name="stage_id" invisible="1"/>-->
+                            <field name="sale_id"/>
+                            <field name="site_contact_ids" widget="many2many_tags"/>
+                            <field name="send_work_order_to" widget="many2many_tags"/>
+                            <field name="send_invoice_to" widget="many2many_tags"/>
+                            <field name="technician_id"/>
+                            <field name="assistant_ids" widget="many2many_tags"/>
+                            <field name="date_service"/>
+                            <field name="time_travel_planned" widget="float_time"/>
+                            <field name="time_start_planned"/>
+                            <field name="time_end_planned"/>
+                            <field name="time_planned" widget="float_time"/>
+                            <field name="time_start_actual"/>
+                            <field name="time_end_actual"/>
+                            <field name="time_actual" widget="float_time"/>
+                        </group>
+                        <group name="right">
+                            <field name="customer_id" string="Customer"/>
+                            <field name="customer_shipping_id"
+                                   groups="sale.group_delivery_invoice_address"
+                                   context="{'default_type': 'delivery', 'show_address': 1}"
+                                   options='{"always_reload": True}'/>
+                            <field name="customer_pre_authorization_ref" string="Auth. Number"/>
+                            <field name="customer_order_ref" string="P.O. Number"/>
+                            <field name="tools_needed" widget="text"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Interventions">
+                            <field name="intervention_ids" widget="one2many_list"
+                                   context="{'default_work_order_id': active_id, 'default_stage_id':%(durpro_fso.work_order_stage_draft)d}" >
+                                <tree>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="equipment_id"/>
+                                    <field name="description"/>
+                                    <field name="time_estimate" widget="float_time"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Labour">
+                            <field name="labour_line" mode="tree">
+                                <tree string="Sales Order Lines">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="qty_delivered"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Parts">
+                            <field name="product_line" mode="tree">
+                                <tree string="Sales Order Lines">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="qty_delivered"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="work_order_view_kanban" model="ir.ui.view">
+        <field name="name">durpro_fso.work_order.kanban</field>
+        <field name="model">durpro_fso.work_order</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id" class="o_kanban_mobile">
+                <field name="customer_id"/>
+                <field name="technician_id"/>
+                <field name="tools_needed"/>
+                <field name="date_service"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div t-attf-class="oe_kanban_content ">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <strong>
+                                            <field name="name"/>
+                                            <br/>
+                                            <field name="customer_id"/>
+                                        </strong>
+                                    </div>
+                                    <div class="col-2">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span attrs="{'invisible': [('technician_id', '=', False)]}">Tech: <field name="technician_id"/></span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span attrs="{'invisible': [('time_planned', '=', 0)]}">Estimation:
+                                            <field name="time_planned" widget="float_time"/>
+                                        </span>
+                                    </div>
+                                    <div class="col-6">
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span>Interventions:
+                                            <field name="intervention_done"/> of <field name="intervention_count"/>
+                                        </span>
+                                    </div>
+                                    <div class="col-6">
+                                        <span>Tasks :
+                                            <field name="task_done"/> of <field name="task_count"/>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span>Created:
+                                            <field name="create_date" widget="date"/>
+                                        </span>
+                                    </div>
+                                    <div class="col-6">
+                                        <span attrs="{'invisible': [('date_service', '=', False)]}">Planned:
+                                            <field name="date_service" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="row" attrs="{'invisible': [('tools_needed', '=', False)]}">
+                                    <div class="col-3">
+                                        <span>
+                                            <strong>Tools:</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-9">
+                                        <span>
+                                            <pre><field name="tools_needed"/></pre>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="work_order_view_calendar" model="ir.ui.view">
+       <field name="name">durpro_fso.work_order.calendar</field>
+       <field name="model">durpro_fso.work_order</field>
+       <field name="arch" type="xml">
+           <calendar string="Service Request"
+                     date_start="time_start_planned"
+                     date_stop="time_end_planned"
+                     event_open_popup="true"
+                     color="technician_id"
+                     mode="week"
+                     quick_add="False">
+               <field name="name"/>
+               <field name="name"/>
+               <field name="customer_id"/>
+           </calendar>
+       </field>
+    </record>
+
+    <record id="work_order_view_tree" model="ir.ui.view">
+        <field name="name">durpro_fso.work_order.tree</field>
+        <field name="model">durpro_fso.work_order</field>
+        <field name="arch" type="xml">
+            <tree string="Field Service Orders">
+                <field name="name"/>
+                <field name="sale_id"/>
+                <field name="customer_id"/>
+                <field name="stage_id"/>
+                <field name="date_service"/>
+                <field name="technician_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="work_order_view_map" model="ir.ui.view">
+        <field name="name">durpro_fso.work_order.map</field>
+        <field name="model">durpro_fso.work_order</field>
+        <field name="arch" type="xml">
+            <map res_partner="customer_shipping_id">
+                <field name="date_service" string="Date"/>
+            </map>
+        </field>
+    </record>
+
+ <!--   BV: Need to fix and bring back that search view later
+    <record id="work_order_view_search" model="ir.ui.view">
+        <field name="name">durpro_fso.work_order.search</field>
+        <field name="model">durpro_fso.work_order</field>
+        <field name="arch" type="xml">
+            <search string="Work Orders">
+                <field name="customer_id"/>
+                <field name="equipment_ids"/>
+                <field name="technician_id"/>
+                <field name="sale_id"/>
+
+                <filter string="Waiting Parts" domain="[('stage_id.code','=','waiting_parts')]" help="Waiting Parts"/>
+                <filter string="To Schedule" domain="[('stage_id.code','=','to_schedule')]" help="To Schedule"/>
+                <separator/>
+                <filter string="Scheduled" domain="[('stage_id.code','=','scheduled')]" help="Scheduled"/>
+                <filter string="Ready" domain="[('stage_id.code','=','ready')]" help="Ready"/>
+                <filter string="Done" domain="[('stage_id.code','=','done')]" help="Done"/>
+                <filter string="Exception" domain="[('stage_id.code','=','exception')]" help="Exception"/>
+
+                <group expand="0" string="Group By">
+                    <filter string="Partner" context="{'group_by':'customer_id'}"/>
+                    <filter string="Technician" context="{'group_by':'technician_id'}"/>
+                    <filter string="Date" context="{'group_by':'date_service'}"/>
+                    <filter string="State" context="{'group_by':'stage_id.code'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+-->
+
+    <record model="ir.actions.act_window" id="action_window_work_order">
+        <field name="name">Work Order</field>
+        <field name="res_model">durpro_fso.work_order</field>
+        <field name="view_mode">kanban,tree,calendar,form,map</field>
+        <field name="context" eval="{'default_stage_id': ref('durpro_fso.work_order_stage_draft')}"/>
+    </record>
+
+</odoo>

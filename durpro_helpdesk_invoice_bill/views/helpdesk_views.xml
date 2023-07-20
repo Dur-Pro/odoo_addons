@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="helpdesk_ticket_view_form" model="ir.ui.view">
+            <field name="name">helpdesk.invoice.form.inherit</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="priority">90</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="header" position="inside">
+                    <button class="btn btn-secondary" name="action_generate_invoice" type="object" string="Create Invoice" groups="base.group_user" />
+                    <button class="btn btn-secondary" name="action_generate_bill" type="object" string="Create Vendor Bill" groups="base.group_user" />
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" name="action_view_invoice"  type="object" icon="fa-tasks" attrs="{'invisible': [('invoice_count', '=', 0)]}" groups="base.group_user">
+                        <field string="Invoices" name="invoice_count" widget="statinfo" />
+                    </button>
+                    <button class="oe_stat_button" name="action_view_bill"  type="object" icon="fa-tasks" attrs="{'invisible': [('bill_count', '=', 0)]}" groups="base.group_user">
+                        <field string="Vendor Bills" name="bill_count" widget="statinfo" />
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

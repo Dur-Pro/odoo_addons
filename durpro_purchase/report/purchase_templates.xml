@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_purcahseorder_document_durpro" inherit_id="purchase.report_purchaseorder_document">
+        <!-- Finish the row with the broker information-->
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div t-if="o.customs_broker" class="col-3 bm-2">
+                <strong>Customs Broker:</strong>
+                <p t-field="o.customs_broker" class="m-0"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[@id='informations']" position="after">
+            <div id="informations2" class="row mt32 mb32">
+                <div t-if="o.carrier" class="col-3 bm-2">
+                    <strong>Carrier:</strong>
+                    <p t-field="o.carrier" class="m-0"/>
+                </div>
+                <div t-if="o.carrier_account" class="col-3 bm-2">
+                    <strong>Carrier Account:</strong>
+                    <p t-field="o.carrier_account" class="m-0"/>
+                </div>
+                <div t-if="o.shipping_policy_request" class="col-3 bm-2">
+                    <strong>Requested Shipping Policy</strong>
+                    <p t-field="o.shipping_policy_request" class="m-0"/>
+                </div>
+                <div t-if="o.shipping_timing_request" class="col-3 bm-2">
+                    <strong>Requested Shipping Timing</strong>
+                    <p t-field="o.shipping_timing_request" class="m-0"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

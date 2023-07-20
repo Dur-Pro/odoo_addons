@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Intervention Form View -->
+    <record id="intervention_view_form" model="ir.ui.view">
+        <field name="name">durpro_fso.intervention.form</field>
+        <field name="model">durpro_fso.intervention</field>
+        <field name="arch" type="xml">
+            <form string="Intervention">
+                <sheet>
+                     <div class="oe_title">
+                        <h1>
+                            <field name="name" attrs="{'readonly': 1}"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="left">
+                            <field name="description"/>
+                            <field name="comments"/>
+                        </group>
+                        <group name="right">
+                            <field name="work_order_id" invisible="1"/>
+                            <field name="customer_id" readonly="1"/>
+                            <field name="equipment_id" context="{'default_partner_id': customer_id}"/>
+                            <field name="time_estimate" widget="float_time"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                </sheet>
+                <notebook>
+                    <page string="Tasks">
+                        <field name="task_ids" widget="one2many_list">
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="time_estimate" widget="float_time"/>
+                                <field name="comments"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_window_intervention">
+        <field name="name">Intervention</field>
+        <field name="res_model">durpro_fso.intervention</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

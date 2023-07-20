@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="act_sale_order_2_work_order" model="ir.actions.act_window">
+        <field name="name">Field Service Orders</field>
+        <field name="res_model">durpro_fso.work_order</field>
+        <field name="view_mode">form,tree</field>
+        <field name="context">{'search_default_sale_id': active_id}</field>
+        <field name="domain">[("sale_id", "=", active_id)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Work Order, the first step of a new service call.
+            </p><p>
+                Once the Work Order is created, it is a child of a sales order.
+                You'll be able to invoice it and collect payments.
+                From the <i>Sales Orders</i> menu, you can track delivery
+                orders or services.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">durpro_fso.view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+
+                <button type="object"
+                        name="action_view_work_orders"
+                        class="oe_stat_button"
+                        icon="fa-list-ol">
+                    <field name="work_order_count" widget="statinfo" string="Workorder"/>
+                </button>
+
+<!--                <button class="oe_stat_button" type="action" name="%(durpro_fso.act_sale_order_2_work_order)d"-->
+<!--                    icon="fa-list-ol">-->
+<!--                    <field string="Work Order" name="work_order_count" widget="statinfo"/>-->
+<!--                </button>-->
+
+            </xpath>
+            <xpath expr="//group[@name='sale_total']" position="inside">
+                <field name="estimate_misc_parts"/>
+                <field name="estimate_tax_ids" widget="many2many_tags"/>
+                <field name="amount_untaxed_with_estimate"/>
+                <field name="amount_tax_with_estimate"/>
+                <field name="amount_total_with_estimate"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_window_sale_order">
+        <field name="name">Sale Order</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- DJD: Removed as field is not required due to native support for BOM cost adjustment in v15
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form.view</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <field name="bom_id" position="after">
+                <field name="calculate_standard_cost"/>
+            </field>
+        </field>
+    </record>-->
+</odoo>

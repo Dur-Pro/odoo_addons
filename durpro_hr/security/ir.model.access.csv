@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+# durpro_hr.access_hr_employee_waist_size,access_hr_employee_waist_size,durpro_hr.model_hr_employee_waist_size,base.group_user,1,0,0,0
+# durpro_hr.access_hr_employee_leg_length,access_hr_employee_leg_length,durpro_hr.model_hr_employee_leg_length,base.group_user,1,0,0,0
+# durpro_hr.access_hr_employee_chest_size,access_hr_employee_chest_size,durpro_hr.model_hr_employee_chest_size,base.group_user,1,0,0,0
+# durpro_hr.access_hr_employee_arm_length,access_hr_employee_arm_length,durpro_hr.model_hr_employee_arm_length,base.group_user,1,0,0,0
+
+
+

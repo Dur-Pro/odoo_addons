@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_service"
+        name="Service"
+        sequence="12"
+        web_icon="durpro_fso,static/description/icon.png" />
+
+    <menuitem id="menu_dashboard"
+        name="Dashboard"
+        parent="menu_service" />
+
+    <menuitem id="menu_operations"
+        name="Operations"
+        parent="menu_service" />
+
+    <menuitem id="menu_operations_work_orders"
+        name="Work Orders"
+        action="action_window_work_order"
+        parent="menu_operations" />
+
+    <menuitem id="menu_operations_sale_order"
+        name="Sale Orders"
+        action="action_window_sale_order"
+        parent="menu_operations" />
+
+    <menuitem id="menu_operations_account_invoice"
+        name="Customer Invoices"
+        action="account.action_move_out_invoice_type"
+        parent="menu_operations" />
+
+    <menuitem id="menu_master_data"
+        name="Master Data"
+        parent="menu_service" />
+
+    <menuitem id="menu_master_data_res_partner"
+        name="Customers"
+        action="base.action_partner_form"
+        parent="menu_master_data" />
+
+    <menuitem id="menu_master_data_equipment"
+        name="Equipments"
+        action="action_window_equipment"
+        parent="menu_master_data" />
+
+    <menuitem id="menu_reporting"
+        name="Reporting"
+        parent="menu_service" />
+
+    <menuitem id="menu_configuration"
+        name="Configuration"
+        parent="menu_service" />
+
+    <menuitem id="menu_configuration_data_equipment_tags"
+        name="Equipment Tags"
+        action="action_window_equipment_tags"
+        parent="menu_configuration" />
+
+    <menuitem id="menu_configuration_data_equipment_location"
+        name="Equipment Locations"
+        action="action_window_equipment_location"
+        parent="menu_configuration" />
+
+    <menuitem id="menu_configuration_fso_configuration"
+        name="Configuration"
+        action="base_setup.action_general_configuration"
+        parent="menu_configuration" />
+
+</odoo>

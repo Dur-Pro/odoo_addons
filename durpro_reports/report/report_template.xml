@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="durpro_layout_standard" inherit_id="l10n_ca.l10n_ca_external_layout_standard">
+        <t t-if="company.account_fiscal_country_id.code == 'CA' and company.l10n_ca_pst"
+           position="replace"></t>
+        <div t-field="company.report_footer" position="after">
+            <t t-call="durpro_reports.report_footer"/>
+        </div>
+    </template>
+
+    <template id="durpro_layout_bold" inherit_id="l10n_ca.l10n_ca_external_layout_bold">
+        <t t-if="company.account_fiscal_country_id.code == 'CA' and company.l10n_ca_pst"
+           position="replace"></t>
+        <span t-field="company.company_details" position="after">
+            <t t-call="durpro_reports.report_footer"/>
+        </span>
+    </template>
+
+    <template id="durpro_layout_boxed" inherit_id="l10n_ca.l10n_ca_external_layout_boxed">
+        <t t-if="company.account_fiscal_country_id.code == 'CA' and company.l10n_ca_pst"
+           position="replace"></t>
+        <div t-field="company.report_footer" position="after">
+            <t t-call="durpro_reports.report_footer"/>
+        </div>
+    </template>
+
+    <template id="durpro_layout_striped" inherit_id="l10n_ca.l10n_ca_external_layout_striped">
+        <t t-if="company.account_fiscal_country_id.code == 'CA' and company.l10n_ca_pst"
+           position="replace"></t>
+        <div t-field="company.report_footer">
+            <t t-call="durpro_reports.report_footer"/>
+        </div>
+    </template>
+    <template id="report_footer">
+        <div t-if="company.account_fiscal_country_id.code == 'CA' and company.vat">
+            <t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-esc="company.vat"/>
+            <span t-if="company.account_fiscal_country_id.code == 'CA' and company.l10n_ca_pst">
+                QST: <span t-esc="company.l10n_ca_pst"/>
+            </span>
+        </div>
+    </template>
+</odoo>

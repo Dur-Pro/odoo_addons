@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="act_res_partner_2_work_order" model="ir.actions.act_window">
+        <field name="name">Field Service Orders</field>
+        <field name="res_model">durpro_fso.work_order</field>
+        <field name="view_mode">form,tree</field>
+        <field name="context">{'search_default_customer_id': active_id}</field>
+        <field name="domain">[("customer_id", "=", active_id)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Workorder, the first step of a new service call.
+            </p><p>
+                Once the Workorder is created, it is a child of a sales order.
+                You'll be able to invoice it and collect payments.
+                From the <i>Sales Orders</i> menu, you can track delivery
+                orders or services.
+            </p>
+        </field>
+    </record>
+
+    <record id="act_res_partner_2_equipment" model="ir.actions.act_window">
+        <field name="name">Equipments</field>
+        <field name="res_model">durpro_fso.equipment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_partner_id': active_id}</field>
+        <field name="domain">[("partner_id", "=", active_id)]</field>
+    </record>
+
+    <record id="res_partner_view_fso" model="ir.ui.view">
+        <field name="name">res.partner.view.buttons.fso</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="3"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="action" name="%(durpro_fso.act_res_partner_2_work_order)d"
+                    icon="fa-list-ol">
+                    <field string="Workorder" name="work_order_count" widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button" type="action" name="%(durpro_fso.act_res_partner_2_equipment)d"
+                    icon="fa-tachometer">
+                    <field string="Equipments" name="equipment_count" widget="statinfo"/>
+                </button>
+            </div>
+            <field name="lang" position="after">
+                <field name="is_site"/>
+                <field name="is_site_contact"/>
+            </field>
+            <xpath expr="/form//field[@name='child_ids']/form//field[@name='comment']" position="after">
+                <field name="is_site_contact"/>
+            </xpath>
+            <xpath expr="/form//field[@name='child_ids']/form/sheet/group/group" position="inside">
+                <field name="is_site"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

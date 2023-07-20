@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="invoice_tree_durpro" model="ir.ui.view">
+		<field name="name">account.invoice.tree</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_move_tree"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='partner_id']" position="after">
+		    	<field name="supplier_invoice_number"/>
+			</xpath>
+		</field>
+	</record>
+
+<!--	BV : BRING IT BACK TO LIFE IN 15
+
+	<record id="invoice_supplier_form_durpro" model="ir.ui.view">
+	    <field name="name">account.invoice.supplier.form.durpro</field>
+	    <field name="model">account.invoice</field>
+	    <field name="inherit_id" ref="account.invoice_supplier_form"/>
+	    <field name="arch" type="xml">
+		<xpath expr="//field[@name='partner_id']" position="attributes">
+		    <attribute name="domain">['|',('type','in',('invoice','default')),('is_company','=',True)]</attribute>
+		</xpath>
+	    </field>
+	</record>
+
+	<record id="invoice_form_durpro" model="ir.ui.view">
+	    <field name="name">account.invoice.form.durpro</field>
+	    <field name="model">account.invoice</field>
+	    <field name="inherit_id" ref="account.invoice_form"/>
+	    <field name="arch" type="xml">
+		<xpath expr="//field[@name='partner_id']" position="attributes">
+		    <attribute name="domain">['|',('type','in',('invoice','default')),('is_company','=',True)]</attribute>
+		</xpath>
+	    </field>
+	</record>
+	-->
+
+</odoo>

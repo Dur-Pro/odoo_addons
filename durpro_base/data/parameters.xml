@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Correction pour wkhtmltopdf -->
+    <record id="report_url" model="ir.config_parameter">
+        <field name="key">report.url</field>
+        <field name="value">http://127.0.0.1:8069</field>
+    </record>
+
+    <!-- Set default values -->
+    <function model="ir.default" name="set" eval="('product.template', 'property_cost_method', '')"/>
+    <function model="ir.default" name="set" eval="('product.template', 'property_valuation', '')"/>
+</odoo>

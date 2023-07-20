@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="product_category_search_view">
+        <field name="name">product_category_search_view</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_list_view"/>
+        <field name="arch" type="xml">
+            <field name="display_name" position="after">
+                <field name="help"></field>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="product_category_default_view">
+        <field name="name">product_category_default_view</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <field name="removal_strategy_id" position="after">
+                <separator string="Default values"/>
+                <field name="category_default_ids">
+                    <tree create="true" editable="bottom">
+                        <field name="field"/>
+                        <field name="value"/>
+                    </tree>
+                </field>
+                <separator string="Help Text"/>
+                <field name="help"></field>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_name_form_view">
+        <field name="name">product_name_form_view</field>
+        <field name="model">product.name</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="form view">
+                <field name="level" invisible="1"/>
+                <field name="name"></field>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="product_name_filter">
+        <field name="name">product_name_filter_view</field>
+        <field name="model">product.name</field>
+        <field name="arch" type="xml">
+            <search string="Product names">
+                <group expand="0" string="Group By" colspan="10" col="8">
+                    <filter string="Level" name="group_by_level" domain="[]" context="{'group_by' : 'level'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="product_name_tree_view">
+        <field name="name">Product names</field>
+        <field name="model">product.name</field>
+        <field name="arch" type="xml">
+            <tree editable="top" string="Product names">
+                <field name="level"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="product_name_action">
+        <field name="name">Product names</field>
+        <field name="res_model">product.name</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem id="menu_product_name" action="product_name_action" parent="sale.product_menu_catalog" name="Product Names" sequence="5"/>
+</odoo>

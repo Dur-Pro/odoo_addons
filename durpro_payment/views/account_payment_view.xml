@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">durpro_payment.account_payment.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_cancel']" position="after">
+                    <button name="action_send_by_email" string="Send by Email" type="object" data-hotkey="s"
+                            attrs="{'invisible': [('state', '!=', 'posted'), ('payment_type', '=', 'inbound')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

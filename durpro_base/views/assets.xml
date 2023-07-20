@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_common" inherit_id="web.assets_common">
+        <!-- Add patched version of JQuery to fix filter menu behavior. See https://github.com/OCA/OCB/commit/7308274ac82c02b4d384380e6b4aeefd960d6838 -->
+        <xpath expr="script[@src='/web/static/lib/jquery/jquery.js']" position="attributes">
+            <attribute name="src">/durpro_base/static/lib/jquery/jquery.js</attribute>
+        </xpath>
+    </template>
+</odoo>

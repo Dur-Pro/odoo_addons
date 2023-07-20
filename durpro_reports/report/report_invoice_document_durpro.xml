@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--   Add the text "Billing Address:" before the billing address on invoices     -->
+        <template id="report_invoice_document_sale_durpro" inherit_id="sale.report_invoice_document_inherit_sale">
+            <xpath expr="(//div[@groups='sale.group_delivery_invoice_address'])[2]" position="replace">
+                <t set="information_block">
+                    <strong>Billing Address:</strong>
+                    <div t-field="o.partner_id"
+                         t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                         groups="sale.group_delivery_invoice_address"/>
+                </t>
+            </xpath>
+        </template>
+        <!--   Change the wording shown on the bottom of invoices for remitting payment   -->
+        <template id="report_invoice_document_durpro" inherit_id="account.report_invoice_document">
+            <xpath expr="//p[@name='payment_communication']" position="replace">
+                <p t-if="o.move_type in ('out_invoice', 'in_refund')"
+                   name="payment_communication" t-field="o.company_id.global_client_invoice_notes"/>
+            </xpath>
+        </template>
+        <template id="report_invoice_document_durpro_l10n_ca_inherit"
+                  inherit_id="l10n_ca.l10n_ca_report_invoice_document_inherit">
+            <t t-if="o.company_id.account_fiscal_country_id.code == 'CA' and o.partner_id.l10n_ca_pst"
+               position="replace"></t>
+        </template>
+    </data>
+</odoo>

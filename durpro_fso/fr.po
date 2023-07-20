@@ -1,0 +1,1152 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* durpro_fso
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-04 20:07+0000\n"
+"PO-Revision-Date: 2022-07-04 20:07+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_sale_order_work_order_count
+msgid "# of Work Orders"
+msgstr "# de bons de travail"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_saleorder_service_estimate_document
+msgid "<span>Service Estimate #</span>"
+msgstr "<span>Estimation pour Service #</span>"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "<strong>Arrived:</strong>"
+msgstr "<strong>Arrivée:</strong>"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "<strong>Comments</strong>"
+msgstr "<strong>Commentaires</strong>"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.manage_intervention_wizard_form
+msgid "<strong>Create Back-Order</strong> button: create a new Work Order with incomplete tasks."
+msgstr "<strong>Créer un Reliquatr</strong> button: créer un nouveau bon de travail pour les tâches incomplètes."
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "<strong>Departed:</strong>"
+msgstr "<strong>Depart:</strong>"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "<strong>Interventions</strong>"
+msgstr "<strong>Interventions</strong>"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.manage_intervention_wizard_form
+msgid "<strong>Mark All Done</strong> button: Mark all tasks as completed."
+msgstr "<strong>Tout compléter</strong> button: Marquer toutes les tâches comme completées."
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_saleorder_service_estimate_document
+msgid "<strong>Miscellaneous parts estimate</strong>"
+msgstr "<strong>Estimation des pièces</strong>"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "<strong>Parts used</strong>"
+msgstr "<strong>Composants utilisés</strong>"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_saleorder_service_estimate_document
+msgid "<strong>Subtotal parts and labour</strong>"
+msgstr "<strong>Sous-total pièces et main d'oeuvre/strong>"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_saleorder_service_estimate_document
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>Sous-total</strong>"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_saleorder_service_estimate_document
+msgid "<strong>Taxes</strong>"
+msgstr "<strong>Taxes</strong>"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_saleorder_service_estimate_document
+msgid "<strong>Total</strong>"
+msgstr "<strong>Total</strong>"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "<strong>Work Order - Technical Service</strong>"
+msgstr "<strong>Bon de Travail - Service Technique</strong>"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_time_actual
+msgid "Actual Duration"
+msgstr "Durée"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_time_end_actual
+msgid "Actual End Time"
+msgstr "Heure de Fin"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_time_start_actual
+msgid "Actual Start Time"
+msgstr "Heure de Début"
+
+#. module: durpro_fso
+#: code:addons/durpro_fso/models/work_order.py:375
+#, python-format
+msgid "All interventions must be completed and marked done."
+msgstr "Toutes les interventions doivent être completées et marquées comme fait."
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_tag_ids
+msgid "Application"
+msgstr "Application"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "Assignee"
+msgstr "Assigné à"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Auth. Number"
+msgstr "Numéro Auth."
+
+#. module: durpro_fso
+#: selection:durpro_fso.intervention,state:0
+#: selection:durpro_fso.task,state:0
+msgid "Back Order"
+msgstr "Reliquat"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "Block letters"
+msgstr "Block letters"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.manage_intervention_wizard_form
+#: model:ir.ui.view,arch_db:durpro_fso.set_exception_wizard_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_durpro_fso_equipment_tag
+msgid "Category of equipments"
+msgstr "Categorie d'équipments"
+
+#. module: durpro_fso
+#: model:ir.model.fields,help:durpro_fso.field_res_partner_is_site_contact
+#: model:ir.model.fields,help:durpro_fso.field_res_users_is_site_contact
+msgid "Check if the contact is a site contact, otherwise it is a not in that list"
+msgstr "Cocher si le contact est un contact de site, autrement il ne sera pas dans la liste"
+
+#. module: durpro_fso
+#: model:ir.model.fields,help:durpro_fso.field_res_partner_is_site
+#: model:ir.model.fields,help:durpro_fso.field_res_users_is_site
+msgid "Check if the contact is an equipment site, otherwise it is not in that list"
+msgstr "Cocher si le contact est un site d'équipment, autrement il ne sera pas dans la liste"
+
+#. module: durpro_fso
+#: model:ir.model.fields,help:durpro_fso.field_durpro_fso_equipment_tag_ids
+msgid "Classify and analyze your equipment categories like: Boiler, Laboratory, Waste water, Pure water"
+msgstr "Classifier et analyser vos catégories d'équipement comme: Bouilloire, Laboratoire, Eaux usées, Eaux pures"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "Client:"
+msgstr "Client:"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_tag_color
+msgid "Color Index"
+msgstr "Couleur"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_comments
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_comments
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "Comments"
+msgstr "Commentaires"
+
+#. module: durpro_fso
+#: model:ir.ui.menu,name:durpro_fso.menu_configuration
+#: model:ir.ui.menu,name:durpro_fso.menu_configuration_fso_configuration
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.manage_intervention_wizard_form
+msgid "Create Back-Order"
+msgstr "Créer un reliquat"
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,help:durpro_fso.act_sale_order_2_work_order
+msgid "Create a Work Order, the first step of a new service call."
+msgstr "Créer un bon de travail, première étape vers un nouvel appel de service."
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_create_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_tag_create_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_type_create_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_create_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_type_create_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_manage_intervention_wizard_create_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_set_exception_wizard_create_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_create_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_create_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_create_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_tag_create_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_type_create_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_create_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_type_create_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_manage_intervention_wizard_create_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_set_exception_wizard_create_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_create_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_create_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage_create_date
+msgid "Created on"
+msgstr "Créer le"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_customer_id
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_customer_id
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Customer"
+msgstr "Client"
+
+#. module: durpro_fso
+#: model:ir.ui.menu,name:durpro_fso.menu_operations_account_invoice
+msgid "Customer Invoices"
+msgstr "Factures clients"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_customer_pre_authorization_ref
+msgid "Customer Pre-Authorization Reference"
+msgstr "Numéro de pré-Authorization du client"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_customer_order_ref
+msgid "Customer Reference"
+msgstr "Référence client"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "Customer Representative"
+msgstr "Représentant du client"
+
+#. module: durpro_fso
+#: model:ir.ui.menu,name:durpro_fso.menu_master_data_res_partner
+msgid "Customers"
+msgstr "Clients"
+
+#. module: durpro_fso
+#: model:ir.ui.menu,name:durpro_fso.menu_dashboard
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "Date"
+msgstr "Date"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_kanban
+msgid "Date service:"
+msgstr "Date de service:"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Deliveries"
+msgstr "Livraisons"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_customer_shipping_id
+msgid "Delivery Address"
+msgstr "Adresse de livraison"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_delivery_count
+msgid "Delivery Count"
+msgstr "Qtée Livraison"
+
+#. module: durpro_fso
+#: model:ir.model.fields,help:durpro_fso.field_durpro_fso_work_order_customer_shipping_id
+msgid "Delivery address for current sales order."
+msgstr "Adresse de livraison du bon de commande en cours."
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_description
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_description
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_description
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "Description"
+msgstr "Description"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_display_name
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_tag_display_name
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_type_display_name
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_display_name
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_type_display_name
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_manage_intervention_wizard_display_name
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_set_exception_wizard_display_name
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_display_name
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_display_name
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: durpro_fso
+#: selection:durpro_fso.intervention,state:0
+#: selection:durpro_fso.task,state:0
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "Done"
+msgstr "Terminé"
+
+#. module: durpro_fso
+#: model:durpro_fso.work_order.stage,name:durpro_fso.work_order_stage_draft
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "Durpro Reference:"
+msgstr "Réference Durpro :"
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,name:durpro_fso.action_window_equipment
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_equipment_id
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_equipment_ids
+#: model:ir.ui.view,arch_db:durpro_fso.equipment_view_form
+#: model:ir.ui.view,arch_db:durpro_fso.equipment_view_tree
+msgid "Equipment"
+msgstr "Équipement"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_res_partner_equipment_count
+#: model:ir.model.fields,field_description:durpro_fso.field_res_users_equipment_count
+msgid "Equipment Count"
+msgstr "Qtée d'équipment"
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,name:durpro_fso.action_window_equipment_tags
+msgid "Equipment Tag"
+msgstr "Étiquette d'équipment"
+
+#. module: durpro_fso
+#: model:ir.ui.menu,name:durpro_fso.menu_configuration_data_equipment_tags
+msgid "Equipment Tags"
+msgstr "Étiquettes d'Équipment"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_durpro_fso_equipment_type
+msgid "Equipment Type"
+msgstr "Type d'Équipment"
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,name:durpro_fso.act_res_partner_2_equipment
+#: model:ir.model.fields,field_description:durpro_fso.field_res_partner_equipment_ids
+#: model:ir.model.fields,field_description:durpro_fso.field_res_users_equipment_ids
+#: model:ir.ui.menu,name:durpro_fso.menu_master_data_equipment
+#: model:ir.ui.view,arch_db:durpro_fso.equipment_view_search
+#: model:ir.ui.view,arch_db:durpro_fso.res_partner_view_fso
+msgid "Equipments"
+msgstr "Équipements"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_time_estimate
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_time_estimate
+msgid "Estimated Time"
+msgstr "Temps Estimé"
+
+#. module: durpro_fso
+#: model:durpro_fso.work_order.stage,name:durpro_fso.work_order_stage_exception
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "Exception"
+msgstr "Exception"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_time_planned
+msgid "Expected Duration"
+msgstr "Durée prévue"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.fso_settings
+msgid "FSO"
+msgstr "FSO"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_res_config_settings_fso_partners
+#: model:ir.ui.view,arch_db:durpro_fso.fso_settings
+msgid "FSO Partners"
+msgstr "Partenaires FSO"
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,name:durpro_fso.act_res_partner_2_work_order
+#: model:ir.actions.act_window,name:durpro_fso.act_sale_order_2_work_order
+msgid "Field Service Orders"
+msgstr "Bon de travail sur place"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage_fold
+msgid "Folded in Kanban"
+msgstr "Replié dans le Kanban"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.equipment_view_search
+#: model:ir.ui.view,arch_db:durpro_fso.task_view_search
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "I hereby acknowledge that the above labour and material have been authorized and\n"
+"                                supplied;\n"
+"                                that a copy of this Field Service Form has been received;\n"
+"                                that the equipment serviced is currently in an acceptable functional state as per its\n"
+"                                operating specifications; that there are no visible leakages and that the worksite was\n"
+"                                left in an acceptably clean state similar to that in which it was prior to the start of\n"
+"                                work by the service person and that Durpro is not responsible for consequential damages."
+msgstr "Je reconnais par la présente que la main-d'œuvre et le matériel ci-dessus ont été autorisés et\n"
+"                                fournis;\n"
+"                                qu'une copie de ce formulaire de service sur le terrain a été reçue ;\n"
+"                                que l'équipement entretenu est actuellement dans un état fonctionnel acceptable selon son\n"
+"                                les spécifications de fonctionnement ; qu'il n'y a pas de fuites visibles et que le chantier a\n"
+"                                laissé dans un état de propreté acceptable similaire à celui dans lequel il se trouvait avant le début du\n"
+"                                travail par la personne de service et que Durpro n'est pas responsable des dommages indirects."
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_id
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_tag_id
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_type_id
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_id
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_type_id
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_manage_intervention_wizard_id
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_set_exception_wizard_id
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_id
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_id
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage_id
+msgid "ID"
+msgstr "ID"
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,name:durpro_fso.action_window_intervention
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_intervention_id
+#: model:ir.ui.view,arch_db:durpro_fso.intervention_view_form
+#: model:ir.ui.view,arch_db:durpro_fso.task_view_search
+msgid "Intervention"
+msgstr "Intervention"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_type_name
+msgid "Intervention Name"
+msgstr "Nom de l'intervention"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_durpro_fso_intervention_type
+msgid "Intervention Type"
+msgstr "Type d'intervention"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_intervention_ids
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_intervention_ids
+#: model:ir.ui.view,arch_db:durpro_fso.equipment_view_form
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Interventions"
+msgstr "Interventions"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_invoice_count
+msgid "Invoice Count"
+msgstr "Qtée facture"
+
+#. module: durpro_fso
+#: model:durpro_fso.work_order.stage,name:durpro_fso.work_order_stage_invoiced
+msgid "Invoiced"
+msgstr "Facturée"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Invoices"
+msgstr "Factures"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_res_partner_is_site_contact
+#: model:ir.model.fields,field_description:durpro_fso.field_res_users_is_site_contact
+msgid "Is a site contact"
+msgstr "Est un contact de site"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_res_partner_is_site
+#: model:ir.model.fields,field_description:durpro_fso.field_res_users_is_site
+msgid "Is an Equipment Site"
+msgstr "Est un site d'équipement"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Labour"
+msgstr "Travaux"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment___last_update
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_tag___last_update
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_type___last_update
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention___last_update
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_type___last_update
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_manage_intervention_wizard___last_update
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_set_exception_wizard___last_update
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task___last_update
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order___last_update
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_tag_write_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_type_write_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_write_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_type_write_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_write_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_manage_intervention_wizard_write_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_set_exception_wizard_write_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_write_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage_write_uid
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_tag_write_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_type_write_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_write_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_type_write_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_write_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_manage_intervention_wizard_write_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_set_exception_wizard_write_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_write_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage_write_date
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_technician_id
+msgid "Lead Technician"
+msgstr "Technicien responsable"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.equipment_view_search
+msgid "Location"
+msgstr "Lieu"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Make Ready"
+msgstr "Marquer comme prêt"
+
+#. module: durpro_fso
+#: code:addons/durpro_fso/models/work_order.py:263
+#: model:ir.ui.view,arch_db:durpro_fso.manage_intervention_wizard_form
+#, python-format
+msgid "Manage interventions"
+msgstr "Gestion des interventions"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.manage_intervention_wizard_form
+msgid "Mark All Done"
+msgstr "Marquer comme tout complété"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Mark Done"
+msgstr "Marquer comme complétée"
+
+#. module: durpro_fso
+#: model:ir.ui.menu,name:durpro_fso.menu_master_data
+msgid "Master Data"
+msgstr "Données de base"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_name
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_tag_name
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_type_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: durpro_fso
+#: code:addons/durpro_fso/models/work_order.py:350
+#, python-format
+msgid "Need a customer Purchase Order (Customer Reference) on sale order or at least a pre-authorization number."
+msgstr "Vous devez entrer le PO d'un client (Référence client) sur le bon de commande ou au moins un numéro de pre-authorisation."
+
+#. module: durpro_fso
+#: selection:durpro_fso.intervention,state:0
+msgid "Need task!"
+msgstr "Besoin d'une tâche!"
+
+#. module: durpro_fso
+#: code:addons/durpro_fso/models/intervention.py:37
+#: code:addons/durpro_fso/models/intervention.py:85
+#: code:addons/durpro_fso/models/task.py:16
+#: code:addons/durpro_fso/models/task.py:31
+#: code:addons/durpro_fso/models/work_order.py:43
+#: code:addons/durpro_fso/models/work_order.py:317
+#, python-format
+msgid "New"
+msgstr "Nouveau"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_next_intervention
+msgid "Next Intervention"
+msgstr "Next Intervention"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_next_task
+msgid "Next Task"
+msgstr "Next Task"
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,help:durpro_fso.act_sale_order_2_work_order
+msgid "Once the Work Order is created, it is a child of a sales order.\n"
+"                You'll be able to invoice it and collect payments.\n"
+"                From the <i>Sales Orders</i> menu, you can track delivery\n"
+"                orders or services."
+msgstr "Une fois le bon de travail créé, il s'agit d'un enfant d'un bon de commande.\n"
+"                Vous pourrez le facturer et encaisser les paiements.\n"
+"                Depuis le menu <i>Commandes</i>, vous pouvez suivre les livraisons\n"
+"                et les bons de travail."
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,help:durpro_fso.act_res_partner_2_work_order
+msgid "Once the Workorder is created, it is a child of a sales order.\n"
+"                You'll be able to invoice it and collect payments.\n"
+"                From the <i>Sales Orders</i> menu, you can track delivery\n"
+"                orders or services."
+msgstr "Une fois le bon de travail créé, il s'agit d'un enfant d'un bon de commande.\n"
+"                Vous pourrez le facturer et encaisser les paiements.\n"
+"                Depuis le menu <i>Commandes</i>, vous pouvez suivre les livraisons\n"
+"                et les bons de travail."
+
+#. module: durpro_fso
+#: model:ir.ui.menu,name:durpro_fso.menu_operations
+msgid "Operations"
+msgstr "Opérations"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_saleorder_service_estimate_document
+msgid "Order #"
+msgstr "Commande n°"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_assistant_ids
+msgid "Other Technician"
+msgstr "Other Technician"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_partner_id
+msgid "Owner"
+msgstr "Propriétaire"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_pid_tag
+msgid "P&ID Tag"
+msgstr "P&ID Tag"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "P.O. Number"
+msgstr "Numéro P.O."
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "Part Number"
+msgstr "Part Number"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.equipment_view_search
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Parts"
+msgstr "Pièces"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_sale_order_estimate_misc_parts
+msgid "Parts Estimate"
+msgstr "Estimation des pièces"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_partner_location_id
+msgid "Physical Location"
+msgstr "Endroit Physique"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_equipment_location_notes
+msgid "Physical Location Notes"
+msgstr "NOtes sur l'endroit"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_time_end_planned
+msgid "Planned End Time"
+msgstr "Heure fin planifiée"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_time_start_planned
+msgid "Planned Start Time"
+msgstr "Heure début planifiée"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_date_planned
+msgid "Planned date"
+msgstr "Date plannifiée"
+
+#. module: durpro_fso
+#: code:addons/durpro_fso/models/work_order.py:285
+#: code:addons/durpro_fso/models/work_order.py:379
+#, python-format
+msgid "Please complete delivery before."
+msgstr "Prière de compléter les livraisons."
+
+#. module: durpro_fso
+#: code:addons/durpro_fso/models/work_order.py:382
+#, python-format
+msgid "Please complete invoicing before."
+msgstr "Prière de compléter la facturation."
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.set_exception_wizard_form
+msgid "Please write a reason for this exception:"
+msgstr "Prière de justifier la raison de cette exception:"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_labour_line
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_product_line
+msgid "Product Lines"
+msgstr "Lignes de produits"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "Qty"
+msgstr "Qté"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_sale_order
+msgid "Quotation"
+msgstr "Devis"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_saleorder_service_estimate_document
+msgid "Quotation #"
+msgstr "Devis #"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "Ready"
+msgstr "Prêt"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_set_exception_wizard_exception_note
+msgid "Reason for the exception"
+msgstr "Raison de cette exception"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_name
+msgid "Reference"
+msgstr "Référence"
+
+#. module: durpro_fso
+#: model:ir.ui.menu,name:durpro_fso.menu_reporting
+msgid "Reporting"
+msgstr "Rapports"
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,name:durpro_fso.action_window_sale_order
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_sale_id
+msgid "Sale Order"
+msgstr "Commande client"
+
+#. module: durpro_fso
+#: model:ir.ui.menu,name:durpro_fso.menu_operations_sale_order
+msgid "Sale Orders"
+msgstr "Commandes client"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Sales Order Lines"
+msgstr "Lignes de bons de commande"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Schedule"
+msgstr "Planifier"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "Scheduled"
+msgstr "Planifié"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_send_invoice_to
+msgid "Send invoice to"
+msgstr "Envoyer la facture à"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_send_work_order_to
+msgid "Send work_order to"
+msgstr "Envoyer le bon de travail"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_sequence
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_sequence
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage_sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "Serial Number"
+msgstr "Numéro de série"
+
+#. module: durpro_fso
+#: model:ir.ui.menu,name:durpro_fso.menu_service
+msgid "Service"
+msgstr "Service"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_date_service
+msgid "Service Date"
+msgstr "Date de service"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+msgid "Service Date:"
+msgstr "Date du service:"
+
+#. module: durpro_fso
+#: model:ir.actions.report,name:durpro_fso.action_report_service_estimate_saleorder
+msgid "Service Estimate / Order"
+msgstr "Devis de service / Bon de commande"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_calendar
+msgid "Service Request"
+msgstr "Demande de service"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Set Draft"
+msgstr "Mettre en brouillonm"
+
+#. module: durpro_fso
+#: code:addons/durpro_fso/models/work_order.py:309
+#: model:ir.ui.view,arch_db:durpro_fso.set_exception_wizard_form
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+#, python-format
+msgid "Set Exception"
+msgstr "Mettre en exception"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Set to Schedule"
+msgstr "Mettre comm planifié"
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,name:durpro_fso.action_window_fso_configuration
+msgid "Settings"
+msgstr "Configuration"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_site_contact_ids
+msgid "Site Contacts"
+msgstr "Contacts de site"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage_code
+msgid "Stage Code"
+msgstr "Code d'étape"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage_name
+msgid "Stage Name"
+msgstr "Nom de l'étape"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.task_view_search
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "State"
+msgstr "État"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_state
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_state
+msgid "Status"
+msgstr "État"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_sale_order_amount_untaxed_with_estimate
+msgid "Sub-Total with est."
+msgstr "Sous-total avec est."
+
+#. module: durpro_fso
+#: sql_constraint:durpro_fso.equipment.tag:0
+msgid "Tag name already exists !"
+msgstr "Le nom de l'étiquette existe déjà!"
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,name:durpro_fso.action_window_task
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+#: model:ir.ui.view,arch_db:durpro_fso.task_view_form
+msgid "Task"
+msgstr "Tâche"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_task_name
+msgid "Task Reference"
+msgstr "Réference de la tâche"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_task_ids
+#: model:ir.ui.view,arch_db:durpro_fso.intervention_view_form
+#: model:ir.ui.view,arch_db:durpro_fso.task_view_search
+msgid "Tasks"
+msgstr "Tâches"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_sale_order_estimate_tax_ids
+msgid "Taxes estimate"
+msgstr "Estimation des taxes"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_sale_order_amount_tax_with_estimate
+msgid "Taxes with est."
+msgstr "Taxes avec est."
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "Technician"
+msgstr "Technicien"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.report_workorder_document
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_kanban
+msgid "Technician:"
+msgstr "Technicien:"
+
+#. module: durpro_fso
+#: model:durpro_fso.work_order.stage,name:durpro_fso.work_order_stage_scheduled
+msgid "Tentatively booked"
+msgstr "Tentative de planification"
+
+#. module: durpro_fso
+#: code:addons/durpro_fso/models/work_order.py:336
+#, python-format
+msgid "The work order must have a planned service date!"
+msgstr "Le bon de travail doit avoir une date de planifiée!"
+
+#. module: durpro_fso
+#: code:addons/durpro_fso/models/work_order.py:342
+#, python-format
+msgid "The work order must have a technician set."
+msgstr "Le bon de travail doit avoir un technicien d'assigné."
+
+#. module: durpro_fso
+#: model:ir.model.fields,help:durpro_fso.field_durpro_fso_work_order_customer_pre_authorization_ref
+msgid "This is use to be able to execute the Work Order without PO if you got an other authorization number and got to ask for the PO number after the job get done"
+msgstr "Sert à permettre d'exécuter le bon de travail sans un ordre d'achat du client, doit comporter un numéro temporaire d'autorisation du client qui permettra d'obtenir le PO quand le travail est terminé."
+
+#. module: durpro_fso
+#: model:ir.model.fields,help:durpro_fso.field_durpro_fso_work_order_stage_fold
+msgid "This stage is folded in the kanban view when there are no records in that stage to display."
+msgstr "Cette étape est pliée dans la vue Kanban quand il n'y a pas de dossier à afficher dans cette étape."
+
+#. module: durpro_fso
+#: selection:durpro_fso.intervention,state:0
+#: selection:durpro_fso.task,state:0
+msgid "To Do"
+msgstr "A Faire"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "To Schedule"
+msgstr "A planifier"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_sale_order_amount_total_with_estimate
+msgid "Total with est."
+msgstr "Total avec est."
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_time_travel_planned
+msgid "Travel Time"
+msgstr "Durée de transport"
+
+#. module: durpro_fso
+#: model:durpro_fso.work_order.stage,name:durpro_fso.work_order_stage_to_schedule
+msgid "Unplanned"
+msgstr "Non-planifié"
+
+#. module: durpro_fso
+#: model:durpro_fso.work_order.stage,name:durpro_fso.work_order_stage_ready
+msgid "Visit confirmed"
+msgstr "Visite confirmée"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "Waiting Parts"
+msgstr "En attente de pièces"
+
+#. module: durpro_fso
+#: model:durpro_fso.work_order.stage,name:durpro_fso.work_order_stage_waiting_parts
+msgid "Waiting for parts"
+msgstr "En attente de pièces"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.manage_intervention_wizard_form
+msgid "What do you want to do?"
+msgstr "Que voulez-vous faire?"
+
+#. module: durpro_fso
+#: model:ir.actions.act_window,name:durpro_fso.action_window_work_order
+#: model:ir.actions.report,name:durpro_fso.action_report_workorder
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_intervention_work_order_id
+#: model:ir.model.fields,field_description:durpro_fso.field_res_partner_work_order_ids
+#: model:ir.model.fields,field_description:durpro_fso.field_res_users_work_order_ids
+#: model:ir.ui.view,arch_db:durpro_fso.view_order_form
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_form
+msgid "Work Order"
+msgstr "Bon de travail"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_res_partner_work_order_count
+#: model:ir.model.fields,field_description:durpro_fso.field_res_users_work_order_count
+msgid "Work Order Count"
+msgstr "Qtée bon de travail"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_name
+msgid "Work Order Reference"
+msgstr "Reférence du bon de travail"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_stage_id_18226
+msgid "Work Order Stages"
+msgstr "Étapes de bon de travail"
+
+#. module: durpro_fso
+#: code:addons/durpro_fso/models/work_order.py:359
+#, python-format
+msgid "Work Order need some intervention to be performed."
+msgstr "Le bon de travail nécessite des interventions à exécuter."
+
+#. module: durpro_fso
+#: model:ir.ui.menu,name:durpro_fso.menu_operations_work_orders
+#: model:ir.ui.view,arch_db:durpro_fso.work_order_view_search
+msgid "Work Orders"
+msgstr "Bon de travail"
+
+#. module: durpro_fso
+#: model:durpro_fso.work_order.stage,name:durpro_fso.work_order_stage_done
+msgid "Work executed"
+msgstr "Travail executé"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_durpro_fso_work_order_stage
+msgid "Work order Stage"
+msgstr "Étape de bon de travail"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_sale_order_work_order_ids
+msgid "Work orders"
+msgstr "Bon de travail"
+
+#. module: durpro_fso
+#: model:ir.ui.view,arch_db:durpro_fso.res_partner_view_fso
+msgid "Workorder"
+msgstr "Bon de travail"
+
+#. module: durpro_fso
+#: code:addons/durpro_fso/models/work_order.py:385
+#, python-format
+msgid "You just have a pre-authorization number, but you need a customer Purchase Order to create invoice."
+msgstr "Vous n'avez qu'une pre-authorization, vous avez besoin de PO du client pour pouvoir créer la facture."
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_durpro_fso_equipment
+msgid "durpro_fso.equipment"
+msgstr "durpro_fso.equipment"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_durpro_fso_intervention
+msgid "durpro_fso.intervention"
+msgstr "durpro_fso.intervention"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_durpro_fso_manage_intervention_wizard
+msgid "durpro_fso.manage_intervention.wizard"
+msgstr "durpro_fso.manage_intervention.wizard"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_durpro_fso_set_exception_wizard
+msgid "durpro_fso.set_exception.wizard"
+msgstr "durpro_fso.set_exception.wizard"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_durpro_fso_task
+msgid "durpro_fso.task"
+msgstr "durpro_fso.task"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_durpro_fso_work_order
+msgid "durpro_fso.work_order"
+msgstr "durpro_fso.work_order"
+
+#. module: durpro_fso
+#: model:ir.model,name:durpro_fso.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
+
+#. module: durpro_fso
+#: model:ir.model.fields,field_description:durpro_fso.field_durpro_fso_work_order_tools_needed
+msgid "tools needed"
+msgstr "Outils nécessaire"
+

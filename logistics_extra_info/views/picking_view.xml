@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_move_picking_tree_durpro" model="ir.ui.view">
+        <field name="name">stock.move.tree.durpro</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_picking_move_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="purchase_order"/>
+            </xpath>
+        </field>
+    </record>
+
+
+<!--
+   BV ADD BACK IN 15.0
+
+    <record id="view_move_picking_form_durpro" model="ir.ui.view">
+        <field name="name">stock.move.form.durpro</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_expected']" position="after">
+                <field name="purchase_order"/>
+            </xpath>
+        </field>
+    </record>
+
+-->
+
+
+    <record id="view_picking_form_durpro" model="ir.ui.view">
+        <field name="name">stock.form.durpro</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="client_order_ref"/>
+                <field name="shipper"/>
+                <field name="verifier"/>
+                <field name="package_type"/>
+                <field name="shipping_cost"/>
+                <field name="promised_date" attrs="{'invisible': [('promised_date', '=', False)]}"/>
+                <field name="expected_date" attrs="{'invisible': [('expected_date', '=', False)]}"/>
+                <field name="carrier"/>
+                <field name="carrier_account"/>
+            </xpath>
+            <xpath expr="//page[@name='note']" position="replace"/>
+            <xpath expr="//notebook" position="after">
+                <field name="note" string="Note" placeholder="Add an internal note that will be printed on the Picking Operations sheet" modifiers="{}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

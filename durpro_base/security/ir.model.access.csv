@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+durpro_base.access_durpro_base_inventory_valuation_wizard,access_durpro_base_inventory_valuation_wizard,durpro_base.model_durpro_base_inventory_valuation_wizard,base.group_user,1,1,1,1
+durpro_base.access_durpro_base_pricelist_import_wizard,access_durpro_base_pricelist_import_wizard,durpro_base.model_durpro_base_pricelist_import_wizard,base.group_user,1,0,0,0

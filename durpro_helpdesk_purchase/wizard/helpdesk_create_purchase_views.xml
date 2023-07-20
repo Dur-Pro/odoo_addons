@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="helpdesk_create_purchase_order_wizard" model="ir.ui.view" >
+            <field name="name">Create a new Purchase Order from this ticket</field>
+            <field name="model">helpdesk.create.purchase</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="2">
+                            <group>
+                                <field name="ticket_id" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="partner_id" widget="res_partner_many2one"
+                                       context = "{'res_partner_search_mode': 'supplier'}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Create &amp; View Order" class="btn btn-primary" name="action_generate_and_view_order" type="object" data-hotkey="s"/>
+                        <button string="Create Order" class="btn btn-primary" name="action_generate_order" type="object" data-hotkey="c"/>
+                        <button string="Discard" class="btn btn-secondary" special="cancel" data-hotkey="x" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

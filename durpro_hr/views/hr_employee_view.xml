@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_employee_form_durpro" model="ir.ui.view">
+        <field name="name">durpro_hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="clothing" string="Clothing">
+                    <group>
+                        <group string="Pants" name="Pants">
+                            <div class="o_row" name="pants_waist">
+                                <label>
+
+                                </label>
+                                <field name="waist_size"/>
+                                <field name="waist_size_uom_id"/>
+                            </div>
+                            <div class="o_row" name="pants_legs">
+                                <field name="leg_length"/>
+                                <field name="leg_length_uom_id"/>
+                            </div>
+                        </group>
+                        <group string="Shoes" name="Shoes">
+                            <field name="shoes_size"/>
+                            <field name="shoes_size_uom_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Shirts" name="Shirts">
+                            <div class="o_row" name="shirt_chest">
+                                <field name="chest_size"/>
+                                <field name="chest_size_uom_id"/>
+                            </div>
+                            <div class="o_row" name="shirt_arms">
+                                <field name="arm_length"/>
+                                <field name="arm_length_uom_id"/>
+                            </div>
+                        </group>
+                        <group string="Hat" name="Hat">
+                            <field name="hat_size"/>
+                            <field name="hat_size_uom_id"/>
+                        </group>
+                    </group>
+                </page>
+           </notebook>
+        </field>
+    </record>
+ </odoo>

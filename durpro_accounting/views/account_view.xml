@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_invoice_filter" model="ir.ui.view">
+        <field name="name">account.invoice.select.durpro</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <filter name="salesperson" position="before">
+                <filter string="Partner" name="partner" context="{'group_by': 'partner_id'}"/>
+            </filter>
+        </field>
+    </record>
+    <record id="view_in_invoice_tree" model="ir.ui.view">
+        <field name="name">account.out.invoice.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_in_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree//field[@name='name']" position="replace"/>
+        </field>
+    </record>
+    <record id="view_account_payment_tree" model="ir.ui.view">
+        <field name="name">account.payment.tree</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_signed']" position="attributes">
+                <attribute name="optional">show</attribute>
+                <attribute name="sum">Total</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!--<record id="account_invoice_supplier_form" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form.durpro</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="attributes">
+                <attribute name="attrs"/>
+            </xpath>
+        </field>
+    </record>-->
+    <!--
+    <record id="invoice_tree" model="ir.ui.view">
+        <field name="name">account.invoice.tree</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name="amount_total_signed" position="before">
+                <field name="amount_untaxed_signed_invoice_currency" string="Untaxed Amount" sum="Total Untaxed" widget="monetary"/>
+            </field>
+        </field>
+    </record>-->
+    <!--
+    <record id="invoice_supplier_tree" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.tree</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+        <field name="arch" type="xml">
+            <field name="amount_total_signed" position="before">
+                <field name="amount_untaxed_signed_invoice_currency" string="Untaxed Amount" sum="Total Untaxed" widget="monetary"/>
+            </field>
+        </field>
+    </record>-->
+
+    <!-- Remove the "Register Payment" action from the invoice tree view -->
+<!--    <delete model="ir.actions.act_window" id="account.action_account_payment_from_invoices"/>-->
+
+    <!-- Flat Chart of Accounts -->
+    <!-- <record id="view_account_chart_flat" model="ir.ui.view">
+        <field name="name">account.account.list.flat</field>
+        <field name="model">account.account</field>
+        <field name="arch" type="xml">
+            <tree string="Chart of accounts" toolbar="1" >
+                <field name="code"/>
+                <field name="name"/>
+                <field name="user_type_id"/>
+                <field name="currency_id" options="{'no_create': True}" groups="base.group_multi_currency"/>
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                <field name="credit"/>
+                <field name="debit"/>
+                <field name="balance"/>
+            </tree>
+        </field>
+    </record>-->
+    <!-- <record id="action_account_chart_flat" model="ir.actions.act_window">
+        <field name="name">Chart of Accounts (Flat)</field>
+        <field name="res_model">account.account</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="account.view_account_search"/>
+        <field name="view_id" ref="view_account_chart_flat"/>
+        <field name="limit">1000</field>
+    </record>
+    <menuitem action="action_account_chart_flat"
+              id="menu_action_account_chart_flat" parent="account.menu_finance_entries"
+              sequence="20" />-->
+</odoo>

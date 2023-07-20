@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_bank_statement_form_inherit" model="ir.ui.view">
+            <field name="name">durpro_accounting.account_bank_statement.form</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='message_follower_ids']" position="after">
+                    <field name="activity_ids" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

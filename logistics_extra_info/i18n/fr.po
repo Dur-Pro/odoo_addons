@@ -1,0 +1,194 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* logistics_extra_info
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-25 15:05+0000\n"
+"PO-Revision-Date: 2023-01-25 15:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: logistics_extra_info
+#: model_terms:ir.ui.view,arch_db:logistics_extra_info.view_picking_form_durpro
+msgid ""
+"Add an internal note that will be printed on the Picking Operations sheet"
+msgstr "Ajouter une note interne qui figurera sur le Bon de Préparation"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_sale_order__carrier
+msgid "Carrier"
+msgstr "Transporteur"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__carrier
+msgid "Carrier (OLD)"
+msgstr "Transporteur (ANCIEN)"
+
+#. module: logistics_extra_info
+#: model_terms:ir.ui.view,arch_db:logistics_extra_info.view_order_form_extras
+msgid "Carrier + Collect/Prepaid/3rd Party Billing"
+msgstr "Transporteur + Collect/Prépayé/Facturation tierce partie"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_purchase_order__carrier_account
+#: model:ir.model.fields,field_description:logistics_extra_info.field_sale_order__carrier_account
+msgid "Carrier Account"
+msgstr "Compte transporteur"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__carrier_account
+msgid "Carrier Account (OLD)"
+msgstr "Compte transporteur (ANCIEN)"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_purchase_order__carrier
+msgid "Carrier NAME DURPRO"
+msgstr "Nom Transporteur DURPRO"
+
+#. module: logistics_extra_info
+#: model_terms:ir.ui.view,arch_db:logistics_extra_info.view_order_form_extras
+msgid "Carrier account"
+msgstr "Compte transporteur"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__client_order_ref
+msgid "Customer Reference"
+msgstr "Référence client"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_purchase_order__customs_broker
+msgid "Customs Broker"
+msgstr "Courtier en douane"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,help:logistics_extra_info.field_stock_picking__promised_date
+msgid "Delivery date initially promised to the client."
+msgstr "Date de livraison promise initialement au client"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_purchase_order__po_conf_date
+msgid "Estimated Ship Date"
+msgstr "Date d'expédition estimée"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__expected_date
+msgid "Expected Ship Date"
+msgstr "Date d'expédition attendue"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,help:logistics_extra_info.field_stock_picking__expected_date
+msgid "Expected delivery date based on promised dates from suppliers."
+msgstr "Date de livraison attendue basée sur les dates promises par les fournisseurs."
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,help:logistics_extra_info.field_stock_picking__printed
+msgid "Indicates whether this picking has been printed already."
+msgstr "Indique si ce bon de livraison a déjà été imprimé."
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__net_weight
+msgid "Net Weight"
+msgstr "Poids net"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,help:logistics_extra_info.field_stock_picking__net_weight
+msgid "Net weight in lbs."
+msgstr "Poids net en lbs."
+
+#. module: logistics_extra_info
+#: model_terms:ir.ui.view,arch_db:logistics_extra_info.view_picking_form_durpro
+msgid "Note"
+msgstr "Note"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__package_type
+msgid "Package type"
+msgstr "Type d'emballage"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__printed
+msgid "Printed"
+msgstr "Imprimé"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__promised_date
+msgid "Promised Date"
+msgstr "Date promise"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,help:logistics_extra_info.field_purchase_order__po_conf_date
+msgid "Promised date on supplier order confirmation."
+msgstr ""
+
+#. module: logistics_extra_info
+#: model:ir.model,name:logistics_extra_info.model_purchase_order
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_move__purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_purchase_order__po_conf_number
+msgid "Purchase Order Confirmation"
+msgstr "Confirmation de commande"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,help:logistics_extra_info.field_stock_move__purchase_order
+msgid "Purchase order for this move line"
+msgstr "Commande pour cet article"
+
+#. module: logistics_extra_info
+#: model:ir.model,name:logistics_extra_info.model_sale_order
+msgid "Sales Order"
+msgstr "Commande de ventes"
+
+#. module: logistics_extra_info
+#: model:ir.model,name:logistics_extra_info.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__shipper
+msgid "Shipper"
+msgstr "Expéditeur"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__shipping_cost
+msgid "Shipping Cost (OLD)"
+msgstr "Coût de transport (ANCIEN)"
+
+#. module: logistics_extra_info
+#: model:ir.model,name:logistics_extra_info.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,help:logistics_extra_info.field_stock_picking__shipper
+msgid "The person who prepared the shipment."
+msgstr "La personne qui a préparé l'envoi."
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,help:logistics_extra_info.field_stock_picking__verifier
+msgid "The person who verified the shipment."
+msgstr "La personne qui a vérifié l'envoi."
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,help:logistics_extra_info.field_stock_picking__shipping_cost
+msgid "Total cost of this shipment in Canadian Dollars"
+msgstr "Coût total de l'envoi en Dollars canadiens"
+
+#. module: logistics_extra_info
+#: model:ir.model,name:logistics_extra_info.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: logistics_extra_info
+#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__verifier
+msgid "Verifier"
+msgstr "Vérificateur"

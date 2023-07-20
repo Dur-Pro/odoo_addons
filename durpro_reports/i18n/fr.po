@@ -1,0 +1,221 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* durpro_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-10 17:37+0000\n"
+"PO-Revision-Date: 2023-07-10 17:37+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: durpro_reports
+#: model:ir.actions.report,print_report_name:durpro_reports.action_sdi_report_delivery
+msgid ""
+"'SDI Delivery Slip - %s - %s' % (object.partner_id.name or '', object.name)"
+msgstr "'Bon de livraison SDI - %s - %s' % (object.partner_id.name or '', object.name)"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.search_template
+msgid "<span class=\"fa fa-folder\"/>Currency"
+msgstr "<span class=\"fa fa-folder\"/>Devise"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_invoice_document_sale_durpro
+msgid "<strong>Billing Address:</strong>"
+msgstr "<strong>Adresse de facturation :</strong>"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_delivery_document_durpro
+msgid "<strong>Bin Location</strong>"
+msgstr "<strong>Emplacement stock</strong>"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.durpro_delivery_info_block
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_saleorder_document
+msgid "<strong>Carrier Account</strong>"
+msgstr "<strong>Compte transporteur</strong>"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.durpro_delivery_info_block
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_saleorder_document
+msgid "<strong>Carrier</strong>"
+msgstr "<strong>Transporteur</strong>"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.durpro_delivery_info_block
+msgid "<strong>Client Reference</strong>"
+msgstr "<strong>Référence client</strong>"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_saleorder_document
+msgid "<strong>Currency</strong>"
+msgstr "<strong>Devise</strong>"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_saleorder_document
+msgid "<strong>Payment Terms</strong>"
+msgstr "<strong>Conditions de paiement</strong>"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.durpro_delivery_info_block
+msgid "<strong>Shipper</strong>"
+msgstr "<strong>Expéditeur</strong>"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "<strong>Total invoiced: </strong>"
+msgstr "<strong>Total facturé: </strong>"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "<strong>Total outstanding: </strong>"
+msgstr "<strong>Total dû: </strong>"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "<strong>Total paid: </strong>"
+msgstr "<strong>Total payé: </strong>"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_sdi_delivery_document
+msgid "Accepted by:"
+msgstr "Accepté par :"
+
+#. module: durpro_reports
+#: model:ir.model,name:durpro_reports.model_account_report
+msgid "Account Report"
+msgstr "Rapport de compte"
+
+#. module: durpro_reports
+#: model:ir.model,name:durpro_reports.model_account_aged_payable
+msgid "Aged Payable"
+msgstr "Balance agée des fournisseurs"
+
+#. module: durpro_reports
+#: model:ir.model,name:durpro_reports.model_account_aged_receivable
+msgid "Aged Receivable"
+msgstr "Balance agée clients"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "Amount"
+msgstr "Montant"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_sdi_delivery_document
+msgid "Carbon Picked"
+msgstr "Charbon cueilli"
+
+#. module: durpro_reports
+#: model:ir.actions.report,name:durpro_reports.action_report_client_account_statement
+msgid "Client Account Statement"
+msgstr "Relevé de compte client"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "Currency"
+msgstr "Devise"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_sdi_delivery_document
+msgid "DI Picked"
+msgstr "DI cueilli"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "Date"
+msgstr "Date"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "Date Due"
+msgstr "Date d'échéance"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "Date:"
+msgstr "Date :"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "Dear madam, sir,"
+msgstr "Madame, monsieur,"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_delivery_document_base
+msgid "Lot/Serial Number"
+msgstr "Lot / No. de série"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "PO Number"
+msgstr "No. commande"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "Paid/Applied"
+msgstr "Payé/appliqué"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid ""
+"Please see below a statement of outstanding invoices on your company's account. Should you need\n"
+"                    a copy of an invoice, please write us at finance@durpro.com."
+msgstr ""
+"Veuiller trouver ci-dessous le relevé de compte de votre entreprise. Si vous avez besoin d'une\n"
+" copie de facture, veuillez nous écrire au finance@durpro.com."
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.view_picking_form
+msgid "Print"
+msgstr "Imprimer"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.view_picking_form
+msgid "Print (SDI)"
+msgstr "Imprimer (SDI)"
+
+#. module: durpro_reports
+#: model:ir.model,name:durpro_reports.model_report_durpro_reports_report_payment_receipt
+msgid ""
+"Prints a payment receipt using the applied discount from "
+"account_payment_term_discount."
+msgstr "Imprime un avis de paiement utilisant les escomptes de"
+"account_payment_term_discount."
+
+#. module: durpro_reports
+#: model:ir.model,name:durpro_reports.model_report_durpro_reports_report_client_account_statement
+msgid "Prints an account statement with overdue invoices for a given client."
+msgstr "Imprime un relevé de compte avec les factures en souffrance pour un client."
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_footer
+msgid "QST:"
+msgstr "TVQ :"
+
+#. module: durpro_reports
+#: model:ir.actions.report,name:durpro_reports.action_sdi_report_delivery
+msgid "SDI Delevery slip"
+msgstr "Bon de livraison SDI"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "Statement of Account"
+msgstr "Relevé de compte"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
+msgid "You have no outstanding invoices. Thank you!"
+msgstr "Vous n'avez aucune facture impayée. Merci!"

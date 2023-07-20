@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form.durpro</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="readonly"/>
+                <attribute name="attrs">{'readonly': [('state', 'in', ('sent', 'sale','done', 'cancel'))]}</attribute>
+            </xpath>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="context">{'default_type': 'delivery', 'show_address': 1}</attribute>
+            </field>
+            <xpath expr="//group[@name='sale_shipping']//label[@for='commitment_date']" position="replace"></xpath>
+            <xpath expr="//group[@name='sale_shipping']//field[@name='commitment_date']/.." position="replace"></xpath>
+            <xpath expr="//group[@name='order_details']" position="inside">
+                    <field name="commitment_date" widget="date" string="Promised Delivery Date"/>
+                    <span name="expected_date_span" class="text-muted">Expected: <field name="expected_date" widget="date"/></span>
+            </xpath>
+            <xpath expr="//tree/field[@name='product_id']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send' and @states='sent,sale']" position="attributes">
+                <attribute name="states">sent,sale,done</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_chatter')]" position="before">
+                <div class="o_attachment_preview"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_line_tree" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.durpro</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_subtotal']" position="after">
+                <field name="state"/>
+                <field name="invoice_status"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_orderlines_to_invoice" model="ir.actions.act_window">
+        <field name="name">Order Lines to Invoice</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">form,tree,graph,pivot,kanban</field>
+        <field name="context">{'create': False}</field>
+        <field name="domain">[('invoice_status','=','to invoice')]</field>
+<!--        <field name="search_view_id" ref="sale.view_sales_order_line_filter"/>-->
+        <field name="help" type="html">
+            <p>
+                You will find here all order lines that are ready to be invoiced.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sale_orderlines_invoice"
+              action="action_orderlines_to_invoice"
+              parent="sale.menu_sale_invoicing"
+              sequence="20"/>
+
+    <!-- Merge Quotation and Order views -->
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="date_order" string="Quotation Date"/>
+            </xpath>
+            <xpath expr="//field[@name='state']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <field name="amount_total" position="before">
+                <field name="amount_untaxed" sum="Total Untaxed" widget="monetary"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_view_search_inherit_sale" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit.sale</field>
+        <field name="model">sale.order</field>
+<!--        <field name="mode">primary</field>-->
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                <separator/>
+                <filter string="Sales" name="sales" domain="[('state','in',('sale', 'done'))]" />
+                <filter string="To Invoice" name="to_invoice" domain="[('invoice_status','=','to invoice')]" />
+                <filter string="Upselling" name="upselling" domain="[('invoice_status','=','upselling')]" />
+                <separator/>
+                <filter string="Quotations" name="quotation" domain="[('state','in',('draft','sent'))]"/>
+                <filter string="Quotations draft" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="Quotations Sent" name="sent" domain="[('state','=','sent')]"/>
+                <separator/>
+                <filter string="Canceled" name="cancel" domain="[('state','=','cancel')]"/>
+            </xpath>
+        </field>
+    </record>
+
+<!--    <record id="action_orders" model="ir.actions.act_window">-->
+<!--        <field name="name">Sales Orders</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">sale.order</field>-->
+<!--        <field name="view_mode">form,tree,kanban,calendar,pivot,graph</field>-->
+<!--&lt;!&ndash;        <field name="search_view_id" ref="durpro_base.sale_order_view_search_inherit_sale"/>&ndash;&gt;-->
+<!--        <field name="context">{'show_address': 1}</field>-->
+<!--        <field name="domain">[]</field>-->
+<!--        <field name="help" type="html">-->
+<!--            <p class="oe_view_nocontent_create">-->
+<!--                Create a Quotation, the first step of a new sale.-->
+<!--            </p><p>-->
+<!--            Once the quotation is confirmed, it becomes a sales order.-->
+<!--            You'll be able to invoice it and collect payments.-->
+<!--            From the <i>Sales Orders</i> menu, you can track delivery-->
+<!--            orders or services.-->
+<!--        </p>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <function name="delete_rule" model="sale.order" />
+
+    <record id="action_orders_and_quotation" model="ir.actions.act_window">
+        <field name="name">Sales Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+<!--            <field name="search_view_id" ref="sale_order_view_search_inherit_sale"/>-->
+        <field name="context">{}</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new quotation, the first step of a new sale!
+            </p><p>
+                Once the quotation is confirmed, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sale_order_and_quotation"
+          name="Orders and Quotations"
+          action="action_orders_and_quotation"
+          parent="sale.sale_order_menu"
+          sequence="2"
+          groups="sales_team.group_sale_salesman" />
+
+</odoo>

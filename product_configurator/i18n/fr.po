@@ -1,0 +1,293 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_configurator
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-14 18:25+0000\n"
+"PO-Revision-Date: 2021-05-14 18:25+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_configurator
+#: model:ir.model.fields,help:product_configurator.field_product_configurator_wizard_description_sale
+msgid "A description of the Product that you want to communicate to your customers. This description will be copied to every Sales Order, Delivery Order and Customer Invoice/Credit Note"
+msgstr "A description of the Product that you want to communicate to your customers. This description will be copied to every Sales Order, Delivery Order and Customer Invoice/Credit Note"
+
+#. module: product_configurator
+#: model:ir.model.fields,help:product_configurator.field_product_configurator_wizard_description
+msgid "A precise description of the Product, used only for internal information purposes."
+msgstr "A precise description of the Product, used only for internal information purposes."
+
+#. module: product_configurator
+#: model:ir.model.fields,help:product_configurator.field_product_configurator_wizard_type
+msgid "A stockable product is a product for which you manage stock. The \"Inventory\" app has to be installed.\n"
+"A consumable product, on the other hand, is a product for which stock is not managed.\n"
+"A service is a non-material product you provide.\n"
+"A digital content is a non-material product you sell online. The files attached to the products are the one that are sold on the e-commerce such as e-books, music, pictures,... The \"Digital Product\" module has to be installed."
+msgstr "A stockable product is a product for which you manage stock. The \"Inventory\" app has to be installed.\n"
+"A consumable product, on the other hand, is a product for which stock is not managed.\n"
+"A service is a non-material product you provide.\n"
+"A digital content is a non-material product you sell online. The files attached to the products are the one that are sold on the e-commerce such as e-books, music, pictures,... The \"Digital Product\" module has to be installed."
+
+#. module: product_configurator
+#: model:ir.model.fields,help:product_configurator.field_product_configurator_wizard_produce_delay
+msgid "Average delay in days to produce this product. In the case of multi-level BOM, the manufacturing lead times of the components will be added."
+msgstr "Average delay in days to produce this product. In the case of multi-level BOM, the manufacturing lead times of the components will be added."
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_can_be_expensed
+msgid "Can be Expensed"
+msgstr "Can be Expensed"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_purchase_ok
+msgid "Can be Purchased"
+msgstr "Can be Purchased"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_sale_ok
+msgid "Can be sold"
+msgstr "Can be sold"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_loc_case
+msgid "Case"
+msgstr "Case"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_categ_id
+msgid "Category"
+msgstr "Category"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_category_default_ids
+msgid "Category Default"
+msgstr "Category Default"
+
+#. module: product_configurator
+#: selection:product_configurator.wizard,type:0
+msgid "Consumable"
+msgstr "Consumable"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_default_create_uid
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_create_uid
+msgid "Created by"
+msgstr "Created by"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_default_create_date
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_create_date
+msgid "Created on"
+msgstr "Created on"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_sale_delay
+msgid "Customer Lead Time"
+msgstr "Customer Lead Time"
+
+#. module: product_configurator
+#: model:ir.model.fields,help:product_configurator.field_product_configurator_wizard_uom_id
+msgid "Default Unit of Measure used for all stock operation."
+msgstr "Default Unit of Measure used for all stock operation."
+
+#. module: product_configurator
+#: model:ir.ui.view,arch_db:product_configurator.product_category_default_view
+msgid "Default values"
+msgstr "Default values"
+
+#. module: product_configurator
+#: model:ir.model.fields,help:product_configurator.field_product_configurator_wizard_route_ids
+msgid "Depending on the modules installed, this will allow you to define the route of the product: whether it will be bought, manufactured, MTO/MTS,..."
+msgstr "Depending on the modules installed, this will allow you to define the route of the product: whether it will be bought, manufactured, MTO/MTS,..."
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_description
+msgid "Description"
+msgstr "Description"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_default_display_name
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_default_field
+msgid "Field"
+msgstr "Field"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_found_name
+msgid "Found Name"
+msgstr "Found Name"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_found_name_string
+msgid "Found Name String"
+msgstr "Found Name String"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_commission_free
+msgid "Free of commission"
+msgstr "Free of commission"
+
+#. module: product_configurator
+#: code:addons/product_configurator/wizard/wizard.py:95
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_help
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_cat_help
+#, python-format
+msgid "Help"
+msgstr "Help"
+
+#. module: product_configurator
+#: model:ir.ui.view,arch_db:product_configurator.product_category_default_view
+msgid "Help Text"
+msgstr "Help Text"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_default_id
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_default_code
+msgid "Internal Reference"
+msgstr "Internal Reference"
+
+#. module: product_configurator
+#: model:ir.ui.view,arch_db:product_configurator.inventory_valuation_wizard_view
+msgid "Inventory Valuation   (CSV)"
+msgstr "Inventory Valuation   (CSV)"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_default___last_update
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard___last_update
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_default_write_uid
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_write_uid
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_default_write_date
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_write_date
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_produce_delay
+msgid "Manufacturing Lead Time"
+msgstr "Manufacturing Lead Time"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_name
+msgid "Name"
+msgstr "Name"
+
+#. module: product_configurator
+#: model:ir.model,name:product_configurator.model_product_product
+msgid "Product"
+msgstr "Product"
+
+#. module: product_configurator
+#: model:ir.model,name:product_configurator.model_product_category
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_default_product_category_id
+msgid "Product Category"
+msgstr "Product Category"
+
+#. module: product_configurator
+#: model:ir.actions.act_window,name:product_configurator.action_product_configurator_similar_names
+#: model:ir.actions.act_window,name:product_configurator.action_product_configurator_wizard
+#: model:ir.ui.menu,name:product_configurator.menu_product_configurator
+msgid "Product Configurator"
+msgstr "Configurateur de produit"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_type
+msgid "Product Type"
+msgstr "Product Type"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_route_ids
+msgid "Routes"
+msgstr "Routes"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_description_sale
+msgid "Sale Description"
+msgstr "Sale Description"
+
+#. module: product_configurator
+#: model:ir.ui.view,arch_db:product_configurator.inventory_valuation_wizard_view
+msgid "See the product(s)"
+msgstr "See the product(s)"
+
+#. module: product_configurator
+#: selection:product_configurator.wizard,type:0
+msgid "Service"
+msgstr "Service"
+
+#. module: product_configurator
+#: selection:product_configurator.wizard,type:0
+msgid "Stockable Product"
+msgstr "Stockable Product"
+
+#. module: product_configurator
+#: model:ir.model.fields,help:product_configurator.field_product_configurator_wizard_sale_delay
+msgid "The average delay in days between the confirmation of the customer order and the delivery of the finished products. It's the time you promise to your customers."
+msgstr "The average delay in days between the confirmation of the customer order and the delivery of the finished products. It's the time you promise to your customers."
+
+#. module: product_configurator
+#: code:addons/product_configurator/wizard/wizard.py:13
+#, python-format
+msgid "This product already exists."
+msgstr "Ce produit existe déjà."
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_uom_id
+msgid "Unit of Measure"
+msgstr "Unit of Measure"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_category_default_value
+msgid "Value"
+msgstr "Value"
+
+#. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_configurator_wizard_seller_ids
+msgid "Vendors"
+msgstr "Vendors"
+
+#. module: product_configurator
+#: code:addons/product_configurator/wizard/wizard.py:39
+#, python-format
+msgid "product(s) with similar name found."
+msgstr "product(s) with similar name found."
+
+#. module: product_configurator
+#: model:ir.model,name:product_configurator.model_product_category_default
+msgid "product.category.default"
+msgstr "product.category.default"
+
+#. module: product_configurator
+#: model:ir.model,name:product_configurator.model_product_configurator_toftest
+msgid "product_configurator.toftest"
+msgstr "product_configurator.toftest"
+
+#. module: product_configurator
+#: model:ir.model,name:product_configurator.model_product_configurator_wizard
+msgid "product_configurator.wizard"
+msgstr "product_configurator.wizard"
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Task Form View -->
+    <record id="task_view_form" model="ir.ui.view">
+        <field name="name">durpro_fso.task.form</field>
+        <field name="model">durpro_fso.task</field>
+        <field name="arch" type="xml">
+            <form string="Task">
+                <sheet>
+                    <group>
+                        <group name="left">
+                            <field name="intervention_id"/>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="time_estimate" widget="float_time"/>
+                            <field name="comments"/>
+                        </group>
+                        <group name="right">
+                            <field name="sequence"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+  <!--  BV: AGAIN A SEARCH VIEW TO FIX
+
+    <record id="task_view_search" model="ir.ui.view">
+        <field name="name">durpro_fso.task.search</field>
+        <field name="model">durpro_fso.task</field>
+        <field name="arch" type="xml">
+            <search string="Tasks">
+                <field name="name"/>
+
+                <group expand="0" string="Group By">
+                    <filter string="Intervention" context="{'group_by':'intervention_id'}"/>
+                    <filter string="State" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+-->
+
+    <record model="ir.actions.act_window" id="action_window_task">
+        <field name="name">Task</field>
+        <field name="res_model">durpro_fso.task</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

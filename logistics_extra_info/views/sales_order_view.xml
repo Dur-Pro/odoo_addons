@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_order_form_extras" model="ir.ui.view">
+        <field name="name">logistics_extra_info.form.extras</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                <attribute name="readonly">False</attribute>
+                <attribute name="attrs">{'readonly':[('state','!=','draft')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <!-- Replace with the commented lines when we want to hide our carrier and carrier account fields -->
+<!--            <field attrs="{'invisible': [('carrier','=',False)]}" name="carrier" placeholder="Carrier + Collect/Prepaid/3rd Party Billing"/>-->
+<!--            <field attrs="{'invisible': [('carrier','=',False)]}" name="carrier_account" placeholder="Carrier account"/>-->
+                <field name="carrier" placeholder="Carrier + Collect/Prepaid/3rd Party Billing"/>
+                <field name="carrier_account" placeholder="Carrier account"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

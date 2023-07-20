@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Insert Inco Terms, Carrier, Carrier Account, and Broker to PO form. -->
+    <record id="purchase_order_form_durpro" model="ir.ui.view">
+        <field name="name">purchase.order.form.durpro</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="readonly">False</attribute>
+                <attribute name="attrs">{'readonly':[('state','not in',['draft', 'sent','to approve'])]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="replace">
+                <field name="origin"/>
+                <field name="incoterm_id" attrs="{'readonly':[('state','not in',['draft','sent','to approve'])]}"/>
+                <field name="carrier" attrs="{'readonly':[('state','not in',['draft','sent','to approve'])]}"/>
+                <field name="carrier_account" attrs="{'readonly':[('state','not in',['draft','sent','to approve'])]}"/>
+                <field name="customs_broker" attrs="{'readonly':[('state','not in',['draft','sent','to approve'])]}"/>
+            </xpath>
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="po_conf_number"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

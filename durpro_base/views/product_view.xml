@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_template_property_form">
+        <field name="name">product.template.stock.property.form.durpro</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.view_template_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='stock_property']" position="after">
+                <group string="Storage Location" name="storage_location">
+                    <field name="loc_case"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+<!-- REMOVE IN 13.0 NEED TO RETHINK AS property_cost_method is now removed
+
+    <record model="ir.ui.view" id="stock_account_view_template_property_form">
+        <field name="name">product.template.stock.property.form.inherit.durpro</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock_account.view_template_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='property_inventory_valuation']" position="before">
+                <group name="group_property_valuation" string="Inventory Valuation" attrs="{'invisible': [('type','=','service')]}" groups="account.group_account_user">
+                    <field name="property_valuation"/>
+                    <field name="valuation" readonly="1"/>
+                    <field name="property_cost_method"/>
+                    <field name="cost_method" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+-->
+
+    <record model="ir.ui.view" id="product_template_search_view">
+        <field name="name">product.template.search.durpro</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <field name="attribute_line_ids" position="after">
+                <field string="Customer Codes" name="product_customer_code_ids"/>
+            </field>
+        </field>
+    </record>
+</odoo>

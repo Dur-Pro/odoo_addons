@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="helpdesk_ticket_view_form" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.inherit</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="priority">90</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="header" position="inside">
+                    <button class="btn btn-secondary" name="action_generate_fso" type="object" string="Plan Intervention" groups="base.group_user" />
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" name="action_view_fso"  type="object" icon="fa-tasks" attrs="{'invisible': [('fso_count', '=', 0)]}" groups="base.group_user">
+                        <field string="FSO" name="fso_count" widget="statinfo" />
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+<!--        <record id="helpdesk_team_view_form" model="ir.ui.view">-->
+<!--            <field name="name">helpdesk.team.form</field>-->
+<!--            <field name="model">helpdesk.team</field>-->
+<!--            <field name="inherit_id" ref="helpdesk.helpdesk_team_view_form" />-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//div[@id='field_service']" position="replace">-->
+<!--                    <div attrs="{'invisible': [('use_fsm', '=', False)]}" class="mt-2">-->
+<!--                        <label for="fsm_project_id" string="Project" />-->
+<!--                        <field name="fsm_project_id" attrs="{'required': [('use_fsm', '=', True)]}" context="{'default_is_fsm': True}" />-->
+<!--                    </div>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>

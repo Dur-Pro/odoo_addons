@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_report_workorder" model="ir.actions.report">
+            <field name="name">Work Order</field>
+            <field name="model">durpro_fso.work_order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">durpro_fso.report_workorder</field>
+            <field name="report_file">durpro_fso.report_workorder</field>
+            <field name="binding_model_id" ref="model_durpro_fso_work_order"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'%s Work Order - %s' % (object.date_service, object.display_name)</field>
+        </record>
+
+        <template id="report_workorder_document">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context(lang=doc.customer_id.lang)"/>
+                <t t-set="address">
+                    <strong class="big-red">Customer:</strong>
+                    <div t-field="doc.customer_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                </t>
+                <t t-set="information_block">
+                    <strong>Service Address:</strong>
+                    <div t-field="doc.customer_shipping_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                </t>
+
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2 class="mt16">
+                        <span>Field Service Order # </span>
+                        <span t-field="doc.name"/>
+                    </h2>
+
+                    <div class="container wo-information">
+                        <div class="row mt32 mb32" id="informations">
+                            <div t-if="doc.sale_id.client_order_ref" class="col-3">
+                                <p class="m-0"><strong>Your Reference: </strong> <span t-field="doc.sale_id.client_order_ref"/></p>
+                                <p t-if="doc.time_start_planned" class="m-0">
+                                    <strong t-if="doc.time_start_planned" >Planned Date: </strong>
+                                    <span t-field="doc.time_start_planned" t-options='{"widget": "date"}'/>
+                                </p>
+                                <p t-if="doc.time_planned" class="m-0">
+                                    <strong t-if="doc.time_planned">Expected time:</strong>
+                                    <span t-field="doc.time_planned" />
+                                </p>
+                            </div>
+                            <div class="col-3">
+                                <strong>Lead Technician:</strong>
+                                <p class="m-0" t-field="doc.technician_id.name"/>
+                                <strong>Other Technicians:</strong>
+                                <t t-foreach="doc.assistant_ids" t-as="assistant" t-if="doc.assistant_ids">
+                                    <p class="m-0" t-field="assistant.name"/>
+                                </t>
+                            </div>
+                            <div class="col-3">
+                                <strong>Site Contacts:</strong>
+                                <t t-foreach="doc.site_contact_ids" t-as="site_contact" t-if="doc.site_contact_ids">
+                                    <p class="m-0" t-out="site_contact"
+                                       t-options='{"widget": "contact", "fields": ["name", "phone", "mobile", "email"], "no_marker": True, "phone_icons": True}'/>
+                                </t>
+                            </div>
+                            <div class="col-3">
+                                <strong>Work order attn:</strong>
+                                <t t-foreach="doc.send_work_order_to" t-as="contact" t-if="doc.send_work_order_to">
+                                    <p class="m-0" t-out="contact"/>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col mb16">
+                            <h3 class="mb32">
+                                <strong>Interventions</strong>
+                            </h3>
+                        </div>
+                    </div>
+
+                    <t t-foreach="doc.intervention_ids" t-as="intervention">
+
+                        <div class="container wo-intervention mb16">
+                            <div class="row mb16 pb16">
+                                <div class="col-12 mb16 tb16">
+                                    <h4>
+                                        <strong>
+                                            <span t-field="intervention.name"/>
+                                            (<span t-field="intervention.equipment_id.display_name"/>)
+                                        </strong>
+                                    </h4>
+                                    <p class="mb16" t-field="intervention.description"/>
+                                </div>
+                            </div>
+                            <table class="table table-borderless">
+                                <thead>
+                                <th>
+                                    Done
+                                </th>
+                                <th>
+                                    Task to do
+                                </th>
+                                <th>
+                                    Comments:
+                                </th>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="intervention.task_ids" t-as="task">
+                                    <tr class="wo-task">
+                                        <td style="width: 5%">
+                                            <input type="checkbox" t-att-checked="task.state == 'done'"/>
+                                        </td>
+                                        <td style="width: 30%">
+                                            <p t-field="task.name"/>
+                                            <p t-field="task.description"/>
+                                        </td>
+                                        <td style="width: 65%">
+                                            <p t-field="task.comments"/>
+                                            <t t-if="not task.comments" t-foreach="range(4)" t-as="i">
+                                                <p class="manual_line_input"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </t>
+                                </tbody>
+                            </table>
+                            <div class="row mb32">
+                                <div class="col-12">
+                                    <h5><strong>Comments :</strong></h5>
+                                        <p t-if="intervention.comments" t-field="intervention.comments"/>
+                                        <t t-if="not intervention.comments" t-foreach="range(3)" t-as="i">
+                                            <p class="manual_line_input"/>
+                                        </t>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+
+
+                    <div class="row mb32" style="page-break-inside: avoid;">
+                        <div class="col-12">
+                            <h5><strong>Parts used</strong></h5>
+                            <table class="table table-sm o_main_table mb32">
+                                <thead style="display: table-row-group">
+                                    <tr>
+                                        <th class="text-left">Part Number</th>
+                                        <th name="th_description" class="text-left">Description</th>
+                                        <th name="th_quantity" class="text-center">Quantity</th>
+                                        <th class="text-center">Unit</th>
+                                        <th class="text-center">Serial Number</th>
+                                        <th class="text-center">Delivered On</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.sale_id.order_line.filtered(lambda l: l.product_id.type == 'product')" t-as="line">
+                                        <tr class="active border-black">
+                                            <td>
+                                                <span t-field="line.product_id.default_code"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.product_id.name"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-field="line.product_uom_qty"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-field="line.product_id.uom_id.name"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-if="line.move_ids"
+                                                   t-foreach="line.move_ids.mapped('move_line_ids').mapped('lot_id')"
+                                                   t-as="lot_id">
+                                                    <span t-field="lot_id.name"/><br/>
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <t t-if="line.move_ids" t-foreach="line.move_ids.mapped('picking_id')"
+                                                   t-as="picking">
+                                                    <span t-out="picking.name"></span>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <t t-foreach="range(5)" t-as="i">
+                                        <tr class="active border-black">
+                                            <td style="min-height:64px">&#160;</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row" style="page-break-inside: avoid;">
+                        <div class="col-xs-11 mt64 mb128">
+                            <p>
+                                I hereby acknowledge that the above labour and material have been authorized and
+                                supplied;
+                                that a copy of this Field Service Form has been received;
+                                that the equipment serviced is currently in an acceptable functional state as per its
+                                operating specifications; that there are no visible leakages and that the worksite was
+                                left in an acceptably clean state similar to that in which it was prior to the start of
+                                work by the service person and that Durpro is not responsible for consequential damages.
+                            </p>
+                        </div>
+                        <div class="col-xs-4 col-xs-offset-1 mb16">
+                            <div class="mb64">
+                                <hr class="mb8 border-top-black"/>
+                                <p>Block letters</p>
+                            </div>
+                            <div class="mb64">
+                                <hr class="mb8 border-top-black"/>
+                                <p>Technician</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-xs-offset-1 mb16">
+                            <div class="mb64">
+                                <hr class="mb8 border-top-black"/>
+                                <p>Block letters</p>
+                            </div>
+                            <div class="mb64">
+                                <hr class="mb8 border-top-black"/>
+                                <p>Customer Representative</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_workorder">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="durpro_fso.report_workorder_document" t-lang="doc.customer_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record model="account.account.type" id="account_type_income_tax">
+            <field name="name">Income Taxes</field>
+            <field name="include_initial_balance" eval="False"/>
+            <field name="type">other</field>
+            <field name="internal_group">expense</field>
+            <field name="note">Income taxes paid in the financial period.</field>
+        </record>
+        <record model="account.account.type" id="account_type_capital">
+            <field name="name">Capital</field>
+            <field name="include_initial_balance" eval="True"/>
+            <field name="type">other</field>
+            <field name="internal_group">equity</field>
+            <field name="note">Share capital injected by shareholders.</field>
+        </record>
+    </data>
+    <data>
+        <!-- Profit & Loss Lines -->
+        <record id="account_reports.account_financial_report_net_profit0" model="account.financial.html.report.line">
+            <field name="name">Net Profit Before Taxes</field>
+            <field name="code">NEPBT</field>
+            <field name="financial_report_id" ref="account_reports.account_financial_report_profitandloss0"/>
+            <!-- Use the expanded computation for clarity -->
+            <field name="formulas">OPINC + OIN - COS - EXP - DEP</field>
+            <field name="sequence" eval="3"/>
+            <field name="level" eval="0"/>
+        </record>
+        <record id="account_financial_report_income_taxes" model="account.financial.html.report.line">
+            <field name="name">Income Taxes</field>
+            <field name="code">TAX</field>
+            <field name="financial_report_id" ref="account_reports.account_financial_report_profitandloss0"/>
+            <field name="formulas">sum</field>
+            <field name="domain"
+                   eval="[('account_id.user_type_id', '=', ref('durpro_accounting.account_type_income_tax'))]"/>
+            <field name="groupby">account_id</field>
+            <field name="sequence" eval="4"/>
+            <field name="level" eval="0"/>
+        </record>
+        <record id="account_financial_report_net_profit_after_taxes" model="account.financial.html.report.line">
+            <field name="name">Net Profit After Taxes</field>
+            <field name="code">NEPAT</field>
+            <field name="financial_report_id" ref="account_reports.account_financial_report_profitandloss0"/>
+            <field name="formulas">NEPBT - TAX</field>
+            <field name="sequence" eval="5"/>
+            <field name="level" eval="0"/>
+        </record>
+        <!-- Balance Sheet Lines -->
+        <record id="account_financial_report_share_capital" model="account.financial.html.report.line">
+            <field name="name">Share Capital</field>
+            <field name="code">SHARE_CAPITAL</field>
+            <field name="formulas">-sum</field>
+            <field name="domain"
+                   eval="[('account_id.user_type_id','=',ref('durpro_accounting.account_type_capital'))]"/>
+            <field name="groupby">account_id</field>
+            <field name="sequence" eval="3"/>
+            <field name="show_domain">foldable</field>
+            <field name="level" eval="1"/>
+            <field name="parent_id" eval="ref('account_reports.account_financial_report_equity0')"/>
+        </record>
+        <record id="account_reports.account_financial_report_equity0" model="account.financial.html.report.line">
+            <field name="formulas">UNAFFECTED_EARNINGS + RETAINED_EARNINGS + SHARE_CAPITAL</field>
+        </record>
+        <record id="account_reports.account_financial_previous_year_earnings0"
+                model="account.financial.html.report.line">
+            <field name="domain" eval="[('account_id.user_type_id', 'in', [
+                ref('account.data_account_type_revenue'),
+                ref('account.data_account_type_other_income'),
+                ref('account.data_account_type_direct_costs'),
+                ref('account.data_account_type_expenses'),
+                ref('account.data_account_type_depreciation'),
+                ref('durpro_accounting.account_type_income_tax'),
+            ])]"/>
+        </record>
+        <record id="account_reports.account_financial_current_year_earnings_line_1"
+                model="account.financial.html.report.line">
+            <field name="formulas">NEPAT</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_template_payment_notice" model="mail.template">
+            <field name="name">Payment Notice: Send by email</field>
+            <field name="model_id" ref="account.model_account_payment"/>
+            <field name="email_from">{{object.company_id.ap_email or user.email_formatted}}</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="subject">{{object.company_id.name}} Payment Notice {{object.name}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear
+                        <t t-if="object.partner_id.parent_id">
+                            <t t-out="object.partner_id.name or ''">Brandon Freeman</t> (<t t-out="object.partner_id.parent_id.name or ''">Azure Interior</t>),
+                        </t>
+                        <t t-else="">
+                            <t t-out="object.partner_id.name or ''">Brandon Freeman</t>,
+                        </t>
+                        Please see the attached payment receipt for our payment of
+                        <t t-out="object.amount"
+                           t-options="{'widget': 'monetary', 'display_currency': object.currency_id}">$123.45 CAD</t>
+                        made on <t t-out="object.date" t-options="{'widget': 'date'}">2023-01-01</t>.
+                    </p>
+
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <br/>Best regards,
+                    </p>
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <br/>The <t t-out="object.company_id.name"/> accounts payable team.<br/>
+                        <t t-esc="object.company_id.ap_email"/><br/>
+                        <t t-esc="object.company_id.partner_id.phone"/>
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="account.action_report_payment_receipt"/>
+            <field name="report_name">Payment Notice {{object.name}}</field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>

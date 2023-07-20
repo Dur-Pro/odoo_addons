@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_supplierinfo_form_view_chatter" model="ir.ui.view">
+            <field name="name">supplierinfo.pricelist.chatter</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="after">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </xpath>
+                <label for="price" position="before">
+                    <field name="supplier_list_price"/>
+                    <field name="supplier_discount_percent"/>
+                </label>
+                <field name="company_id" position="replace">
+                    <field name="purchasing_notes"/>
+                    <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

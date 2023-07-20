@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record model="durpro_fso.work_order.stage" id="work_order_stage_draft">
+            <field name="sequence">10</field>
+            <field name="code">draft</field>
+            <field name="name">Draft</field>
+            <field name="fold" eval="False" />
+        </record>
+
+        <record model="durpro_fso.work_order.stage" id="work_order_stage_waiting_parts">
+            <field name="sequence">20</field>
+            <field name="code">waiting_parts</field>
+            <field name="name">Waiting for parts</field>
+            <field name="fold" eval="False" />
+        </record>
+
+        <record model="durpro_fso.work_order.stage" id="work_order_stage_to_schedule">
+            <field name="sequence">30</field>
+            <field name="code">to_schedule</field>
+            <field name="name">Unplanned</field>
+            <field name="fold" eval="False" />
+        </record>
+
+        <record model="durpro_fso.work_order.stage" id="work_order_stage_scheduled">
+            <field name="sequence">40</field>
+            <field name="code">scheduled</field>
+            <field name="name">Tentatively booked</field>
+            <field name="fold" eval="False" />
+        </record>
+
+        <record model="durpro_fso.work_order.stage" id="work_order_stage_ready">
+            <field name="sequence">50</field>
+            <field name="code">ready</field>
+            <field name="name">Visit confirmed</field>
+            <field name="fold" eval="False" />
+        </record>
+
+        <record model="durpro_fso.work_order.stage" id="work_order_stage_done">
+            <field name="sequence">60</field>
+            <field name="code">done</field>
+            <field name="name">Work executed</field>
+            <field name="fold" eval="False" />
+        </record>
+
+        <record model="durpro_fso.work_order.stage" id="work_order_stage_exception">
+            <field name="sequence">70</field>
+            <field name="code">exception</field>
+            <field name="name">Exception</field>
+            <field name="fold" eval="False" />
+        </record>
+
+        <record model="durpro_fso.work_order.stage" id="work_order_stage_invoiced">
+            <field name="sequence">80</field>
+            <field name="code">invoiced</field>
+            <field name="name">Invoiced</field>
+            <field name="fold" eval="True" />
+        </record>
+
+    </data>
+</odoo>

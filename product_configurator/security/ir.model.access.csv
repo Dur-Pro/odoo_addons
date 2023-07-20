@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_create,perm_unlink,perm_write,perm_read
+access_product_category_default_user,product.category.default user,model_product_category_default,base.group_user,1,0,0,0
+access_product_category_default_stock_manager,product.category.default stock_manager,model_product_category_default,stock.group_stock_manager,1,1,1,1
+access_product_category_default_sale_manager,product.category.default salemanager,model_product_category_default,sales_team.group_sale_manager,1,1,1,1
+access_product_category_default_purchase_manager,product.category.default purchase_manager,model_product_category_default,purchase.group_purchase_manager,1,1,1,1
+access_product_category_default_mrp_manager,product.category.default mrp_manager,model_product_category_default,mrp.group_mrp_manager,1,1,1,1
+access_product_name,product.name,model_product_name,base.group_user,1,1,1,1
+product_configurator.access_product_configurator_wizard,access_product_configurator_wizard,product_configurator.model_product_configurator_wizard,base.group_user,1,0,0,0

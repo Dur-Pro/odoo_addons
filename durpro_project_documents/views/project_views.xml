@@ -16,5 +16,12 @@
                 </xpath>
             </field>
         </record>
+        <record model="ir.actions.server" id="send_for_signature">
+            <field name="name">Request Signature</field>
+            <field name="model_id" ref="base.model_ir_attachment"/>
+            <field name="binding_model_id" ref="base.model_ir_attachment"/>
+            <field name="state">code</field>
+            <field name="code">action = records.send_for_signature()</field>
+        </record>
     </data>
 </odoo>

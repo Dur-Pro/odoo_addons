@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_document_file_kanban_durpro" model="ir.ui.view">
+            <field name="name">durpro_project_documents.view_document_file_kanban</field>
+            <field name="model">ir.attachment</field>
+            <field name="inherit_id" ref="mail.view_document_file_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//t[@t-name='kanban-box']//div[hasclass('dropdown-menu')]/a"
+                       position="after">
+                    <a name="send_for_signature"
+                       attrs="{'invisible': [('mimetype', '!=', 'application/pdf')]}"
+                       role="menuitem"
+                       type="object"
+                       class="dropdown-item">Request Signature</a>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

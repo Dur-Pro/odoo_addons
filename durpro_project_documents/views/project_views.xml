@@ -16,6 +16,19 @@
                 </xpath>
             </field>
         </record>
+        <record id="view_project_kanban_durpro" model="ir.ui.view">
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="name">project_documents.project.view.kanban</field>
+            <field name="model">project.project</field>
+            <field name="arch" type="xml">
+                <xpath expr="//a[@name='attachment_tree_view']/.." position="after">
+                    <field name="sign_request_count" invisible="1"/>
+                    <div role="menuitem" t-if="record.sign_request_count.raw_value">
+                        <a name="open_sign_requests" type="object">Signature Requests</a>
+                    </div>
+                </xpath>
+            </field>
+        </record>
         <record model="ir.actions.server" id="send_for_signature">
             <field name="name">Request Signature</field>
             <field name="model_id" ref="base.model_ir_attachment"/>

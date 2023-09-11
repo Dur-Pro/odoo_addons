@@ -28,7 +28,7 @@
     'depends': ['documents_project',
                 'documents_sign',
                 ],
-    'data': ['views/project_views.xml'
+    'data': ['views/project_views.xml',
              ],
     'demo': [''],
     'installable': True,

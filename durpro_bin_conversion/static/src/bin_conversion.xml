@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+
+    <t t-extend="ListView.buttons" t-name="durpro_bin_conversion.bin_conversion_buttons"> <!-- t-name must match with js controller button template -->
+        <t t-jquery="button.o_list_button_add" t-operation="after">
+            <button type="button"
+                    class="btn btn-primary ml4 o_button_update_values"
+                    title="Update Bin Locations"> Update Bin Locations </button>
+            <button type="button"
+                    class="btn btn-primary ml4 o_button_create_locations"
+                    title="Create Locations"> Create Locations </button>
+            <button type="button"
+                    class="btn btn-primary ml4 o_button_create_putaway_rules"
+                    title="Create Putaway Rules"> Create Putaway Rules </button>
+            <button type="button"
+                    class="btn btn-primary ml4 o_button_apply_rules"
+                    title="Apply Rules to Available Stock"> Apply Rules to Available Stock </button>
+        </t>
+    </t>
+</templates>

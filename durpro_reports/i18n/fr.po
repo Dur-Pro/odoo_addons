@@ -219,3 +219,8 @@ msgstr "Relevé de compte"
 #: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
 msgid "You have no outstanding invoices. Thank you!"
 msgstr "Vous n'avez aucune facture impayée. Merci!"
+
+#. module: durpro_reports
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_invoice_document_durpro
+msgid "<strong>Currency:</strong>"
+msgstr "Devise"

@@ -19,8 +19,13 @@ class ProcurementGroup(models.Model):
     def _get_moves_to_assign_domain(self, company_id):
         moves_domain = super()._get_moves_to_assign_domain(company_id)
         try:
-            if 'waiting' not in moves_domain[0][2]:
-                moves_domain[0][2].append('waiting')
+            for item in moves_domain:
+                if len(item) != 3:
+                    continue
+                field, operator, value = item
+                if field == 'state':
+                    value.append('waiting')
+                    _logger.info("Appended waiting.")
         except IndexError:
             caller = _logger.findCaller()
             _logger.warning(

@@ -25,7 +25,6 @@ class ProcurementGroup(models.Model):
                 field, operator, value = item
                 if field == 'state':
                     value.append('waiting')
-                    _logger.info("Appended waiting.")
         except IndexError:
             caller = _logger.findCaller()
             _logger.warning(

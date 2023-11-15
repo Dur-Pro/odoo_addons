@@ -7,7 +7,7 @@
     "maintainer": "Marc Durepos <mdurepos@durpro.com>",
     "category": "Accounting",
     "depends": [
-        "account_3way_match",
+        # "account_3way_match",
         "account_invoice_reference",
         "account_reports",
     ],

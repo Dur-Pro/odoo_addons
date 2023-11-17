@@ -177,7 +177,7 @@ class Wizard(models.TransientModel):
         default=_get_default_uom_id, required=True,
         help="Default Unit of Measure used for all stock operation.")
     route_ids = fields.Many2many(
-        'stock.location.route', 'stock_route_product_product_configurator', 'product_id', 'route_id', string='Routes',
+        'stock.route', 'stock_route_product_product_configurator', 'product_id', 'route_id', string='Routes',
         default=lambda self: self._get_buy_route(),
         domain=[('product_selectable', '=', True)],
         help="Depending on the modules installed, this will allow you to define the route of the product: whether it "

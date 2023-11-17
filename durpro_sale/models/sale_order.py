@@ -1,15 +1,8 @@
 from odoo import api, models, fields
-from odoo.exceptions import ValidationError
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
-
-    # Override to allow editing
-    date_order = fields.Datetime(string='Order Date', required=True, readonly=True, index=True,
-                                 states={'draft': [('readonly', False)], 'sent': [('readonly', False)],
-                                         'sale': [('readonly', False)]}, copy=False,
-                                 default=fields.Datetime.now,
-                                 help="Creation date of draft/sent orders,\nConfirmation date of confirmed orders.")
 
     @api.model
     def delete_rule(self):
@@ -17,6 +10,7 @@ class SaleOrder(models.Model):
             self.env.ref('sale.menu_sale_quotations').unlink()
         if self.env.ref('sale.menu_sale_order', raise_if_not_found=False):
             self.env.ref('sale.menu_sale_order').unlink()
+
 
     def action_sale_order_send(self):
         ''' Opens a wizard to compose an email, with relevant mail template loaded by default '''
@@ -47,11 +41,4 @@ class SaleOrder(models.Model):
             'target': 'new',
             'context': ctx,
         }
-
-    def action_confirm(self):
-        if not self.client_order_ref:
-            raise ValidationError("Need client reference to confirm SO.")
-        else:
-            return super(SaleOrder, self).action_confirm()
-
-
+    

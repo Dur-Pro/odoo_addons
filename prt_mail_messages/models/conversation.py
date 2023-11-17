@@ -269,16 +269,19 @@ class Conversation(models.Model):
         self.update({"partner_ids": [(3, self.env.user.partner_id.id)]})
 
     # -- Create
-    @api.model
-    def create(self, vals):
-        # Set current user as author if not defined.
-        # Use current date as firs message post
-        if not vals.get("author_id", False):
-            vals.update({"author_id": self.env.user.partner_id.id})
-        res = super(Conversation, self.sudo()).create(vals)
-        # Subscribe participants
-        res.message_subscribe(partner_ids=res.partner_ids.ids)
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        res_list = []
+        for vals in vals_list:
+            # Set current user as author if not defined.
+            # Use current date as first message post
+            if not vals.get("author_id", False):
+                vals.update({"author_id": self.env.user.partner_id.id})
+            res = super().sudo().create(vals)
+            # Subscribe participants
+            res.message_subscribe(partner_ids=res.partner_ids.ids)
+            res_list.append(res)
+        return res_list
 
     # -- Write
     # Use 'skip_followers_test=True' in context

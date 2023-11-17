@@ -107,15 +107,15 @@
                                 <t t-foreach="intervention.task_ids" t-as="task">
                                     <tr class="wo-task">
                                         <td style="width: 5%">
-                                            <input type="checkbox" t-att-checked="task.state == 'done'"/>
+                                            <input type="checkbox" />
                                         </td>
                                         <td style="width: 30%">
                                             <p t-field="task.name"/>
                                             <p t-field="task.description"/>
                                         </td>
                                         <td style="width: 65%">
-                                            <p t-field="task.comments"/>
-                                            <t t-if="not task.comments" t-foreach="range(4)" t-as="i">
+                                            <p t-if="task.state == 'done'" t-field="task.comments"/>
+                                            <t t-if="not task.state == 'done'" t-foreach="range(4)" t-as="i">
                                                 <p class="manual_line_input"/>
                                             </t>
                                         </td>
@@ -136,7 +136,7 @@
                     </t>
 
 
-                    <div class="row mb32" style="page-break-inside: avoid;">
+                    <div class="row mb32">
                         <div class="col-12">
                             <h5><strong>Parts used</strong></h5>
                             <table class="table table-sm o_main_table mb32">
@@ -147,7 +147,6 @@
                                         <th name="th_quantity" class="text-center">Quantity</th>
                                         <th class="text-center">Unit</th>
                                         <th class="text-center">Serial Number</th>
-                                        <th class="text-center">Delivered On</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -166,24 +165,12 @@
                                                 <span t-field="line.product_id.uom_id.name"/>
                                             </td>
                                             <td class="text-center">
-                                                <t t-if="line.move_ids"
-                                                   t-foreach="line.move_ids.mapped('move_line_ids').mapped('lot_id')"
-                                                   t-as="lot_id">
-                                                    <span t-field="lot_id.name"/><br/>
-                                                </t>
-                                            </td>
-                                            <td>
-                                                <t t-if="line.move_ids" t-foreach="line.move_ids.mapped('picking_id')"
-                                                   t-as="picking">
-                                                    <span t-out="picking.name"></span>
-                                                </t>
                                             </td>
                                         </tr>
                                     </t>
                                     <t t-foreach="range(5)" t-as="i">
                                         <tr class="active border-black">
                                             <td style="min-height:64px">&#160;</td>
-                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>

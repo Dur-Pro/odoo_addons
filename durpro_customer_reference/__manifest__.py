@@ -2,7 +2,7 @@
 
 {
 	'name': 'Durpro Customer Reference',
-	'version': '1.0.1',
+	'version': '1.0',
 	'category': 'Generic Modules',
 	"license": "AGPL-3",
 	'complexity': 'easy',

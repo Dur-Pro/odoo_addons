@@ -269,23 +269,27 @@ class MailMessage(models.Model):
         return True
 
     # -- Create
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
+        res_list = []
 
-        # Update last message date if posting to Conversation
-        message = super(MailMessage, self).create(vals)
-        if (
-            self._name == "mail.message"
-            and message.model == "cetmix.conversation"
-            and message.message_type != "notification"
-        ):
-            self.env["cetmix.conversation"].browse(message.res_id).update(
-                {
-                    "last_message_post": message.write_date,
-                    "last_message_by": message.author_id.id,
-                }
-            )
-        return message
+        for vals in vals_list:
+            # Update last message date if posting to Conversation
+            message = super(MailMessage, self).create(vals)
+            if (
+                    self._name == "mail.message"
+                    and message.model == "cetmix.conversation"
+                    and message.message_type != "notification"
+            ):
+                self.env["cetmix.conversation"].browse(message.res_id).update(
+                    {
+                        "last_message_post": message.write_date,
+                        "last_message_by": message.author_id.id,
+                    }
+                )
+            res_list.append(message)
+
+        return res_list
 
     # -- Delete empty Conversations
     def _get_conversation_messages_to_delete_and_archive(self, conversation_ids):

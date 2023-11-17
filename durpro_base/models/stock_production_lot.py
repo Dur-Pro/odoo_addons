@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 
 
 class ProductionLot(models.Model):
-    _inherit = "stock.production.lot"
+    _inherit = "stock.lot"
 
     @api.model
     def create(self, vals):

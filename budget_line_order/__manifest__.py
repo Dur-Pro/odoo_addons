@@ -1,6 +1,6 @@
 {
     "name": "Budget Line Order",
-    "version": "1.0.1",
+    "version": "1.0",
     "license": "GPL-3",
     "author": "Durpro Ltd",
     "category": "Accounting",

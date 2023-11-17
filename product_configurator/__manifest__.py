@@ -1,6 +1,6 @@
 {
     "name": "Product configurator",
-    "version": "1.0.1",
+    "version": "1.0",
     "author": "Durpro Ltd (Francis Lafortune, Libeo)",
     "license": "AGPL-3",
     "category": "Generic Modules",

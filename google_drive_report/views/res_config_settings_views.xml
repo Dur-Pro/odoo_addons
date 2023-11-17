@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.google.drive</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(google_drive.action_google_drive_users_config)d']" position="after">
+                <button type="action" name="%(action_google_drive_report_config)d" string="Google Drive Reports" icon="fa-arrow-right"  class="btn-link"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

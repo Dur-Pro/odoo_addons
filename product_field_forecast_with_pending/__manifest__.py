@@ -1,6 +1,6 @@
 {
     "name": "Product Forecast With Pending Field",
-    "version": "1.0.1.1",
+    "version": "1.0.1",
     "license": "GPL-3",
     "author": "Durpro Ltd",
     "category": "Inventory",

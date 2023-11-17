@@ -41,17 +41,18 @@ class Partner(models.Model):
     def _execute_followup_partner(self):
         res = super()._execute_followup_partner()
         if self.followup_status == 'in_need_of_action':
-            if self.followup_level.account_hold:
+            if self.followup_line_id.account_hold:
                 self.action_credit_hold()
         return res
 
-    @api.depends('followup_status', 'followup_level')
+    # BV: FOR MIGRATION
+    #@api.depends('followup_status', 'followup_level')
     def _compute_hold_bg(self):
         first_followup_level = self.env['account_followup.followup.line'].search(
             [('company_id', '=', self.env.company.id)], order="delay asc", limit=1)
         for rec in self:
             prev_hold_bg = rec.hold_bg
-            level = rec.followup_level
+            level = rec.followup_line_id
             if rec.followup_status == 'no_action_needed' and level == first_followup_level:
                 rec.hold_bg = False
             else:

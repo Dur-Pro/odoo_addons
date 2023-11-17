@@ -8,7 +8,7 @@
             <form string="Inventory Valuation (CSV)">
                 <group>
                     <group>
-                        <field name="location_ids" widget="many2many_checkboxes"/>
+                        <field name="location"/>
                     </group>
                     <group>
                         <field name="end_date"/>

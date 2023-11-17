@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-10 17:37+0000\n"
-"PO-Revision-Date: 2023-07-10 17:37+0000\n"
+"POT-Creation-Date: 2023-02-18 19:15+0000\n"
+"PO-Revision-Date: 2023-02-18 19:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: model:ir.actions.report,print_report_name:durpro_reports.action_sdi_report_delivery
 msgid ""
 "'SDI Delivery Slip - %s - %s' % (object.partner_id.name or '', object.name)"
-msgstr "'Bon de livraison SDI - %s - %s' % (object.partner_id.name or '', object.name)"
+msgstr "Bon de livraison SDI"
 
 #. module: durpro_reports
 #: model_terms:ir.ui.view,arch_db:durpro_reports.search_template
@@ -119,6 +119,13 @@ msgid "Client Account Statement"
 msgstr "Relevé de compte client"
 
 #. module: durpro_reports
+#. openerp-web
+#: code:addons/durpro_reports/static/src/js/account_reports_currency_dropdown.js:0
+#, python-format
+msgid "Currencies"
+msgstr "Devises"
+
+#. module: durpro_reports
 #: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
 msgid "Currency"
 msgstr "Devise"
@@ -165,50 +172,44 @@ msgstr "No. commande"
 
 #. module: durpro_reports
 #: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
-msgid "Paid/Applied"
-msgstr "Payé/appliqué"
+msgid "Paid"
+msgstr "Payé"
 
 #. module: durpro_reports
 #: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
 msgid ""
 "Please see below a statement of outstanding invoices on your company's account. Should you need\n"
-"                    a copy of an invoice, please write us at finance@durpro.com."
+"                a copy of an invoice, please write us at finance@durpro.com."
 msgstr ""
 "Veuiller trouver ci-dessous le relevé de compte de votre entreprise. Si vous avez besoin d'une\n"
 " copie de facture, veuillez nous écrire au finance@durpro.com."
 
 #. module: durpro_reports
-#: model_terms:ir.ui.view,arch_db:durpro_reports.view_picking_form
-msgid "Print"
-msgstr "Imprimer"
-
-#. module: durpro_reports
-#: model_terms:ir.ui.view,arch_db:durpro_reports.view_picking_form
-msgid "Print (SDI)"
-msgstr "Imprimer (SDI)"
+#: model_terms:ir.ui.view,arch_db:durpro_reports.report_invoice_document_durpro
+msgid ""
+"Please send your payment notifications to\n"
+"                    <b>finance@durpro.com</b> with invoice reference #"
+msgstr ""
+"Veuillez envoyer vos avis de paiement au <b>finance@durpro.com</b> avec le "
+"numéro de facture en référence."
 
 #. module: durpro_reports
 #: model:ir.model,name:durpro_reports.model_report_durpro_reports_report_payment_receipt
 msgid ""
 "Prints a payment receipt using the applied discount from "
 "account_payment_term_discount."
-msgstr "Imprime un avis de paiement utilisant les escomptes de"
-"account_payment_term_discount."
+msgstr ""
 
 #. module: durpro_reports
 #: model:ir.model,name:durpro_reports.model_report_durpro_reports_report_client_account_statement
 msgid "Prints an account statement with overdue invoices for a given client."
-msgstr "Imprime un relevé de compte avec les factures en souffrance pour un client."
-
-#. module: durpro_reports
-#: model_terms:ir.ui.view,arch_db:durpro_reports.report_footer
-msgid "QST:"
-msgstr "TVQ :"
+msgstr ""
+"Imprime un relevé de compte avec les factures en souffrance pour un client."
 
 #. module: durpro_reports
 #: model:ir.actions.report,name:durpro_reports.action_sdi_report_delivery
 msgid "SDI Delevery slip"
-msgstr "Bon de livraison SDI"
+msgstr "Bon de Livraison SDI"
 
 #. module: durpro_reports
 #: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
@@ -216,11 +217,7 @@ msgid "Statement of Account"
 msgstr "Relevé de compte"
 
 #. module: durpro_reports
-#: model_terms:ir.ui.view,arch_db:durpro_reports.client_account_statement_document
-msgid "You have no outstanding invoices. Thank you!"
-msgstr "Vous n'avez aucune facture impayée. Merci!"
-
-#. module: durpro_reports
-#: model_terms:ir.ui.view,arch_db:durpro_reports.report_invoice_document_durpro
-msgid "<strong>Currency:</strong>"
-msgstr "Devise"
+#: code:addons/durpro_reports/report/report_client_account_statement.py:0
+#, python-format
+msgid "This partner has no unpaid invoices."
+msgstr "Ce client n'a aucune facture impayée."

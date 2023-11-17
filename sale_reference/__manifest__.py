@@ -22,7 +22,7 @@
 
 {
     "name": "Sale Reference Field in Search View",
-    "version": "2.0.1",
+    "version": "2.0",
     "author": "Durpro Ltd (Refactor by Samuel Perron, Libeo)",
     "category": "Generic Modules",
     "license": "AGPL-3",

@@ -22,7 +22,7 @@
 
 {
     'name': 'Baseline Selling Checklist',
-    'version': '2.0.1',
+    'version': '2.0',
     'category': 'Generic Modules/CRM',
     "license": "AGPL-3",
     'complexity': "beginner",

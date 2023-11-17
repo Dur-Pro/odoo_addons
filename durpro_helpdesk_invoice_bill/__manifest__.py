@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details
 {
     'name': "Helpdesk Customer Invoice / Vendor Bill",
-    'version': "15.0.0.2.1",
+    'version': "15.0.0.2",
     'summary': "Allow generating a customer invoice or vendor bill from ticket.",
     'description': """
         Create a customer invoice or a vendor bill from a helpdesk ticket. 

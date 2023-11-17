@@ -200,12 +200,14 @@ class WorkOrder(models.Model):
 
     @api.depends('time_start_planned', 'time_planned', 'time_travel_planned')
     def _compute_time_end_planned(self):
-        HOURS_IN_DAY = 8
         for work_order in self:
             duration = work_order.time_planned + 2 * work_order.time_travel_planned
-            duration_day = (duration // HOURS_IN_DAY)
-            duration_hour = int(duration % HOURS_IN_DAY)
-            duration_minute = int((duration - duration_day * HOURS_IN_DAY - duration_hour) * 60)
+            if duration > 10:
+                duration_day = (duration // 8)
+            else:
+                duration_day = 0
+            duration_hour = int(duration)
+            duration_minute = int((duration - duration_hour) * 60)
             work_order.time_end_planned = work_order.time_start_planned
             if work_order.time_start_planned:
                 work_order.time_start_planned = work_order.time_start_planned.replace(second=0, microsecond=0)
@@ -365,68 +367,67 @@ class WorkOrder(models.Model):
 
     @api.constrains('stage_id')
     def check_validity(self):
-        for rec in self:
-            stage_plan = rec.env.ref("durpro_fso.work_order_stage_draft").id
-            stage_waiting_parts = rec.env.ref("durpro_fso.work_order_stage_waiting_parts").id
-            stage_to_schedule = rec.env.ref("durpro_fso.work_order_stage_to_schedule").id
-            stage_scheduled = rec.env.ref("durpro_fso.work_order_stage_scheduled").id
-            stage_ready = rec.env.ref("durpro_fso.work_order_stage_ready").id
-            stage_invoiced = rec.env.ref("durpro_fso.work_order_stage_invoiced").id
-            stage_exception = rec.env.ref("durpro_fso.work_order_stage_exception").id
-    
-            if rec.stage_id.id not in [stage_exception,
-                                        stage_plan] and not rec.date_service:
-                raise ValidationError(_('The work order must have a planned service date!'))
-    
-            if rec.stage_id.id not in [stage_exception,
-                                        stage_plan,
-                                        stage_waiting_parts,
-                                        stage_to_schedule] and not rec.technician_id:
-                raise ValidationError(_('The work order must have a technician set.'))
-    
-            if rec.stage_id.id not in [stage_exception,
-                                        stage_plan,
-                                        stage_waiting_parts,
-                                        stage_to_schedule,
-                                        stage_scheduled] and not (rec.customer_order_ref or
-                                                                  rec.customer_pre_authorization_ref):
-                raise ValidationError(_('Need a customer Purchase Order (Customer Reference) on sale order or at least a '
-                                        'pre-authorization number.'))
-    
-            if rec.stage_id.id not in [stage_exception,
-                                        stage_plan,
-                                        stage_waiting_parts,
-                                        stage_to_schedule,
-                                        stage_scheduled]:
-                if len(rec.intervention_ids) == 0:
-                    raise ValidationError(_('Work Order need some intervention to be performed.'))
-                else:
-                    for intervention in rec.intervention_ids:
-                        if not intervention.task_ids:
-                            rec.env['durpro_fso.task'].create({
-                                'description': 'Execute intervention',
-                                'intervention_id': intervention.id
-                            })
-    
-            # if rec.stage_id.id not in [stage_exception,
-            #                             stage_plan,
-            #                             stage_waiting_parts,
-            #                             stage_to_schedule,
-            #                             stage_scheduled,
-            #                             stage_ready] and rec.intervention_ids \
-            #         and not all(intervention.state in ['done', 'bo'] for intervention in rec.intervention_ids):
-            #     raise ValidationError(_('All interventions must be completed and marked done.'))
-    
-            if rec.stage_id.id in [stage_invoiced]:
-                # if not all(picking.state in ['done', 'cancel'] for picking in rec.sale_id.picking_ids):
-                #     raise ValidationError(_('Please complete delivery before.'))
-    
-                # if not (rec.sale_id.invoice_status in ['invoiced']):
-                #     raise ValidationError(_('Please complete invoicing before.'))
-    
-                if not rec.customer_order_ref:
-                    raise ValidationError(_('You just have a pre-authorization number, but you need a customer Purchase '
-                                            'Order to create invoice.'))
+        stage_plan = self.env.ref("durpro_fso.work_order_stage_draft").id
+        stage_waiting_parts = self.env.ref("durpro_fso.work_order_stage_waiting_parts").id
+        stage_to_schedule = self.env.ref("durpro_fso.work_order_stage_to_schedule").id
+        stage_scheduled = self.env.ref("durpro_fso.work_order_stage_scheduled").id
+        stage_ready = self.env.ref("durpro_fso.work_order_stage_ready").id
+        stage_invoiced = self.env.ref("durpro_fso.work_order_stage_invoiced").id
+        stage_exception = self.env.ref("durpro_fso.work_order_stage_exception").id
+
+        if self.stage_id.id not in [stage_exception,
+                                    stage_plan] and not self.date_service:
+            raise ValidationError(_('The work order must have a planned service date!'))
+
+        if self.stage_id.id not in [stage_exception,
+                                    stage_plan,
+                                    stage_waiting_parts,
+                                    stage_to_schedule] and not self.technician_id:
+            raise ValidationError(_('The work order must have a technician set.'))
+
+        if self.stage_id.id not in [stage_exception,
+                                    stage_plan,
+                                    stage_waiting_parts,
+                                    stage_to_schedule,
+                                    stage_scheduled] and not (self.customer_order_ref or
+                                                              self.customer_pre_authorization_ref):
+            raise ValidationError(_('Need a customer Purchase Order (Customer Reference) on sale order or at least a '
+                                    'pre-authorization number.'))
+
+        if self.stage_id.id not in [stage_exception,
+                                    stage_plan,
+                                    stage_waiting_parts,
+                                    stage_to_schedule,
+                                    stage_scheduled]:
+            if len(self.intervention_ids) == 0:
+                raise ValidationError(_('Work Order need some intervention to be performed.'))
+            else:
+                for intervention in self.intervention_ids:
+                    if not intervention.task_ids:
+                        self.env['durpro_fso.task'].create({
+                            'description': 'Execute intervention',
+                            'intervention_id': intervention.id
+                        })
+
+        # if self.stage_id.id not in [stage_exception,
+        #                             stage_plan,
+        #                             stage_waiting_parts,
+        #                             stage_to_schedule,
+        #                             stage_scheduled,
+        #                             stage_ready] and self.intervention_ids \
+        #         and not all(intervention.state in ['done', 'bo'] for intervention in self.intervention_ids):
+        #     raise ValidationError(_('All interventions must be completed and marked done.'))
+
+        if self.stage_id.id in [stage_invoiced]:
+            # if not all(picking.state in ['done', 'cancel'] for picking in self.sale_id.picking_ids):
+            #     raise ValidationError(_('Please complete delivery before.'))
+
+            # if not (self.sale_id.invoice_status in ['invoiced']):
+            #     raise ValidationError(_('Please complete invoicing before.'))
+
+            if not self.customer_order_ref:
+                raise ValidationError(_('You just have a pre-authorization number, but you need a customer Purchase '
+                                        'Order to create invoice.'))
 
     def action_navigate_to(self):
         self.ensure_one()

@@ -15,8 +15,8 @@ class ReportClientAccountStatement(models.AbstractModel):
             domain = [('commercial_partner_id', '=', partner_id), ('state', '=', 'posted'),
                       ('payment_state', 'in', ('not_paid', 'partial'))]
             invoices = self.env['account.move'].search(domain)
-            # if not invoices:
-            #     raise ValidationError(_("This partner has no unpaid invoices."))
+            if not invoices:
+                raise ValidationError(_("This partner has no unpaid invoices."))
         return {'doc_ids': docids,
                 'doc_model': 'res.partner',
                 'docs': docs,

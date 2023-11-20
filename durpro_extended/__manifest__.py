@@ -7,8 +7,8 @@
     "depends": [
         'durpro_base',
         'durpro_helpdesk_fso',
-        'le_website_faq_page',
-        'mass_mailing',
+        # 'le_website_faq_page',
+        # 'mass_mailing',
         # 'shipstation_shipping_odoo_integration',
         # 'social',
         # 'website_blog',

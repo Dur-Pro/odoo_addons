@@ -22,4 +22,3 @@ class StockPicking(models.Model):
                     rec.items_summary += ", "
                 if index > 4:
                     rec.items_summary += " ..."
-                    return

@@ -356,14 +356,14 @@ class WorkOrder(models.Model):
             default['equipment_ids'] = self.equipment_ids
         return super(WorkOrder, self).copy_data(default)
 
-    @api.model
-    def create(self, vals):
-        if vals.get('name', _('New')) == _('New'):
-            sale_order = self.env['sale.order'].browse(vals.get('sale_id'))
-            work_order_ids = self.env['durpro_fso.work_order'].search([('sale_id', '=', vals.get('sale_id'))])
-            vals['name'] = sale_order.name.replace('SO', 'FSO') + '-' + str((len(work_order_ids) + 1))
-        result = super(WorkOrder, self).create(vals)
-        return result
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('name', _('New')) == _('New'):
+                sale_order = self.env['sale.order'].browse(vals.get('sale_id'))
+                work_order_ids = self.env['durpro_fso.work_order'].search([('sale_id', '=', vals.get('sale_id'))])
+                vals['name'] = sale_order.name.replace('SO', 'FSO') + '-' + str((len(work_order_ids) + 1))
+        return super(WorkOrder, self).create(vals_list)
 
     @api.constrains('stage_id')
     def check_validity(self):

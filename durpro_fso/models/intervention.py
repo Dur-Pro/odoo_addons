@@ -86,11 +86,11 @@ class Intervention(models.Model):
             else:
                 rec.state = 'exception'
 
-    @api.model
-    def create(self, vals):
-        if vals.get('name', _('New')) == _('New'):
-            work_order = self.env['durpro_fso.work_order'].browse(vals.get('work_order_id'))
-            vals['name'] = work_order.name + 'I' + str(work_order.next_intervention)
-            work_order.write({'next_intervention': work_order.next_intervention + 1})
-        result = super(Intervention, self).create(vals)
-        return result
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('name', _('New')) == _('New'):
+                work_order = self.env['durpro_fso.work_order'].browse(vals.get('work_order_id'))
+                vals['name'] = work_order.name + 'I' + str(work_order.next_intervention)
+                work_order.write({'next_intervention': work_order.next_intervention + 1})
+        return super(Intervention, self).create(vals_list)

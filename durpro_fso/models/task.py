@@ -27,11 +27,11 @@ class Task(models.Model):
                              string="Status",
                              default='to_do')
 
-    @api.model
-    def create(self, vals):
-        if vals.get('name', _('New')) == _('New'):
-            intervention = self.env['durpro_fso.intervention'].browse([(vals.get('intervention_id'))])
-            vals['name'] = intervention.name + 'T' + str(intervention.next_task)
-            intervention.write({'next_task': intervention.next_task + 1})
-        result = super(Task, self).create(vals)
-        return result
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('name', _('New')) == _('New'):
+                intervention = self.env['durpro_fso.intervention'].browse(vals.get('intervention_id'))
+                vals['name'] = intervention.name + 'T' + str(intervention.next_task)
+                intervention.write({'next_task': intervention.next_task + 1})
+        return super(Task, self).create(vals_list)

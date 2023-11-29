@@ -1,32 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<!--    <record id="stock_picking_operation_change_location_view" model="ir.ui.view">-->
-<!--        <field name="name">Change Operation Destination Location</field>-->
-<!--        <field name="model">stock.picking.operation.wizard</field>-->
-<!--        <field name="inherit_id" ref="stock_picking_operation_quick_change.stock_picking_operation_change_location_view"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <field name="new_location_dest_id" position="attributes">-->
-<!--                <attribute name="domain"></attribute>-->
-<!--            </field>-->
-<!--        </field>-->
-<!--    </record>-->
-
     <record id="view_picking_form" model="ir.ui.view">
         <field name="name">stock.view.picking.form.inherit</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
-
- <!--
-            <xpath expr="//field[@name='move_lines']/tree/field[@name='product_id']" position="after">
-                <field name="loc_case"/>
-            </xpath>
-
--->
             <xpath expr="//header/button[@name='button_validate']" position="replace">
                 <field name="has_empty_loc_cases" invisible="1"/>
-                <button name="button_validate" attrs="{'invisible': ['|', ('show_validate', '=', False), ('has_empty_loc_cases', '=', False)]}" string="Validate" groups="stock.group_stock_user" type="object" class="oe_highlight" confirm="Warning: One or more stock moves does not have a bin location set."/>
-                <button name="button_validate" attrs="{'invisible': ['|', ('show_validate', '=', False), ('has_empty_loc_cases', '=', True)]}" string="Validate" groups="stock.group_stock_user" type="object" class="oe_highlight"/>
+                <button name="button_validate"
+                        attrs="{'invisible': ['|', ('show_validate', '=', False), ('has_empty_loc_cases', '=', False)]}"
+                        string="Validate" groups="stock.group_stock_user" type="object" class="oe_highlight"
+                        confirm="Warning: One or more stock moves does not have a bin location set."/>
+                <button name="button_validate"
+                        attrs="{'invisible': ['|', ('show_validate', '=', False), ('has_empty_loc_cases', '=', True)]}"
+                        string="Validate" groups="stock.group_stock_user" type="object" class="oe_highlight"/>
             </xpath>
         </field>
     </record>
@@ -53,9 +40,9 @@
             <field name="description_picking" position="replace">
                 <field name="sale_order_line_description" string="Description"/>
                 <field name="location_dest_id" position="attributes">
-                <attribute name="invisible">False</attribute>
-                <attribute name="optional">hide</attribute>
-            </field>
+                    <attribute name="invisible">False</attribute>
+                    <attribute name="optional">hide</attribute>
+                </field>
             </field>
         </field>
     </record>
@@ -77,7 +64,7 @@
         <field name="inherit_id" ref="stock.vpicktree"/>
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="items_summary" optional="show" />
+                <field name="items_summary" optional="show"/>
             </field>
         </field>
     </record>

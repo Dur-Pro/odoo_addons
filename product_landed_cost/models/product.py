@@ -20,7 +20,7 @@ class ProductSupplierInfo(models.Model):
         for rec in self:
             rec.price = rec.supplier_list_price - (rec.supplier_list_price * rec.supplier_discount_percent / 100)
 
-    name = fields.Many2one(tracking=True, domain=[('is_company', '=', True)])
+    partner_id = fields.Many2one(tracking=True, domain=[('is_company', '=', True)])
     product_name = fields.Char(tracking=True)
     product_code = fields.Char(tracking=True)
     product_uom = fields.Many2one(tracking=True)

@@ -22,7 +22,7 @@
 
 {
     "name": "Product Landed Costs",
-    "version": "2.0.1",
+    "version": "16.0.2.0.2",
     "license": "AGPL-3",
     "author": "Durpro Ltd (Refactor by Samuel Perron, Libeo)",
     "category": "Generic Modules/Inventory Control",

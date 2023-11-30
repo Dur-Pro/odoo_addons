@@ -271,25 +271,17 @@ class MailMessage(models.Model):
     # -- Create
     @api.model_create_multi
     def create(self, vals_list):
-        res_list = []
+        messages = super().create(vals_list)
 
-        for vals in vals_list:
-            # Update last message date if posting to Conversation
-            message = super(MailMessage, self).create(vals)
-            if (
-                    self._name == "mail.message"
-                    and message.model == "cetmix.conversation"
-                    and message.message_type != "notification"
-            ):
+        for message in messages:
+            if message.model == "cetmix.conversation" and message.message_type != "notification":
                 self.env["cetmix.conversation"].browse(message.res_id).update(
                     {
                         "last_message_post": message.write_date,
                         "last_message_by": message.author_id.id,
                     }
                 )
-            res_list.append(message)
-
-        return res_list
+        return messages
 
     # -- Delete empty Conversations
     def _get_conversation_messages_to_delete_and_archive(self, conversation_ids):
@@ -565,10 +557,10 @@ class MailMessage(models.Model):
             if not model:
                 continue
             for follower_id in (
-                self.env[model]
-                .search([("id", "in", rec_vals[model])])
-                .mapped("message_partner_ids")
-                .ids
+                    self.env[model]
+                            .search([("id", "in", rec_vals[model])])
+                            .mapped("message_partner_ids")
+                            .ids
             ):
                 if follower_id not in follower_ids:
                     follower_ids.append(follower_id)
@@ -656,29 +648,29 @@ class MailMessage(models.Model):
                 )
             if rec.starred:
                 notification_icons = (
-                    '%s &nbsp;<i class="fa fa-star" title="%s"></i>'
-                    % (notification_icons, _("Starred"))
+                        '%s &nbsp;<i class="fa fa-star" title="%s"></i>'
+                        % (notification_icons, _("Starred"))
                 )
             if rec.has_error > 0:
                 notification_icons = (
-                    '%s &nbsp;<i class="fa fa-exclamation" title="%s"></i>'
-                    % (notification_icons, _("Sending Error"))
+                        '%s &nbsp;<i class="fa fa-exclamation" title="%s"></i>'
+                        % (notification_icons, _("Sending Error"))
                 )
             # .. edited
             if rec.cx_edit_uid:
                 notification_icons = (
-                    '%s &nbsp;<i class="fa fa-edit"'
-                    ' style="color:#1D8348;"'
-                    ' title="%s"></i>' % (notification_icons, rec.cx_edit_message)
+                        '%s &nbsp;<i class="fa fa-edit"'
+                        ' style="color:#1D8348;"'
+                        ' title="%s"></i>' % (notification_icons, rec.cx_edit_message)
                 )
             # .. attachments
             if rec.attachment_count > 0:
                 notification_icons = (
-                    '%s &nbsp;<i class="fa fa-paperclip" title="%s"></i>'
-                    % (
-                        notification_icons,
-                        "&#013;".join([a.name for a in rec.attachment_ids]),
-                    )
+                        '%s &nbsp;<i class="fa fa-paperclip" title="%s"></i>'
+                        % (
+                            notification_icons,
+                            "&#013;".join([a.name for a in rec.attachment_ids]),
+                        )
                 )
 
             # Compose preview body
@@ -865,13 +857,13 @@ class MailMessage(models.Model):
 
         limit_str = limit and " limit %d" % limit or ""
         query_str = (
-            'SELECT "mail_message".id,'
-            ' "mail_message".model,'
-            ' "mail_message".res_id FROM '
-            + from_clause
-            + where_str
-            + order_by
-            + limit_str
+                'SELECT "mail_message".id,'
+                ' "mail_message".model,'
+                ' "mail_message".res_id FROM '
+                + from_clause
+                + where_str
+                + order_by
+                + limit_str
         )  # noqa E8103
         self._cr.execute(query_str, where_clause_params)
         res = self._cr.fetchall()
@@ -881,13 +873,13 @@ class MailMessage(models.Model):
     # flake8: noqa: C901
     @api.model
     def _search(
-        self,
-        args,
-        offset=0,
-        limit=None,
-        order=None,
-        count=False,
-        access_rights_uid=None,
+            self,
+            args,
+            offset=0,
+            limit=None,
+            order=None,
+            count=False,
+            access_rights_uid=None,
     ):
         """Mail.message overrides generic '_search' defined in 'model' to
          implement own logic for message access rights.
@@ -1159,7 +1151,7 @@ class MailMessage(models.Model):
 
     def write(self, vals):
         if vals.get("active", False) and not self._context.get(
-            "undelete_action", False
+                "undelete_action", False
         ):
             new_self = self.env[self._name]
             for rec in self:

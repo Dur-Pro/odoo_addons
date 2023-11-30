@@ -6,10 +6,10 @@ from odoo.tools.float_utils import float_compare, float_is_zero, float_round
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    def _action_assign(self):
+    def _action_assign(self, force_qty=False):
         # Modification of the original to check availability to break the mto chains if stock has been added
         # or unreserved
-        super()._action_assign()
+        super()._action_assign(force_qty)
         for move in self.filtered(lambda r: r.state in ('partially_available', 'waiting', 'confirmed')):
             rounding = move.product_uom.rounding
             available = 0.0

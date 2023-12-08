@@ -27,6 +27,13 @@
             <xpath expr="//div[hasclass('oe_chatter')]" position="before">
                 <div class="o_attachment_preview"/>
             </xpath>
+            <xpath expr="//button[@name='action_confirm']" position="attributes">
+                <attribute name="data-hotkey"></attribute>
+            </xpath>
+            <!-- There is a second button but it has the same name and no ID... so we go by hotkey the second time -->
+            <xpath expr="//button[@data-hotkey='v']" position="attributes">
+                <attribute name="data-hotkey"></attribute>
+            </xpath>
         </field>
     </record>
 

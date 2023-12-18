@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_stock_quant_tree_inventory_editable_inherit_durpro" model="ir.ui.view">
+            <field name="name">stock.quant.inventory.tree.editable.inherit.durpro</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_tree_inventory_editable"></field>
+            <field name="arch" type="xml">
+                <field name="lot_id" position="attributes">
+                    <attribute name="optional">show</attribute>
+                </field>
+                <field name="package_id" position="attributes">
+                    <attribute name="optional">show</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

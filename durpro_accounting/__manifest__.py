@@ -1,7 +1,7 @@
 {
     "name": "Durpro Accounting",
     "description": """Module for configuring Durpro's basic accounting needs.""",
-    "version": "15.0.0.3.0",
+    "version": "15.0.0.3.1",
     "license": "Other proprietary",
     "author": "Durpro Ltd",
     "maintainer": "Marc Durepos <mdurepos@durpro.com>",

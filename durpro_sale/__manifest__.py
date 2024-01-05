@@ -22,7 +22,7 @@
 
 {
     "name": "Durpro Sale",
-    "version": "15.0.0.1.1.2",
+    "version": "15.0.1.0.0",
     "license": "Other proprietary",
     "author": "Durpro Ltd",
     "category": "Generic Modules",
@@ -37,6 +37,8 @@ Pickings.
     'data': [
         "views/sale_view.xml",
         "views/product_pricelist_view.xml",
+        "views/res_config_settings_views.xml",
+        "report/sale_report_templates.xml",
     ],
     'test': [],
     'installable': True,

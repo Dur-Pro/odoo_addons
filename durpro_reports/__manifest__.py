@@ -22,7 +22,7 @@
 
 {
     "name": "Durpro Reports",
-    "version": "15.0.2.0.5",
+    "version": "15.0.2.0.6",
     "license": "Other proprietary",
     "author": "Durpro Ltd",
     "category": "Generic Modules",
@@ -44,7 +44,6 @@ Pickings.
         'views/account_report_search_template_view.xml',
         'report/account_report.xml',
         'report/stock_report_templates.xml',
-        'report/sale_report_templates.xml',
         'report/report_invoice_document_durpro.xml',
         'report/stock_report_views.xml',
         'report/report_payment_receipt_templates.xml',

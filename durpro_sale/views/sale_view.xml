@@ -34,6 +34,9 @@
             <xpath expr="//button[@data-hotkey='v']" position="attributes">
                 <attribute name="data-hotkey"></attribute>
             </xpath>
+            <xpath expr="//field[@name='client_order_ref']" position="after">
+                <field name="purpose"/>
+            </xpath>
         </field>
     </record>
 

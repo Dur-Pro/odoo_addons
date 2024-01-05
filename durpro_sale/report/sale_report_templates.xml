@@ -3,6 +3,10 @@
     <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
         <xpath expr="//div[@id='informations']" position="after">
             <div class="row mt32 mb32" id="informations2">
+                <div name="expiration_date" t-if="doc.purpose" class="col-3 mb-2">
+                    <strong>Purpose</strong>
+                    <p t-field="doc.purpose"/>
+                </div>
                 <div name="payment_term" t-if="doc.payment_term_id"  class="col-3 mb-2">
                     <strong>Payment Terms</strong>
                     <p t-field="doc.payment_term_id"/>

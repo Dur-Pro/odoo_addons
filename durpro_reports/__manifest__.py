@@ -22,7 +22,7 @@
 
 {
     "name": "Durpro Reports",
-    "version": "15.0.2.0.0",
+    "version": "15.0.2.0.6",
     "license": "Other proprietary",
     "author": "Durpro Ltd",
     "category": "Generic Modules",
@@ -32,10 +32,9 @@
                 "logistics_extra_info",
                 "account_reports",
                 "account_payment_term_discount",
-    ],
-    "description": """Durpro reports modifications for various modules, including:
-Pickings.
-    """,
+                ],
+    "description": """Durpro reports modifications for various modules, 
+                      including: Pickings.""",
     "demo": [],
     'data': [
         # 'data/account_financial_report_data.xml',

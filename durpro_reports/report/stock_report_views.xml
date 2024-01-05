@@ -21,5 +21,19 @@
             <field name="report_file">durpro_reports.report_sdi_deliveryslip</field>
             <field name="print_report_name">'SDI Delivery Slip - %s - %s' % (object.partner_id.name or '', object.name)</field>
         </record>
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <button name="do_print_picking" position="replace"></button>
+                <button name="%(stock.action_report_delivery)d" position="replace">
+                    <button name="%(stock.action_report_delivery)d"
+                            string="Print" type="action" groups="base.group_user"/>
+                    <button name="%(action_sdi_report_delivery)d"
+                            string="Print (SDI)" type="action" groups="base.group_user"/>
+                </button>
+            </field>
+        </record>
     </data>
 </odoo>

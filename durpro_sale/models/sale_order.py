@@ -61,7 +61,7 @@ class SaleOrder(models.Model):
         }
 
     def action_confirm(self):
-        ref_required = self.env['ir.config_parameter'].get_param(
+        ref_required = self.env['ir.config_parameter'].sudo().get_param(
             'durpro_sale.require_sale_reference',
             False
         )

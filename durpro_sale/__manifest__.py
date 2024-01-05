@@ -22,7 +22,6 @@
 
 {
     "name": "Durpro Sale",
-    "version": "15.0.0.1",
     "version": "16.0.1.0.0",
     "license": "Other proprietary",
     "author": "Durpro Ltd",
@@ -30,6 +29,7 @@
     "depends": ["sale",
                 "stock_dropshipping",
                 "product",
+                "durpro_accounting",
                 ],
     "description": """Module for setting up the Sales app according to Durpro's needs.
 Pickings.

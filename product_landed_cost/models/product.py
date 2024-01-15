@@ -61,7 +61,7 @@ class ProductSupplierInfo(models.Model):
         if len(self) == 1 and self.product_tmpl_id:
             msg = ""
             headmsg = f"<a href='#' data-oe-model='product.supplierinfo' data-oe-id='{self.id}'>" \
-                      f"Price {operation} for {self.name.name} : <br /></a>"
+                      f"Price {operation} for {self.product_id.name} : <br /></a>"
             if self.min_qty > 0:
                 msg += f"<li>Minimum qty : {self.min_qty}</li>"
             if self.date_start:

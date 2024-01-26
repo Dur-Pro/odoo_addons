@@ -17,9 +17,8 @@
                     <field name="supplier_list_price"/>
                     <field name="supplier_discount_percent"/>
                 </label>
-                <field name="company_id" position="replace">
+                <field name="company_id" position="before">
                     <field name="purchasing_notes"/>
-                    <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                 </field>
             </field>
         </record>

@@ -6,6 +6,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     purpose = fields.Char(string="Purpose", help="What is this sale order for?")
+    client_order_ref = fields.Char(string="Client PO #")
 
     # Override to allow editing
     date_order = fields.Datetime(

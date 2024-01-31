@@ -27,5 +27,11 @@
         </xpath>
         <xpath expr="//th[@name='th_taxes']" position="replace"></xpath>
         <xpath expr="//td[@name='td_taxes']" position="replace"></xpath>
+        <xpath expr="//th[@name='th_description']" position="before">
+            <th name="th_sequence_no" class="text-left">#</th>
+        </xpath>
+        <xpath expr="//td[@name='td_name']" position="before">
+            <td name="td_sequence_no"><span t-field="line.sequence_no"/></td>
+        </xpath>
     </template>
 </odoo>

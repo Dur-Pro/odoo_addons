@@ -24,7 +24,7 @@ class ReportPaymentReceipt(models.AbstractModel):
 class PaymentReceiptTable:
     def __init__(self, payment):
         self.payment = payment
-        self.partials = payment.move_id._get_reconciled_invoices_partials()
+        self.partials, exchange_diff_moves = payment.move_id._get_reconciled_invoices_partials()
         self.invoices = set()
         for partial in self.partials:
             if partial[2].move_id.move_type != 'entry':
@@ -41,7 +41,7 @@ class PaymentReceiptTable:
     def _compute_rows(self):
         self.rows = []
         for inv in self.invoices:
-            invoice_partials = inv._get_reconciled_invoices_partials()
+            invoice_partials, exchange_diff_moves = inv._get_reconciled_invoices_partials()
             # if len(invoice_partials) > 1:
             #     raise UserError(_(f"Invoice {inv.ref} has {len(invoice_partials)} reconciled partials. "
             #                       "This is not supposed to happen. Please notify the system administrator."))

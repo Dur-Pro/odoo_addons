@@ -12,6 +12,7 @@
     ],
     "demo": [],
     'data': [
+        # "data/account_financial_report_data.xml",
         "views/account_view.xml",
         "views/account_move_views.xml",
         # "views/account_bank_statement_views.xml",

@@ -6,17 +6,17 @@
     'description': """
         Allows association of a helpdesk ticket to an existing SO, PO, invoice, vendor bill, or FSO work order. 
     """,
-    'version': '15.0.0.1.1',
+    'version': '15.0.0.1.2',
     'category': 'Services/Helpdesk',
     'author': 'Dur-Pro Ltée',
     'maintainer': 'Marc Durepos (mdurepos@durpro.com)',
     'depends': [
+        'crm',
         'account',
         'sale',
         'purchase',
         'helpdesk',
         'durpro_helpdesk_invoice_bill',
-        'durpro_helpdesk_fso',
         'durpro_helpdesk_sale',
         'durpro_helpdesk_purchase',
     ],

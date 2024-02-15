@@ -1,10 +1,10 @@
 from odoo import api, models, fields, _
 from odoo.exceptions import ValidationError
 
-
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    client_order_ref = fields.Char(tracking=True)
     purpose = fields.Char(string="Purpose", help="What is this sale order for?")
 
     # Override to allow editing

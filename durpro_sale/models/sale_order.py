@@ -6,6 +6,7 @@ class SaleOrder(models.Model):
 
     client_order_ref = fields.Char(tracking=True)
     purpose = fields.Char(string="Purpose", help="What is this sale order for?")
+    client_order_ref = fields.Char(string="Client PO #")
 
     # Override to allow editing
     date_order = fields.Datetime(
@@ -69,3 +70,15 @@ class SaleOrder(models.Model):
             raise ValidationError(_("Customer reference (PO number) is required to confirm an order."))
         else:
             return super(SaleOrder, self).action_confirm()
+
+    def update_sequence_nos(self):
+        """ Since sale order lines get added with a simple default sequence of 10, we sometimes want to re-number
+        them since Durpro uses the sequence numbers on their printed quotations and orders."""
+        for rec in self:
+            # Order lines are already well sorted, so we just go ahead and make sure each line has a number higher
+            # than the last.
+            last_line = None
+            for line in rec.order_line:
+                if last_line and line.sequence <= last_line.sequence:
+                    line.sequence = last_line.sequence+1
+                last_line = line

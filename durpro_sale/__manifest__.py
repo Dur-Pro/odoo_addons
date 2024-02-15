@@ -22,7 +22,7 @@
 
 {
     "name": "Durpro Sale",
-    "version": "15.0.1.0.4",
+    "version": "15.0.1.2.2",
     "license": "Other proprietary",
     "author": "Durpro Ltd",
     "category": "Generic Modules",
@@ -31,9 +31,8 @@
                 "product",
                 "durpro_accounting",
                 ],
-    "description": """Module for setting up the Sales app according to Durpro's needs.
-Pickings.
-    """,
+    "description": """Module for setting up the Sales app according to Durpro's
+    needs.""",
     "demo": [],
     'data': [
         "views/sale_view.xml",

@@ -1,0 +1,261 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* durpro_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-13 01:21+0000\n"
+"PO-Revision-Date: 2024-02-13 01:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.report_saleorder_document
+msgid "<strong>Carrier Account</strong>"
+msgstr "<strong>Compte transporteur</strong>"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.report_saleorder_document
+msgid "<strong>Carrier</strong>"
+msgstr "<strong>Transporteur</strong>"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.report_saleorder_document
+msgid "<strong>Currency</strong>"
+msgstr "<strong>Devise</strong>"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.report_saleorder_document
+msgid "<strong>Payment Terms</strong>"
+msgstr "<strong>Conditions de règlement"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.report_saleorder_document
+msgid "<strong>Purpose</strong>"
+msgstr "<strong>Objet</strong>"
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__message_needaction
+msgid "Action Needed"
+msgstr "Action requise"
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__activity_state
+msgid "Activity State"
+msgstr "État d'activité"
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nombre de pièces jointes"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.sale_order_view_search_inherit_sale
+msgid "Canceled"
+msgstr "Annulé"
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_sale_order__client_order_ref
+msgid "Client PO #"
+msgstr "No. de commande client"
+
+#. module: durpro_sale
+#: model:ir.model,name:durpro_sale.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de config"
+
+#. module: durpro_sale
+#: model_terms:ir.actions.act_window,help:durpro_sale.action_orders_and_quotation
+msgid "Create a new quotation, the first step of a new sale!"
+msgstr "Créer une nouvelle soumission, la première étape d'une nouvelle vente!"
+
+#. module: durpro_sale
+#: model:ir.model.fields,help:durpro_sale.field_sale_order__date_order
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
+msgstr ""
+"Date de création des ordres d'ébauche/envoyés,\n"
+"Date de confirmation des commandes confirmées."
+
+#. module: durpro_sale
+#: code:addons/durpro_sale/models/sale_order.py:0
+#, python-format
+msgid "Customer reference (PO number) is required to confirm an order."
+msgstr "Référence du client (No. de bon de commande) est requis pour confirmer une commande"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.sale_order_form
+msgid "Expected:"
+msgstr "Attendu : "
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__failed_message_ids
+msgid "Failed Messages"
+msgstr "Messages échoués"
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (Partenaires)"
+
+#. module: durpro_sale
+#: model:ir.model.fields,help:durpro_sale.field_product_pricelist__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__has_message
+msgid "Has Message"
+msgstr "A un message"
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__activity_exception_icon
+msgid "Icon"
+msgstr "Icône"
+
+#. module: durpro_sale
+#: model:ir.model.fields,help:durpro_sale.field_product_pricelist__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône pour indiquer une activité en exception."
+
+#. module: durpro_sale
+#: model:ir.actions.act_window,name:durpro_sale.action_orderlines_to_invoice
+#: model:ir.ui.menu,name:durpro_sale.menu_sale_orderlines_invoice
+msgid "Order Lines to Invoice"
+msgstr "Articles de vente à facturer"
+
+#. module: durpro_sale
+#: model:ir.ui.menu,name:durpro_sale.menu_sale_order_and_quotation
+msgid "Orders and Quotations"
+msgstr "Commandes et soumissions"
+
+#. module: durpro_sale
+#: model:ir.model,name:durpro_sale.model_product_pricelist
+msgid "Pricelist"
+msgstr "Liste de prix"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.sale_order_form
+msgid "Promised Delivery Date"
+msgstr "Date de livraison promise"
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_sale_order__purpose
+msgid "Purpose"
+msgstr "Objet"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.view_order_tree
+msgid "Quotation Date"
+msgstr "Date de soumission"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.sale_order_view_search_inherit_sale
+msgid "Quotations"
+msgstr "Soumissions"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.sale_order_view_search_inherit_sale
+msgid "Quotations Sent"
+msgstr "Soumissions envoyées"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.sale_order_view_search_inherit_sale
+msgid "Quotations draft"
+msgstr "Soumissions brouillon"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.res_config_settings_view_form
+msgid "Request an online signature to confirm orders"
+msgstr "Demander une signature en ligne pour confirmer les commandes"
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_res_config_settings__require_sale_reference
+msgid "Require Sale Order Reference"
+msgstr "Exiger une référence sur les commandes de ventes"
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__activity_user_id
+msgid "Responsible User"
+msgstr "Utilisateur responsable"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.sale_order_view_search_inherit_sale
+msgid "Sales"
+msgstr "Ventes"
+
+#. module: durpro_sale
+#: model:ir.model,name:durpro_sale.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: durpro_sale
+#: model:ir.model,name:durpro_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: durpro_sale
+#: model:ir.actions.act_window,name:durpro_sale.action_orders_and_quotation
+msgid "Sales Orders"
+msgstr "Commandes de ventes"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.sale_order_view_search_inherit_sale
+msgid "To Invoice"
+msgstr "À facturer"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.view_order_tree
+msgid "Total Untaxed"
+msgstr "Total hors taxes"
+
+#. module: durpro_sale
+#: model:ir.model.fields,help:durpro_sale.field_product_pricelist__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: durpro_sale
+#: model:ir.model.fields,field_description:durpro_sale.field_product_pricelist__message_unread
+msgid "Unread Messages"
+msgstr "Messages non-lus"
+
+#. module: durpro_sale
+#: model:ir.model.fields,help:durpro_sale.field_sale_order__purpose
+msgid "What is this sale order for?"
+msgstr "Quelle est la raison de la commande?"
+
+#. module: durpro_sale
+#: model:ir.model.fields,help:durpro_sale.field_res_config_settings__require_sale_reference
+msgid ""
+"When checked, sale orders can only be confirmed if their reference field is "
+"filled."
+msgstr "Si coché, confirmer une commande de vente nécessite que le champ"
+"référence (numéro de bon de commande) soit rempli."
+

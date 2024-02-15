@@ -22,11 +22,9 @@
                                    attrs="{'invisible': [('associated_record', '!=', 'purchase_order')]}"/>
                             <field name="lead_id" string="Lead"
                                    attrs="{'invisible': [('associated_record', '!=', 'lead')]}"/>
-                            <field name="work_order_id" string="FSO Work Order"
-                                   attrs="{'invisible': [('associated_record', '!=', 'work_order')]}"/>
                         </group>
                     </sheet>
-                    <footer t-if="move_type == 'out_invoice'">
+                    <footer>
                         <button string="Associate" class="btn btn-primary"
                                 name="action_associate" type="object" data-hotkey="a" />
                         <button string="Cancel" class="btn btn-secondary" special="cancel" data-hotkey="x" />

@@ -8,13 +8,18 @@ class Partner(models.Model):
     postpone_hold_until = fields.Date(string="Postpone Hold",
                                       help="Grace period specific to this partner despite unpaid invoices.", )
 
-    hold_bg = fields.Boolean(string="Hold (technical)",
-                             compute="_compute_hold_bg",
-                             store=True,
-                             default=False)
-    on_hold = fields.Boolean(string="Account on Hold",
-                             help="Client account is on hold for unpaid overdue invoices.",
-                             compute="_compute_on_hold")
+    hold_bg = fields.Boolean(
+        string="Hold (technical)",
+        compute="_compute_hold_bg",
+        store=True,
+        default=False,
+        compute_sudo=True)
+    on_hold = fields.Boolean(
+        string="Account on Hold",
+        help="Client account is on hold for unpaid overdue invoices.",
+        compute="_compute_on_hold",
+        compute_sudo=True
+    )
 
     @api.depends('postpone_hold_until', 'hold_bg')
     def _compute_on_hold(self):

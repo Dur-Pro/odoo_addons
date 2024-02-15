@@ -4,9 +4,8 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    client_order_ref = fields.Char(tracking=True)
     purpose = fields.Char(string="Purpose", help="What is this sale order for?")
-    client_order_ref = fields.Char(string="Client PO #")
+    client_order_ref = fields.Char(string="Client PO #", tracking=True)
 
     # Override to allow editing
     date_order = fields.Datetime(

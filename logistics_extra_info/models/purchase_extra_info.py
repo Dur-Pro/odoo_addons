@@ -25,10 +25,10 @@ from odoo import api, models, fields
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    carrier = fields.Char(string='Carrier NAME DURPRO', size=64)
-    carrier_account = fields.Char(string='Carrier Account', size=64)
-    customs_broker = fields.Char(string='Customs Broker', size=64)
-    po_conf_number = fields.Char(string='Purchase Order Confirmation', size=64)
+    carrier = fields.Char(string='Carrier NAME DURPRO', size=64, tracking=True)
+    carrier_account = fields.Char(string='Carrier Account', size=64, tracking=True)
+    customs_broker = fields.Char(string='Customs Broker', size=64, tracking=True)
+    po_conf_number = fields.Char(string='Purchase Order Confirmation', size=64, tracking=True)
     # po_conf_date = fields.Date(string='Estimated Ship Date', help="Promised date on supplier order confirmation.")
 
     def _create_picking(self):

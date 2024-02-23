@@ -22,14 +22,15 @@
 
 {
     "name": "Durpro Reports",
-    "version": "15.0.2.0.6",
+    "version": "15.0.2.1.0",
     "license": "Other proprietary",
     "author": "Durpro Ltd",
     "category": "Generic Modules",
     "depends": ["delivery",
                 "sale_stock",
                 "sale_crm",
-                "logistics_extra_info",
+                "durpro_sale_stock",
+                "durpro_purchase_stock",
                 "account_reports",
                 "account_payment_term_discount",
                 "l10n_ca",

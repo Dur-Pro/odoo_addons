@@ -17,15 +17,19 @@
 #    DEALINGS IN THE SOFTWARE.
 #
 {
-    "name": "Durpro Inventory Settings",
-    "version": "15.0.1.0.1",
-    "summary": "Sets up the Inventory module for Durpro's needs",
-    "category": "Inventory/Inventory",
-    "author": "Bemade Inc.",
-    "website": "http://www.bemade.org",
-    "license": "OPL-1",
-    "depends": ['stock_account'],
-    "data": ['views/stock_account_views.xml'],
-    "installable": True,
-    "auto_install": False,
+    'name': 'Durpro Stock',
+    'version': '15.0.1.0.0',
+    'summary': 'Durpro Customizations for Inventory Module',
+    'category': 'Inventory/Inventory',
+    'author': 'Bemade Inc.',
+    'website': 'http://www.bemade.org',
+    'license': 'OPL-1',
+    'depends': ['stock'],
+    'data': [
+        'views/picking_view.xml',
+        'views/stock_move_line_views.xml',
+    ],
+    'assets': {},
+    'installable': True,
+    'auto_install': False
 }

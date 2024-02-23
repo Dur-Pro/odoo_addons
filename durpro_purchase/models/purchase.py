@@ -106,9 +106,3 @@ class PurchaseOrder(models.Model):
             lambda m: m.currency_id.round(m.amount_total) < 0).action_switch_invoice_into_refund_credit_note()
 
         return self.action_view_invoice(moves)
-
-
-class PurchaseOrderLine(models.Model):
-    _inherit = 'purchase.order.line'
-
-    loc_case = fields.Char(related='product_id.loc_case', readonly=True)

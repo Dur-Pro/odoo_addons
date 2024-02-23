@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* durpro_purchase_stock
+#
+
+#. module: durpro_purchase_stock
+#: model:ir.model.fields,help:durpro_purchase_stock.field_purchase_order__po_conf_date
+msgid "Promised date on supplier order confirmation."
+msgstr ""
+
+#. module: durpro_purchase_stock
+#: model:ir.model,name:durpro_purchase_stock.model_purchase_order
+#: model:ir.model.fields,field_description:durpro_purchase_stock.field_stock_move__purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: durpro_purchase_stock
+#: model:ir.model.fields,field_description:durpro_purchase_stock.field_purchase_order__po_conf_number
+msgid "Purchase Order Confirmation"
+msgstr "Confirmation de commande"
+
+#. module: durpro_purchase_stock
+#: model:ir.model.fields,help:durpro_purchase_stock.field_stock_move__purchase_order
+msgid "Purchase order for this move line"
+msgstr "Commande pour cet article"
+
+#. module: durpro_purchase_stock
+#: model:ir.model.fields,field_description:durpro_purchase_stock.field_purchase_order__carrier_account
+#: model:ir.model.fields,field_description:durpro_purchase_stock.field_sale_order__carrier_account
+msgid "Carrier Account"
+msgstr "Compte transporteur"
+
+#. module: durpro_purchase_stock
+#: model:ir.model.fields,field_description:durpro_purchase_stock.field_purchase_order__carrier
+msgid "Carrier NAME DURPRO"
+msgstr "Nom Transporteur DURPRO"
+
+#. module: durpro_purchase_stock
+#: model:ir.model.fields,field_description:durpro_purchase_stock.field_purchase_order__customs_broker
+msgid "Customs Broker"
+msgstr "Courtier en douane"
+
+#. module: durpro_purchase_stock
+#: model:ir.model.fields,field_description:durpro_purchase_stock.field_purchase_order__po_conf_date
+msgid "Estimated Ship Date"
+msgstr "Date d'expédition estimée"

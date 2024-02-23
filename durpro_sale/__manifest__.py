@@ -30,6 +30,7 @@
                 "stock_dropshipping",
                 "product",
                 "durpro_accounting",
+                "durpro_base",
                 ],
     "description": """Module for setting up the Sales app according to Durpro's
     needs.""",
@@ -42,8 +43,6 @@
     ],
     'test': [],
     'installable': True,
+    'auto-install': True,
     'active': False,
-    'assets': {
-
-    }
 }

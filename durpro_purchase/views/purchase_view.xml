@@ -23,10 +23,7 @@
                 <field name="shipping_timing_request"/>
             </xpath>
             <xpath expr="//button[@name='button_unlock']" position="attributes">
-                <attribute name="groups">durpro_base.group_purchase_unlock</attribute>
-            </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='product_qty']" position="before">
-                <field name="loc_case"/>
+                <attribute name="groups">durpro_purchase.group_purchase_unlock</attribute>
             </xpath>
             <xpath expr="//div[hasclass('oe_chatter')]" position="before">
                 <div class="o_attachment_preview"/>

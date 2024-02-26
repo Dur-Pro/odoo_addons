@@ -29,6 +29,7 @@ class SaleOrder(models.Model):
     carrier = fields.Char(string='Carrier', size=64, tracking=True)
     carrier_account = fields.Char(string='Carrier Account', size=64, tracking=True)
 
+
 # class SaleOrderLine(models.Model):
 #     _inherit = 'sale.order.line'
 #

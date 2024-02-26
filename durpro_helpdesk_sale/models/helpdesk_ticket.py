@@ -51,7 +51,7 @@ class HelpdeskTicket(models.Model):
     def _generate_so_values(self):
         team = self.user_id.sale_team_id if self.user_id else self.env.user.sale_team_id
         if not team:
-            raise UserError(_('Creating sale orders is reserved to sales users. Assign the ticket to a sales first.'))
+            raise UserError(_('Creating sale orders is reserved to sales users. Assign the user to sale team first.'))
         team_id = team.id
         return {
             'partner_id': self.partner_id.id,

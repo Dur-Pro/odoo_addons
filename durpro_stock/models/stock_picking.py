@@ -61,7 +61,7 @@ class StockPicking(models.Model):
     )
     items_summary = fields.Char("Items Summary", compute="_compute_items_summary")
 
-    @api.depends('move_lines')
+    @api.depends('move_line_ids')
     def _compute_items_summary(self):
         for rec in self:
             rec.items_summary = ""

@@ -75,6 +75,6 @@ class StockPicking(models.Model):
     def _compute_display_name(self):
         for rec in self:
             commercial_partner = rec.partner_id and rec.partner_id.commercial_partner_id
-            summary_string = f" - ({rec.items_summary}" if rec.items_summary else ""
+            summary_string = f" - ({rec.items_summary})" if rec.items_summary else ""
             partner_string = f" - ({commercial_partner.name})" if commercial_partner else ""
             rec.display_name = f"{rec.name}{partner_string}{summary_string}"

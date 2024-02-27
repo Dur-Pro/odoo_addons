@@ -22,6 +22,11 @@ msgstr "<strong>Compte transporteur</strong>"
 
 #. module: durpro_sale
 #: model_terms:ir.ui.view,arch_db:durpro_sale.report_saleorder_document
+msgid "Estimated Delivery"
+msgstr "Livraison prévue"
+
+#. module: durpro_sale
+#: model_terms:ir.ui.view,arch_db:durpro_sale.report_saleorder_document
 msgid "<strong>Carrier</strong>"
 msgstr "<strong>Transporteur</strong>"
 

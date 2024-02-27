@@ -12,10 +12,10 @@
                     <p t-field="doc.payment_term_id"/>
                 </div>
                 <div t-if="doc.commitment_date"  class="col-3 mb-2">
-                    <strong>Commitment</strong>
+                    <strong>Estimated Delivery</strong>
                     <p
                         t-field="doc.commitment_date"
-                        t-options="{'widget': 'date', 'format': 'dd-MM-yyyy'}"
+                        t-options="{'widget': 'date', 'format': 'yyyy-MM-dd'}"
                     />
                 </div>
                 <div t-if="doc.pricelist_id.currency_id"  class="col-3 mb-2">

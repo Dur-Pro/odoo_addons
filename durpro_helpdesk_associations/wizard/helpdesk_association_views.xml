@@ -22,8 +22,6 @@
                                    attrs="{'invisible': [('associated_record', '!=', 'purchase_order')]}"/>
                             <field name="lead_id" string="Lead"
                                    attrs="{'invisible': [('associated_record', '!=', 'lead')]}"/>
-                            <field name="work_order_id" string="FSO Work Order"
-                                   attrs="{'invisible': [('associated_record', '!=', 'work_order')]}"/>
                         </group>
                     </sheet>
                     <footer>

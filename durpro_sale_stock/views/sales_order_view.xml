@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="sale_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.view.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                <attribute name="readonly">False</attribute>
+                <attribute name="attrs">{'readonly':[('state','!=','draft')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="carrier" placeholder="Carrier + Collect/Prepaid/3rd Party Billing"/>
+                <field name="carrier_account" placeholder="Carrier account"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,19 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* durpro_sale_stock
+#
+
+#. module: durpro_sale_stock
+#: model:ir.model.fields,field_description:durpro_sale_stock.field_sale_order__carrier
+msgid "Carrier"
+msgstr "Transporteur"
+
+#. module: durpro_sale_stock
+#: model:ir.model,name:durpro_sale_stock.model_sale_order
+msgid "Sales Order"
+msgstr "Commande de ventes"
+
+#. module: durpro_sale_stock
+#: model:ir.model,name:durpro_sale_stock.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"

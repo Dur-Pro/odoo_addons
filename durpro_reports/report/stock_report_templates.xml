@@ -57,7 +57,6 @@
         </xpath>
     </template>
 
-
     <template id="report_delivery_document2" inherit_id="delivery.report_delivery_document2">
         <!-- Remove "Total Weight" from the information block -->
         <xpath expr="//div[@t-if='o.shipping_weight']" position="replace"></xpath>
@@ -66,7 +65,7 @@
 
     <template id="report_sdi_deliveryslip">
         <t t-foreach="docs" t-as="o">
-            <t t-call="durpro_reports.report_sdi_delivery_document" t-lang="o.partner_id.lang"/>
+            <t t-call="durpro_reports.report_delivery_document_base" t-lang="o.partner_id.lang"/>
         </t>
     </template>
 

@@ -22,11 +22,6 @@ msgid ""
 msgstr "Ajouter une note interne qui figurera sur le Bon de Préparation"
 
 #. module: logistics_extra_info
-#: model:ir.model.fields,field_description:logistics_extra_info.field_sale_order__carrier
-msgid "Carrier"
-msgstr "Transporteur"
-
-#. module: logistics_extra_info
 #: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__carrier
 msgid "Carrier (OLD)"
 msgstr "Transporteur (ANCIEN)"
@@ -36,21 +31,11 @@ msgstr "Transporteur (ANCIEN)"
 msgid "Carrier + Collect/Prepaid/3rd Party Billing"
 msgstr "Transporteur + Collect/Prépayé/Facturation tierce partie"
 
-#. module: logistics_extra_info
-#: model:ir.model.fields,field_description:logistics_extra_info.field_purchase_order__carrier_account
-#: model:ir.model.fields,field_description:logistics_extra_info.field_sale_order__carrier_account
-msgid "Carrier Account"
-msgstr "Compte transporteur"
 
 #. module: logistics_extra_info
 #: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__carrier_account
 msgid "Carrier Account (OLD)"
 msgstr "Compte transporteur (ANCIEN)"
-
-#. module: logistics_extra_info
-#: model:ir.model.fields,field_description:logistics_extra_info.field_purchase_order__carrier
-msgid "Carrier NAME DURPRO"
-msgstr "Nom Transporteur DURPRO"
 
 #. module: logistics_extra_info
 #: model_terms:ir.ui.view,arch_db:logistics_extra_info.view_order_form_extras
@@ -63,19 +48,9 @@ msgid "Customer Reference"
 msgstr "Référence client"
 
 #. module: logistics_extra_info
-#: model:ir.model.fields,field_description:logistics_extra_info.field_purchase_order__customs_broker
-msgid "Customs Broker"
-msgstr "Courtier en douane"
-
-#. module: logistics_extra_info
 #: model:ir.model.fields,help:logistics_extra_info.field_stock_picking__promised_date
 msgid "Delivery date initially promised to the client."
 msgstr "Date de livraison promise initialement au client"
-
-#. module: logistics_extra_info
-#: model:ir.model.fields,field_description:logistics_extra_info.field_purchase_order__po_conf_date
-msgid "Estimated Ship Date"
-msgstr "Date d'expédition estimée"
 
 #. module: logistics_extra_info
 #: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__expected_date
@@ -121,37 +96,6 @@ msgstr "Imprimé"
 #: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__promised_date
 msgid "Promised Date"
 msgstr "Date promise"
-
-#. module: logistics_extra_info
-#: model:ir.model.fields,help:logistics_extra_info.field_purchase_order__po_conf_date
-msgid "Promised date on supplier order confirmation."
-msgstr ""
-
-#. module: logistics_extra_info
-#: model:ir.model,name:logistics_extra_info.model_purchase_order
-#: model:ir.model.fields,field_description:logistics_extra_info.field_stock_move__purchase_order
-msgid "Purchase Order"
-msgstr "Bon de commande"
-
-#. module: logistics_extra_info
-#: model:ir.model.fields,field_description:logistics_extra_info.field_purchase_order__po_conf_number
-msgid "Purchase Order Confirmation"
-msgstr "Confirmation de commande"
-
-#. module: logistics_extra_info
-#: model:ir.model.fields,help:logistics_extra_info.field_stock_move__purchase_order
-msgid "Purchase order for this move line"
-msgstr "Commande pour cet article"
-
-#. module: logistics_extra_info
-#: model:ir.model,name:logistics_extra_info.model_sale_order
-msgid "Sales Order"
-msgstr "Commande de ventes"
-
-#. module: logistics_extra_info
-#: model:ir.model,name:logistics_extra_info.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Ligne de commandes de vente"
 
 #. module: logistics_extra_info
 #: model:ir.model.fields,field_description:logistics_extra_info.field_stock_picking__shipper

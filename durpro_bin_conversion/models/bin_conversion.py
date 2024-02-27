@@ -21,14 +21,14 @@ class BinConversion(models.Model):
 
     @api.model
     def action_create_locations(self):
-        warehouse_location = self.env['stock.warehouse'].browse(1).view_location_id
+        warehouse_location = self.env['stock.warehouse'].browse(1).lot_stock_id
         conversions_to_update = self.env['product.bin.conversion'].search([('location_id', '=', False)])
         for rec in conversions_to_update:
             rec.location_id = rec._create_location(warehouse_location)
 
     @api.model
     def action_create_putaway_rules(self):
-        warehouse_location = self.env['stock.warehouse'].browse(1).view_location_id
+        warehouse_location = self.env['stock.warehouse'].browse(1).lot_stock_id
         recs = self.env['product.bin.conversion'].search([('location_id', '!=', warehouse_location.id),
                                                           ('putaway_rules', '=', False)])
         for rec in recs:
@@ -36,7 +36,7 @@ class BinConversion(models.Model):
 
     @api.model
     def action_apply_rules_to_available_stock(self):
-        warehouse_location = self.env['stock.warehouse'].browse(1).view_location_id
+        warehouse_location = self.env['stock.warehouse'].browse(1).lot_stock_id
         # Update existing move lines to pull from the new locations
         sql = """UPDATE stock_move_line 
                  SET location_id=COALESCE((
@@ -85,7 +85,7 @@ class BinConversion(models.Model):
 
     @api.model
     def _convert_bin_to_location(self, loc_case: str) -> str:
-        warehouse_prefix = self.env['stock.warehouse'].browse(1).view_location_id.complete_name
+        warehouse_prefix = self.env['stock.warehouse'].browse(1).lot_stock_id.complete_name
         suffix = loc_case and "/" + loc_case.replace("-", "/") or ""
         return warehouse_prefix + suffix
 

@@ -38,15 +38,15 @@
             </field>
         </field>
     </record>
-    <record id="account_invoice_form_inherit" model="ir.ui.view">
-        <field name="name">account.move.form.inherit</field>
-        <field name="model">account.move</field>
-        <field name="inherit_id" ref="account_3way_match.account_invoice_form_inherit"/>
-        <field name="arch" type="xml">
-            <xpath expr="//group[@id='header_right_group']/div[1]" position="before">
-                <xpath expr="//label[@for='release_to_pay_manual']" position="move" />
-                <xpath expr="//field[@name='release_to_pay_manual']/.." position="move" />
-            </xpath>
-        </field>
-    </record>
+<!--    <record id="account_invoice_form_inherit" model="ir.ui.view">-->
+<!--        <field name="name">account.move.form.inherit</field>-->
+<!--        <field name="model">account.move</field>-->
+<!--        <field name="inherit_id" ref="account_3way_match.account_invoice_form_inherit"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//group[@id='header_right_group']/div[1]" position="before">-->
+<!--                <xpath expr="//label[@for='release_to_pay_manual']" position="move" />-->
+<!--                <xpath expr="//field[@name='release_to_pay_manual']/.." position="move" />-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
 </odoo>

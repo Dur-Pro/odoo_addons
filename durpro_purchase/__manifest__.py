@@ -1,6 +1,6 @@
 {
     "name": "Durpro Purchase",
-    "version": "1.0",
+    "version": "16.0.1.0.0",
     "license": "Other proprietary",
     "author": "Durpro Ltd",
     "category": "Purchase",
@@ -13,10 +13,12 @@
     """,
     "demo": [],
     'data': [
+        'data/groups.xml',
         'views/purchase_view.xml',
         # 'report/purchase_templates.xml',
     ],
     'test': [],
     'installable': True,
+    'auto-install': True,
     'active': False
 }

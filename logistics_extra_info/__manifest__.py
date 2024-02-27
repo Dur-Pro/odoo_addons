@@ -22,7 +22,7 @@
 
 {
     'name': 'Logistics extra info',
-    'version': '1.0',
+    'version': '15.0.2.0.0',
     'category': 'Generic Modules/Purchasing',
     "license": "AGPL-3",
     'complexity': "expert",

@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record model="ir.ui.view" id="view_template_property_form">
-        <field name="name">product.template.stock.property.form.durpro</field>
-        <field name="model">product.template</field>
-        <field name="inherit_id" ref="stock.view_template_property_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//group[@name='stock_property']" position="after">
-                <group string="Storage Location" name="storage_location">
-                    <field name="loc_case"/>
-                </group>
-            </xpath>
-        </field>
-    </record>
-
     <record model="ir.ui.view" id="product_template_search_view">
         <field name="name">product.template.search.durpro</field>
         <field name="model">product.template</field>

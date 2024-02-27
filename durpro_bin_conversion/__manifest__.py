@@ -18,7 +18,7 @@
 #
 {
     'name': 'Convert Bins to Locations',
-    'version': '15.0.1.0.0',
+    'version': '15.0.1.0.1',
     'summary': "Converts Durpro's product bins to inventory locations and moves stock accordingly.",
     'description': """Converts product bin text field into inventory locations and putaway rules. Once bins are 
                       converted, products in the "Candiac Warehouse" location are moved into the newly created stock 

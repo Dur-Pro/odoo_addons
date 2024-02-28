@@ -5,7 +5,7 @@
     'description': """
         Allows creation of Purchase Orders from a Helpdesk ticket. 
     """,
-    'version': '15.0.0.1',
+    'version': '17.0.0.1',
     'category': 'Purchase',
     'author': 'Dur-Pro Ltée',
     'maintainer': 'Marc Durepos (mdurepos@durpro.com)',

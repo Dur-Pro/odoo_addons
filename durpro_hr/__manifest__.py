@@ -3,7 +3,7 @@
 {
     'name': 'Durpro Human ressources',
     'license': 'Other proprietary',
-    'version': '15.0.0.1',
+    'version': '17.0.0.1',
     'category': 'Human Resources',
     'summary': """
         Add fields for employee

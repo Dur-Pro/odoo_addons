@@ -3,7 +3,7 @@
 {
     'name': 'Ticket to Sale Order',
     'license': 'Other proprietary',
-    'version': '15.0.0.1',
+    'version': '17.0.0.1',
     'category' : 'Sales/Sales',
     'summary': """Allows your helpdesk team to create sales orders from helpdesk tickets.""",
     'description': """

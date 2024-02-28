@@ -1,6 +1,6 @@
 {
     "name": "Durpro base",
-    "version": "16.0.0.2",
+    "version": "17.0.0.2",
     "license": "Other proprietary",
     "author": "Durpro Ltd (Frédérick Capovilla, Libeo)",
     "category": "Generic Modules",

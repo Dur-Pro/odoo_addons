@@ -1,7 +1,7 @@
 {
     "name": "Fix Amount Due",
     "description": """Fixes a discrepancy between amount_residual_signed and amount_residual field on Account Move.""",
-    "version": "15.0.0.1",
+    "version": "17.0.0.1",
     "license": "Other proprietary",
     "author": "Bemade Inc.",
     "contributors": ["Marc Durepos <marc@bemade.org>"],

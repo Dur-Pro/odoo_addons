@@ -3,7 +3,7 @@
 {
     'name': 'Durpro Payment',
     'license': 'Other proprietary',
-    'version': '15.0.0.1',
+    'version': '17.0.0.1',
     'category': 'Accounting/Payment',
     'summary': """Adds the ability to send payment receipts by email.""",
     'description': """Send payment receipts by email.""",

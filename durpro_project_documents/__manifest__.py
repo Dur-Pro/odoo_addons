@@ -19,7 +19,7 @@
 #
 {
     'name': 'Project Documents',
-    'version': '15.0.0.0.1',
+    'version': '17.0.0.0.1',
     'summary': 'Better document tracking for projects.',
     'category': 'Project/Project',
     'author': 'Bemade Inc.',

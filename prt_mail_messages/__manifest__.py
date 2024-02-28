@@ -23,7 +23,7 @@
     " Reply to message, Forward message,"
     " Archive message, Delete Undelete message,"
     " Quote message, Move message",
-    "version": "15.0.1.0.0",
+    "version": "17.0.1.0.0",
     "summary": """
 Read and manage all Odoo messages in one place!
 Show all messages, Show sent message, Reply to messages,

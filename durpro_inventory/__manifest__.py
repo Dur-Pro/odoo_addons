@@ -18,7 +18,7 @@
 #
 {
     "name": "Durpro Inventory Settings",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "summary": "Sets up the Inventory module for Durpro's needs",
     "category": "Inventory/Inventory",
     "author": "Bemade Inc.",

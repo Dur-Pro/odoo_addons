@@ -2,7 +2,7 @@
 
 {
 	'name': 'HR Attendance Fix',
-	'version': '15.0.0.1',
+	'version': '17.0.0.1',
 	'category': 'Human Resources/Attendances',
 	"license": "AGPL-3",
 	'description': """Fixes a bug where certain employees can"t enter leave requests, expense reports, etc. 

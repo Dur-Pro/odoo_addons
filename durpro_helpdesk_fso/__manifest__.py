@@ -7,6 +7,7 @@
         Convert helpdesk tickets to field service order.
     """,
     'category': 'Services/Helpdesk',
+    'version': '17.0.0.1',
     'depends': [
         'durpro_fso',
         'helpdesk',

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<odoo noupdate="1">
+<odoo>
     <record id="view_baseline_selling_form_view" model="ir.ui.view">
         <field name="name">baseline_selling.form</field>
         <field name="model">crm.lead</field>
-        <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[1]" position="before">
                 <page string="At Bat">
@@ -76,80 +76,80 @@
         </field>
     </record>
 
-    <record id="crm_case_form_view_leads" model="ir.ui.view">
-        <field name="name">baseline_selling.crm.lead.form.lead</field>
-        <field name="model">crm.lead</field>
-        <field name="inherit_id" ref="crm.crm_case_form_view_leads" />
-        <field name="arch" type="xml">
-            <xpath expr="//notebook/page[1]" position="before">
-                <page string="At Bat">
-                    <group string="Research">
-                        <field name="research_findings"/>
-                    </group>
-                    <group string="Fit Call">
-                        <field name="initial_problem"/>
-                        <field name="wants_to_solve"/>
-                        <field name="discovery_mtg_booked"/>
-                    </group>
-                </page>
-                <page string="First Base">
-                    <group string="Confirmed Problems" name="confirmed_problems">
-                        <field name="confirmed_problems" nolabel="1" colspan="3">
-                            <tree string="Confirmed Problems" editable="bottom" default_order="importance_index">
-                                <field name="importance_index"/>
-                                <field name="name"/>
-                                <field name="quantification"/>
-                            </tree>
-                            <form string="Confirmed Problems">
-                                <field name="importance_index"/>
-                                <field name="name"/>
-                                <field name="quantification"/>
-                            </form>
-                        </field>
-                        <field name="quantification_logic"/>
-                    </group>
-                    <group string="Compelling Reasons &amp; Urgency">
-                        <field name="compelling_reasons"/>
-                        <field name="urgency"/>
-                    </group>
-                    <group string="S.O.B. Quality">
-                        <field name="sob_earned_respect"/>
-                        <field name="sob_confident"/>
-                        <field name="sob_expertise"/>
-                        <field name="sob_different_question"/>
-                        <field name="sob_problem_solving"/>
-                        <field name="sob_quick_relationship"/>
-                        <field name="sob_likeable"/>
-                        <field name="sob_credibility"/>
-                        <field name="sob_reputation"/>
-                        <field name="sob_challenge"/>
-                        <field name="sob_diagnostic"/>
-                        <field name="sob_humility"/>
-                    </group>
-                </page>
-                <page string="Second Base">
-                    <group string="Qualification Checklist">
-                        <field name="determined_to_solve"/>
-                        <field name="ready_to_pay_more"/>
-                        <field name="with_decision_maker"/>
-                        <field name="competitors"/>
-                        <field name="positioned_vs_competition"/>
-                        <field name="decision_date"/>
-                        <field name="decision_criteria"/>
-                    </group>
-                </page>
-                <page string="Third Base">
-                    <group string="Presentation">
-                        <field name="history_and_capabilities"/>
-                        <field name="value_proposition"/>
-                        <field name="appropriate_solution"/>
-                    </group>
-                    <group string="Closing">
-                        <field name="inoffensive_close"/>
-                    </group>
-                </page>
-            </xpath>
-        </field>
-    </record>
+<!--    <record id="crm_case_form_view_leads" model="ir.ui.view">-->
+<!--        <field name="name">baseline_selling.crm.lead.form.lead</field>-->
+<!--        <field name="model">crm.lead</field>-->
+<!--        <field name="inherit_id" ref="crm.crm_case_form_view_salesteams_lead" />-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//notebook/page[1]" position="before">-->
+<!--                <page string="At Bat">-->
+<!--                    <group string="Research">-->
+<!--                        <field name="research_findings"/>-->
+<!--                    </group>-->
+<!--                    <group string="Fit Call">-->
+<!--                        <field name="initial_problem"/>-->
+<!--                        <field name="wants_to_solve"/>-->
+<!--                        <field name="discovery_mtg_booked"/>-->
+<!--                    </group>-->
+<!--                </page>-->
+<!--                <page string="First Base">-->
+<!--                    <group string="Confirmed Problems" name="confirmed_problems">-->
+<!--                        <field name="confirmed_problems" nolabel="1" colspan="3">-->
+<!--                            <tree string="Confirmed Problems" editable="bottom" default_order="importance_index">-->
+<!--                                <field name="importance_index"/>-->
+<!--                                <field name="name"/>-->
+<!--                                <field name="quantification"/>-->
+<!--                            </tree>-->
+<!--                            <form string="Confirmed Problems">-->
+<!--                                <field name="importance_index"/>-->
+<!--                                <field name="name"/>-->
+<!--                                <field name="quantification"/>-->
+<!--                            </form>-->
+<!--                        </field>-->
+<!--                        <field name="quantification_logic"/>-->
+<!--                    </group>-->
+<!--                    <group string="Compelling Reasons &amp; Urgency">-->
+<!--                        <field name="compelling_reasons"/>-->
+<!--                        <field name="urgency"/>-->
+<!--                    </group>-->
+<!--                    <group string="S.O.B. Quality">-->
+<!--                        <field name="sob_earned_respect"/>-->
+<!--                        <field name="sob_confident"/>-->
+<!--                        <field name="sob_expertise"/>-->
+<!--                        <field name="sob_different_question"/>-->
+<!--                        <field name="sob_problem_solving"/>-->
+<!--                        <field name="sob_quick_relationship"/>-->
+<!--                        <field name="sob_likeable"/>-->
+<!--                        <field name="sob_credibility"/>-->
+<!--                        <field name="sob_reputation"/>-->
+<!--                        <field name="sob_challenge"/>-->
+<!--                        <field name="sob_diagnostic"/>-->
+<!--                        <field name="sob_humility"/>-->
+<!--                    </group>-->
+<!--                </page>-->
+<!--                <page string="Second Base">-->
+<!--                    <group string="Qualification Checklist">-->
+<!--                        <field name="determined_to_solve"/>-->
+<!--                        <field name="ready_to_pay_more"/>-->
+<!--                        <field name="with_decision_maker"/>-->
+<!--                        <field name="competitors"/>-->
+<!--                        <field name="positioned_vs_competition"/>-->
+<!--                        <field name="decision_date"/>-->
+<!--                        <field name="decision_criteria"/>-->
+<!--                    </group>-->
+<!--                </page>-->
+<!--                <page string="Third Base">-->
+<!--                    <group string="Presentation">-->
+<!--                        <field name="history_and_capabilities"/>-->
+<!--                        <field name="value_proposition"/>-->
+<!--                        <field name="appropriate_solution"/>-->
+<!--                    </group>-->
+<!--                    <group string="Closing">-->
+<!--                        <field name="inoffensive_close"/>-->
+<!--                    </group>-->
+<!--                </page>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
 </odoo>
 

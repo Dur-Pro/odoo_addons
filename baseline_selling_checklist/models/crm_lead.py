@@ -1,23 +1,4 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
 
 from odoo import models, fields
 
@@ -60,14 +41,4 @@ class CRMLead(models.Model):
     value_proposition = fields.Boolean(string="Clearly articulated value proposition")
     appropriate_solution = fields.Boolean(string="Appropriate solution for needs and $", help="Covered all the needs? Adresses the problem? Addresses nice-to-haves? 2:1 value:price ratio?")
     inoffensive_close = fields.Boolean(string="Inoffensive close", help="Do you believe I completely understand your needs? Do you believe we can solve your problem? Do you want our help?")
-
-
-class CRMLeadConfirmedProblem(models.Model):
-    _name = "crm.lead.confirmed_problem"
-    _description = "Confirmed problems related to a given opportunity"
-
-    lead_id = fields.Many2one('crm.lead', 'Lead', required=True)
-    importance_index = fields.Integer(string='Importance Index', required=True, help="An index of how important the issue is. Lower numbers are more important.")
-    name = fields.Char(string='Description', required=True)
-    quantification = fields.Float(string='Quantification', help='Annualized quantification as stated by the client.')
 

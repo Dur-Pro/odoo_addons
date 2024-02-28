@@ -22,14 +22,14 @@
 
 {
     'name': 'Baseline Selling Checklist',
-    'version': '2.0',
+    'version': '17.0.2.0',
     'category': 'Generic Modules/CRM',
     "license": "AGPL-3",
     'complexity': "beginner",
     'description': """Adds tabs with questions to answer on opportunities,
     based on the Baseline Selling sales methodology.
     """,
-    'author': 'Marc Durepos, Durpro Ltd (Refactor by Samuel Perron, Libeo)',
+    'author': 'Marc Durepos, Durpro Ltd',
     'website': 'http://www.durpro.com',
     'depends': [
         'crm'
@@ -37,7 +37,7 @@
     'data': [
         'security/ir.model.access.csv',
         # DESACTIVER DANS 13.0, refaire vue dans 15.0
-        # 'views/crm_lead_view.xml',
+        'views/crm_lead_view.xml',
     ],
     'demo': [],
     'test': [],

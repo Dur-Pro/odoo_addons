@@ -15,5 +15,5 @@
     'test': [],
     'installable': True,
     'active': False,
-    'post_init_hook': '_post_init',
+    # 'post_init_hook': '_post_init',
 }

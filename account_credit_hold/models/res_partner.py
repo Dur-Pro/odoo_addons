@@ -5,15 +5,19 @@ from datetime import date
 class Partner(models.Model):
     _inherit = 'res.partner'
 
-    postpone_hold_until = fields.Date(string="Postpone Hold",
-                                      help="Grace period specific to this partner despite unpaid invoices.", )
+    postpone_hold_until = fields.Date(
+        string="Postpone Hold",
+        help="Grace period specific to this partner despite unpaid invoices."
+    )
 
     hold_bg = fields.Boolean(
         string="Hold (technical)",
         compute="_compute_hold_bg",
         store=True,
         default=False,
-        compute_sudo=True)
+        compute_sudo=True
+    )
+
     on_hold = fields.Boolean(
         string="Account on Hold",
         help="Client account is on hold for unpaid overdue invoices.",
@@ -37,6 +41,7 @@ class Partner(models.Model):
         expired_holds = self.search([('postpone_hold_until', '<=', date.today())])
         expired_holds.write({'postpone_hold_until': False})
 
+    #BV: message is not used in this method
     def action_credit_hold(self):
         message = _('Placed on credit hold')
         for rec in self:
@@ -50,13 +55,13 @@ class Partner(models.Model):
                 self.action_credit_hold()
         return res
 
-    @api.depends('followup_status', 'followup_level')
+    @api.depends('followup_status', 'followup_line_id')
     def _compute_hold_bg(self):
         first_followup_level = self.env['account_followup.followup.line'].search(
             [('company_id', '=', self.env.company.id)], order="delay asc", limit=1)
         for rec in self:
             prev_hold_bg = rec.hold_bg
-            level = rec.followup_level
+            level = rec.followup_line_id
             if rec.followup_status == 'no_action_needed' and level == first_followup_level:
                 rec.hold_bg = False
             else:

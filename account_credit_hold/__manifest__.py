@@ -1,6 +1,6 @@
 {
     'name': 'Account Credit Hold',
-    'version': '17.0.2.0.0.2',
+    'version': '17.0.2.0',
     'summary': 'Allows setting clients on credit hold, blocking the ability confirm a new sales order.',
     'description': 'Allows setting clients on hold, blocking the ability confirm a new sales order.',
     'category': 'Accounting/Accounting',
@@ -17,8 +17,8 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'account_credit_hold/static/src/js/followup_form_model.js',
-            'account_credit_hold/static/src/js/followup_form_controller.js',
+#            'account_credit_hold/static/src/js/followup_form_model.js',
+#            'account_credit_hold/static/src/js/followup_form_controller.js',
         ],
         'web.assets_qweb': [
             'account_credit_hold/static/src/xml/account_followup_template.xml',

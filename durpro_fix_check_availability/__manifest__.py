@@ -16,11 +16,13 @@
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Inventory',
-    'version': '0.1',
+    'version': '17.0.0.1',
     "license": "Other proprietary",
 
     # any module necessary for this one to work correctly
-    'depends': ['stock'],
+    'depends': [
+        'stock'
+    ],
 
     # always loaded
     'data': [

@@ -1,6 +1,6 @@
 {
     "name": "Budget Line Order",
-    "version": "1.0",
+    "version": "17.0.1.0",
     "license": "GPL-3",
     "author": "Durpro Ltd",
     "category": "Accounting",
@@ -10,7 +10,7 @@
         "account_budget",
     ],
     "description": """
-    This module adds the ability to reorder budget lines. 
+        This module adds the ability to reorder budget lines. 
     """,
     "demo": [],
     'data': [

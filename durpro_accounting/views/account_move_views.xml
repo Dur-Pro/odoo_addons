@@ -25,16 +25,15 @@
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
             <field name="payment_reference" position="attributes">
-                <attribute name="attrs">{'invisible': [('move_type', 'not in', ('out_receipt', 'in_receipt'))],
-                    'readonly': [('state', '!=', 'draft')]}</attribute>
-            </field>
+                <attribute name="invisible">move_type not in ('out_receipt', 'in_receipt')</attribute>
+                <attribute name="readonly">state != 'draft'</attribute>            </field>
             <xpath expr="//group[@name='sale_info_group']/label" position="replace"></xpath>
             <xpath expr="//group[@name='sale_info_group']//field[@name='ref']" position="replace"></xpath>
             <field name="payment_reference" position="after">
                 <label for="ref" string="Customer Reference"
-                       attrs="{'invisible':[('move_type', 'not in', ('out_invoice', 'out_receipt'))]}"/>
+                       invisible="move_type not in ('out_invoice', 'out_receipt')"/>
                 <field name="ref" nolabel="1"
-                       attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_receipt'))]}"/>
+                       invisible="move_type not in ('out_invoice', 'out_receipt')"/>
             </field>
         </field>
     </record>

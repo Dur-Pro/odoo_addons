@@ -13,23 +13,29 @@
                         </group>
                         <group col="2">
                             <field name="invoice_id" string="Invoice"
-                                   attrs="{'invisible': [('associated_record', '!=', 'out_invoice')]}" />
+                                   invisible="associated_record != 'out_invoice'" />
                             <field name="bill_id" string="Vendor Bill"
-                                   attrs="{'invisible': [('associated_record', '!=', 'in_invoice')]}" />
+                                   invisible="associated_record != 'in_invoice'" />
                             <field name="sale_order_id" string="Sales Order / Quotation"
-                                   attrs="{'invisible': [('associated_record', '!=', 'sale_order')]}"/>
+                                   invisible="associated_record != 'sale_order'"/>
                             <field name="purchase_order_id" string="Purchase Order / RFQ"
-                                   attrs="{'invisible': [('associated_record', '!=', 'purchase_order')]}"/>
+                                   invisible="associated_record != 'purchase_order'"/>
                             <field name="lead_id" string="Lead"
-                                   attrs="{'invisible': [('associated_record', '!=', 'lead')]}"/>
+                                   invisible="associated_record != 'lead'"/>
                             <field name="work_order_id" string="FSO Work Order"
-                                   attrs="{'invisible': [('associated_record', '!=', 'work_order')]}"/>
+                                   invisible="associated_record != 'work_order'"/>
                         </group>
                     </sheet>
                     <footer>
-                        <button string="Associate" class="btn btn-primary"
-                                name="action_associate" type="object" data-hotkey="a" />
-                        <button string="Cancel" class="btn btn-secondary" special="cancel" data-hotkey="x" />
+                        <button string="Associate"
+                                class="btn btn-primary"
+                                name="action_associate"
+                                type="object"
+                                data-hotkey="a" />
+                        <button string="Cancel"
+                                class="btn btn-secondary"
+                                special="cancel"
+                                data-hotkey="x" />
                     </footer>
                 </form>
             </field>

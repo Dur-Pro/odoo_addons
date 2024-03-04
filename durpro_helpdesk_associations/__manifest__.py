@@ -16,7 +16,6 @@
         'purchase',
         'helpdesk',
         'durpro_helpdesk_invoice_bill',
-        'durpro_helpdesk_fso',
         'durpro_helpdesk_sale',
         'durpro_helpdesk_purchase',
     ],

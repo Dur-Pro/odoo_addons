@@ -16,7 +16,7 @@
                         type="object"
                         icon="fa-life-ring"
                         help="Tickets for this order"
-                        attrs="{'invisible': [('helpdesk_ticket_id','=',False)]}"/>
+                        invisible="helpdesk_ticket_id == False"/>
                 </xpath>
             </field>
           </record>

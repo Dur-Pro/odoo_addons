@@ -9,7 +9,11 @@
             <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="header" position="inside">
-                    <button class="btn btn-secondary" name="action_associate" type="object" string="Associate Record" groups="base.group_user" />
+                    <button class="btn btn-secondary"
+                            name="action_associate"
+                            type="object"
+                            string="Associate Record"
+                            groups="base.group_user" />
                 </xpath>
             </field>
         </record>

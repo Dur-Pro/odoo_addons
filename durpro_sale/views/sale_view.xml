@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="readonly"/>
-                <attribute name="attrs">{'readonly': [('state', 'in', ('sent', 'sale','done', 'cancel'))]}</attribute>
+                <attribute name="readonly">state in ('sent', 'sale', 'done', 'cancel')</attribute>
             </xpath>
             <field name="partner_shipping_id" position="attributes">
                 <attribute name="context">{'default_type': 'delivery', 'show_address': 1}</attribute>
@@ -21,8 +21,8 @@
             <xpath expr="//tree/field[@name='product_id']" position="attributes">
                 <attribute name="optional">show</attribute>
             </xpath>
-            <xpath expr="//button[@name='action_quotation_send' and @states='sent,sale']" position="attributes">
-                <attribute name="states">sent,sale,done</attribute>
+            <xpath expr="//button[@id='send_by_email']" position="attributes">
+                <attribute name="invisible">[('state', 'in', ['sent', 'sale', 'done'])]</attribute>
             </xpath>
             <xpath expr="//div[hasclass('oe_chatter')]" position="before">
                 <div class="o_attachment_preview"/>
@@ -31,9 +31,9 @@
                 <attribute name="data-hotkey"></attribute>
             </xpath>
             <!-- There is a second button but it has the same name and no ID... so we go by hotkey the second time -->
-            <xpath expr="//button[@data-hotkey='v']" position="attributes">
-                <attribute name="data-hotkey"></attribute>
-            </xpath>
+<!--            <xpath expr="//button[@data-hotkey='v']" position="attributes">-->
+<!--                <attribute name="data-hotkey"></attribute>-->
+<!--            </xpath>-->
             <xpath expr="//field[@name='client_order_ref']" position="after">
                 <field name="purpose"/>
             </xpath>

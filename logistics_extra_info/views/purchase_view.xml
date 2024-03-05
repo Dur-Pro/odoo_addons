@@ -8,14 +8,14 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="readonly">False</attribute>
-                <attribute name="attrs">{'readonly':[('state','not in',['draft', 'sent','to approve'])]}</attribute>
+                <attribute name="readonly">state not in ['draft', 'sent','to approve']</attribute>
             </xpath>
             <xpath expr="//field[@name='origin']" position="replace">
                 <field name="origin"/>
-                <field name="incoterm_id" attrs="{'readonly':[('state','not in',['draft','sent','to approve'])]}"/>
-                <field name="carrier" attrs="{'readonly':[('state','not in',['draft','sent','to approve'])]}"/>
-                <field name="carrier_account" attrs="{'readonly':[('state','not in',['draft','sent','to approve'])]}"/>
-                <field name="customs_broker" attrs="{'readonly':[('state','not in',['draft','sent','to approve'])]}"/>
+                <field name="incoterm_id" readonly="state not in ['draft','sent','to approve']"/>
+                <field name="carrier" readonly="state not in ['draft','sent','to approve']"/>
+                <field name="carrier_account" readonly="state not in ['draft','sent','to approve']"/>
+                <field name="customs_broker" readonly="state not in ['draft','sent','to approve']"/>
             </xpath>
             <xpath expr="//field[@name='date_order']" position="after">
                 <field name="po_conf_number"/>

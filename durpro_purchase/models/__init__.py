@@ -1,2 +1,2 @@
-from . import purchase
-from . import product
+from . import purchase_order
+from . import product_supplierinfo

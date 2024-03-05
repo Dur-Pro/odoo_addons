@@ -67,7 +67,7 @@
                                 <div class="o_row">
                                     <field name="date_start"/> to <field name="date_end"/>
                                 </div>
-                                <field name="company_id" options="{'no_create': True}"/>
+<!--                                <field name="company_id" options="{'no_create': True}"/>-->
                             </group>
                         </group>
                     </sheet>

@@ -45,7 +45,7 @@
     """,
     "demo": [],
     'data': [
-        'views/product_view.xml',
+        # 'views/product_view.xml',
         'views/supplierinfo_pricelist.xml',
     ],
     'test': [],

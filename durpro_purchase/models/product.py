@@ -1,12 +1,5 @@
 from odoo import api, models, fields
 
-
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
-
-    loc_case = fields.Char(string='Bin Location')
-
-
 class SupplierInfo(models.Model):
     _inherit = 'product.supplierinfo'
 

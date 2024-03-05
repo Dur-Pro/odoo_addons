@@ -5,6 +5,9 @@ from odoo.exceptions import UserError
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
+    # DJD: Field not required as this behaviour is natively supported in v15.
+    #calculate_standard_cost = fields.Boolean('Calculate Standard Cost Automatically', default=True)
+
     # Override to allow for re-using the same component in later productions
     def _check_sn_uniqueness(self):
         """ Alert the user if the serial number as already been consumed/produced. """

@@ -6,7 +6,7 @@
 			<field name="model">res.company</field>
 			<field name="inherit_id" ref="base.view_company_form"/>
 			<field name="arch" type="xml">
-				<field name="favicon" position="after">
+				<field name="currency_id" position="after">
 					<field name="sdi_installation_message"/>
 					<field name="sdi_installation_included_message"/>
 					<field name="global_client_invoice_notes" />

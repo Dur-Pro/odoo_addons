@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="helpdesk_ticket_form_inherit_attachment_preview" type="ir.ui.view">
+        <field name="name">helpdesk.ticket.form.view.inherit.attachment.preview</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_chatter']" position="before">
+                    <div class="o_attachment_preview"/>
+                </xpath>
+            </field>
+    </record>
+</odoo>

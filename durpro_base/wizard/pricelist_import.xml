@@ -28,5 +28,9 @@
         <field name="target">new</field>
     </record>
 
-    <menuitem action="action_pricelist_import_wizard" id="menu_action_pricelist_import_wizard" parent="purchase.menu_purchase_config" sequence="100" />
+    <menuitem   action="action_pricelist_import_wizard"
+                id="menu_action_pricelist_import_wizard"
+                parent="purchase.menu_purchase_config"
+                sequence="100"
+    />
 </odoo>

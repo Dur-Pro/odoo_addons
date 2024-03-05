@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_product_produce_wizard" model="ir.ui.view">
+        <field name="name">mrp.product.product.wizard</field>
+        <field name="model">mrp.product.produce</field>
+        <field name="inherit_id" ref="mrp.view_mrp_product_produce_wizard"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]" position="after">
+                <field name="price_recompute_needed" invisible="1"/>
+                <field name="calculate_standard_cost" invisible="1"/>
+                <div invisible="price_recompute_needed == False or calculate_standard_cost  == True">
+                    <p>The sum of consumed product costs is not equal to the sum of finished products cost. Click the button below to recompute the finished product prices.</p>
+                    <button name="recompute_price" type="object" string="Recompute Finished Product Price" class="btn-primary"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

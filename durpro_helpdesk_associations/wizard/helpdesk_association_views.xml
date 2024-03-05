@@ -12,18 +12,21 @@
                             <field name="associated_record" />
                         </group>
                         <group col="2">
-                            <field name="invoice_id" string="Invoice"
-                                   invisible="associated_record != 'out_invoice'" />
-                            <field name="bill_id" string="Vendor Bill"
-                                   invisible="associated_record != 'in_invoice'" />
-                            <field name="sale_order_id" string="Sales Order / Quotation"
-                                   invisible="associated_record != 'sale_order'"/>
-                            <field name="purchase_order_id" string="Purchase Order / RFQ"
-                                   invisible="associated_record != 'purchase_order'"/>
-                            <field name="lead_id" string="Lead"
-                                   invisible="associated_record != 'lead'"/>
-                            <field name="work_order_id" string="FSO Work Order"
-                                   invisible="associated_record != 'work_order'"/>
+                            <field  name="invoice_id"
+                                    string="Invoice"
+                                    invisible="associated_record != 'out_invoice'" />
+                            <field  name="bill_id"
+                                    string="Vendor Bill"
+                                    invisible="associated_record != 'in_invoice'" />
+                            <field  name="sale_order_id"
+                                    string="Sales Order / Quotation"
+                                    invisible="associated_record != 'sale_order'"/>
+                            <field  name="purchase_order_id"
+                                    string="Purchase Order / RFQ"
+                                    invisible="associated_record != 'purchase_order'"/>
+                            <field  name="lead_id"
+                                    string="Lead"
+                                    invisible="associated_record != 'lead'"/>
                         </group>
                     </sheet>
                     <footer>

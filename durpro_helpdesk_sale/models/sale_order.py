@@ -33,22 +33,3 @@ class SaleOrder(models.Model):
                                       subtype_id=self.env.ref('mail.mt_note').id)
         return sos
 
-
-class AccountMove(models.Model):
-    _inherit = 'account.move'
-   
-    helpdesk_ticket_id = fields.Many2one(
-        'helpdesk.ticket',
-        string='Helpdesk Ticket',
-        states={'draft': [('readonly', False)]},
-        copy=False,
-    )
-
-
-class SaleAdvancePaymentInv(models.TransientModel):
-    _inherit = "sale.advance.payment.inv"
-    
-    def _create_invoice(self, order, so_line, amount):
-        res = super(SaleAdvancePaymentInv, self)._create_invoice(order, so_line, amount)
-        res.helpdesk_ticket_id = order.helpdesk_ticket_id
-        return res

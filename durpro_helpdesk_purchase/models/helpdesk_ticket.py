@@ -4,8 +4,14 @@ from odoo import models, fields, api, _
 class HelpdeskTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
-    purchase_order_ids = fields.One2many('purchase.order', 'helpdesk_ticket_id', string='Purchase Orders',
-                                         help='Purchase orders associated to this ticket', copy=False)
+    purchase_order_ids = fields.One2many(
+        comdel_name='purchase.order',
+        inverse_name='helpdesk_ticket_id',
+        string='Purchase Orders',
+        help='Purchase orders associated to this ticket',
+        copy=False
+    )
+
     purchase_order_count = fields.Integer(compute='_compute_purchase_order_count')
 
     @api.depends('purchase_order_ids')
@@ -25,12 +31,16 @@ class HelpdeskTicket(models.Model):
         }
 
         if self.purchase_order_count == 1:
-            action.update(res_id=self.purchase_order_ids[0].id,
-                          views=[(purchase_order_form_view.id, 'form')])
+            action.update(
+                res_id=self.purchase_order_ids[0].id,
+                views=[(purchase_order_form_view.id, 'form')]
+            )
         else:
-            action.update(domain=[('id', 'in', self.purchase_order_ids.ids)],
-                          views=[(purchase_list_view.id, 'tree'), (purchase_order_form_view.id, 'form')],
-                          name=_('Purchase Orders from Ticket'))
+            action.update(
+                domain=[('id', 'in', self.purchase_order_ids.ids)],
+                views=[(purchase_list_view.id, 'tree'), (purchase_order_form_view.id, 'form')],
+                name=_('Purchase Orders from Ticket')
+            )
         return action
 
     def action_generate_purchase_order(self):

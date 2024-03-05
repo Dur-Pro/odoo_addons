@@ -6,8 +6,13 @@ from odoo import models, api, fields, _
 class HelpdeskTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
-    move_ids = fields.One2many('account.move', 'helpdesk_ticket_id', string='Account Moves',
-                               help='Invoices / vendor bills generated from this ticket', copy=False,)
+    move_ids = fields.One2many(
+        comodel_name='account.move',
+        inverse_name='helpdesk_ticket_id',
+        string='Account Moves',
+        help='Invoices / vendor bills generated from this ticket',
+        copy=False
+    )
 
     invoice_count = fields.Integer(compute='_compute_counts')
     bill_count = fields.Integer(compute='_compute_counts')
@@ -29,12 +34,16 @@ class HelpdeskTicket(models.Model):
         }
 
         if len(self._get_invoice_ids()) == 1:
-            action.update(res_id=self._get_invoice_ids()[0].id,
-                          views=[(invoice_form_view.id, 'form')])
+            action.update(
+                res_id=self._get_invoice_ids()[0].id,
+                views=[(invoice_form_view.id, 'form')]
+            )
         else:
-            action.update(domain=[('id', 'in', self._get_invoice_ids().ids)],
-                          views=[(invoice_list_view.id, 'tree'), (invoice_form_view.id, 'form')],
-                          name=_('Invoices from Ticket'))
+            action.update(
+                domain=[('id', 'in', self._get_invoice_ids().ids)],
+                views=[(invoice_list_view.id, 'tree'), (invoice_form_view.id, 'form')],
+                name=_('Invoices from Ticket')
+            )
         return action
 
     def action_view_bill(self):
@@ -49,12 +58,16 @@ class HelpdeskTicket(models.Model):
         }
 
         if len(self._get_bill_ids()) == 1:
-            action.update(res_id=self._get_bill_ids()[0].id,
-                          views=[(bill_form_view.id, 'form')])
+            action.update(
+                res_id=self._get_bill_ids()[0].id,
+                views=[(bill_form_view.id, 'form')]
+            )
         else:
-            action.update(domain=[('id', 'in', self._get_bill_ids().ids)],
-                          views=[(bill_list_view.id, 'tree'), (bill_form_view.id, 'form')],
-                          name=_('Invoices from Ticket'))
+            action.update(
+                domain=[('id', 'in', self._get_bill_ids().ids)],
+                views=[(bill_list_view.id, 'tree'), (bill_form_view.id, 'form')],
+                name=_('Invoices from Ticket')
+            )
         return action
 
     def action_generate_invoice(self):

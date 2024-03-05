@@ -18,7 +18,6 @@ class PurchaseOrder(models.Model):
         pos = super().create(vals_list)
         for po in pos.filtered('helpdesk_ticket_id'):
             po.message_post_with_view('helpdesk.ticket_creation',
-                                      values={'self': po,
-                                              'ticket': po.helpdesk_ticket_id},
+                                      values={'self': po, 'ticket': po.helpdesk_ticket_id},
                                       subtype_id=self.env.ref('mail.mt_note').id)
         return pos

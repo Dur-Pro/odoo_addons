@@ -7,10 +7,12 @@ from odoo import api, models, fields
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
-    helpdesk_ticket_id = fields.Many2one('helpdesk.ticket',
-                                         string='Ticket',
-                                         help='Ticket this invoice was generated from',
-                                         readonly=True)
+    helpdesk_ticket_id = fields.Many2one(
+        comodel_name='helpdesk.ticket',
+        string='Ticket',
+        help='Ticket this invoice was generated from',
+        readonly=True
+    )
 
     @property
     def SELF_READABLE_FIELDS(self):

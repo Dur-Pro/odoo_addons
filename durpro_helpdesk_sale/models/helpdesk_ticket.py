@@ -30,12 +30,16 @@ class HelpdeskTicket(models.Model):
         }
 
         if self.sale_order_count == 1:
-            action.update(res_id=self.sale_order_ids[0].id,
-                          views=[(sale_order_form_view.id, 'form')])
+            action.update(
+                res_id=self.sale_order_ids[0].id,
+                views=[(sale_order_form_view.id, 'form')]
+            )
         else:
-            action.update(domain=[('id', 'in', self.sale_order_ids.ids)],
-                          views=[(sale_order_tree_view.id, 'tree'), (sale_order_form_view.id, 'form')],
-                          name=_('Purchase Orders from Ticket'))
+            action.update(
+                domain=[('id', 'in', self.sale_order_ids.ids)],
+                views=[(sale_order_tree_view.id, 'tree'), (sale_order_form_view.id, 'form')],
+                name=_('Purchase Orders from Ticket')
+            )
         return action
 
     def action_convert_to_sale_order(self):

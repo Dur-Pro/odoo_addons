@@ -7,5 +7,7 @@ class AccountMove(models.Model):
     def _compute_amount(self):
         super()._compute_amount()
         for move in self:
-            move.amount_residual_signed = -move.amount_residual
-
+            if move.move_type == 'entry' or move.is_outbound():
+                move.amount_residual_signed = move.amount_residual
+            else:
+                move.amount_residual_signed = -move.amount_residual

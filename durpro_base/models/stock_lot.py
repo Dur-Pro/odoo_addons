@@ -2,7 +2,7 @@ from odoo import api, models, _
 from odoo.exceptions import ValidationError
 
 
-class ProductionLot(models.Model):
+class StockLot(models.Model):
     _inherit = "stock.lot"
 
     @api.model_create_multi
@@ -18,7 +18,7 @@ class ProductionLot(models.Model):
                             name, product.display_name if product else ''
                         )
                     )
-        return super(ProductionLot, self).create(vals_list)
+        return super().create(vals_list)
 
     def write(self, vals):
         if 'product_id' in vals or 'name' in vals:
@@ -32,4 +32,4 @@ class ProductionLot(models.Model):
                             name, product.display_name
                         )
                     )
-        return super(ProductionLot, self).write(vals)
+        return super().write(vals)

@@ -5,7 +5,7 @@ class HelpdeskTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
     purchase_order_ids = fields.One2many(
-        comdel_name='purchase.order',
+        comodel_name='purchase.order',
         inverse_name='helpdesk_ticket_id',
         string='Purchase Orders',
         help='Purchase orders associated to this ticket',

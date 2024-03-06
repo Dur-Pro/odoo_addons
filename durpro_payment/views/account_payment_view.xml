@@ -8,8 +8,11 @@
             <field name="inherit_id" ref="account.view_account_payment_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='action_cancel']" position="after">
-                    <button name="action_send_by_email" string="Send by Email" type="object" data-hotkey="s"
-                            attrs="{'invisible': [('state', '!=', 'posted'), ('payment_type', '=', 'inbound')]}"/>
+                    <button name="action_send_by_email"
+                            string="Send by Email"
+                            type="object"
+                            data-hotkey="s"
+                            invisible="state !='posted' and payment_type == 'inbound'"/>
                 </xpath>
             </field>
         </record>

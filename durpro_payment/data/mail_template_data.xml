@@ -33,8 +33,7 @@
                     </p>
                 </div>
             </field>
-            <field name="report_template" ref="account.action_report_payment_receipt"/>
-            <field name="report_name">Payment Notice {{object.name}}</field>
+            <field name="report_template_ids" eval="[(4, ref('account.action_report_payment_receipt'))]"/>
             <field name="lang">{{ object.partner_id.lang }}</field>
             <field name="auto_delete" eval="True"/>
         </record>

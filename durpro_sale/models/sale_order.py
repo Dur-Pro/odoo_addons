@@ -13,11 +13,6 @@ class SaleOrder(models.Model):
         required=True,
         readonly=True,
         index=True,
-        states={
-            'draft': [('readonly', False)],
-            'sent': [('readonly', False)],
-            'sale': [('readonly', False)]
-        },
         copy=False,
         default=fields.Datetime.now,
         help="Creation date of draft/sent orders,\nConfirmation date of confirmed orders."

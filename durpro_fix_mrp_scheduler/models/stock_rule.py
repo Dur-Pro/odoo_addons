@@ -16,7 +16,7 @@ class StockRule(models.Model):
 
     @api.model
     def _get_moves_to_assign_domain(self, company_id):
-        moves_domain = super(StockRule, self)._get_moves_to_assign_domain(company_id)
+        moves_domain = super()._get_moves_to_assign_domain(company_id)
         try:
             if 'waiting' not in moves_domain[0][2]:
                 moves_domain[0][2].append('waiting')

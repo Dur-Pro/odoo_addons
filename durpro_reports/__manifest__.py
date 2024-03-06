@@ -31,7 +31,6 @@
                 "sale_crm",
                 "logistics_extra_info",
                 "account_reports",
-                "account_payment_term_discount",
                 "l10n_ca",
                 ],
     "description": """Durpro reports modifications for various modules, 

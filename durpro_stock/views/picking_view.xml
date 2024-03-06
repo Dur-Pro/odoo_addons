@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.view.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="description_picking" position="replace">
+                <field name="location_dest_id" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                    <attribute name="optional">hide</attribute>
+                </field>
+            </field>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="shipper"/>
+                <field name="verifier"/>
+                <field name="package_type"/>
+                <field name="shipping_cost"/>
+                <field name="promised_date" invisible="promised_date is False"/>
+                <field name="expected_date" invisible="expected_date is False"/>
+                <field name="carrier"/>
+                <field name="carrier_account"/>
+            </xpath>
+            <xpath expr="//page[@name='note']" position="replace"/>
+            <xpath expr="//notebook" position="after">
+                <field name="note" string="Note"
+                       placeholder="Add an internal note that will be printed on the Picking Operations sheet"
+                       modifiers="{}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="vpicktree" model="ir.ui.view">
+        <field name="name">stock.picking.tree</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="items_summary" optional="show"/>
+            </field>
+        </field>
+    </record>
+</odoo>

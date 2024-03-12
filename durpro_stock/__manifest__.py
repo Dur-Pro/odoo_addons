@@ -18,7 +18,7 @@
 #
 {
     'name': 'Durpro Stock',
-    'version': '15.0.1.0.1',
+    'version': '15.0.1.0.2',
     'summary': 'Durpro Customizations for Inventory Module',
     'category': 'Inventory/Inventory',
     'author': 'Bemade Inc.',

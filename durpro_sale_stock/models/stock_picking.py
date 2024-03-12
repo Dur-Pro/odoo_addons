@@ -3,10 +3,18 @@ from odoo import models, fields, api, _
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
+    def _calculate_note(self):
+        return self.sale_id.note if self.sale_id else ""
+
     client_order_ref = fields.Char(
         related='sale_id.client_order_ref',
         string="Customer Reference",
         copy=False
+    )
+
+    note = fields.Html(
+        string='Notes',
+        default=_calculate_note
     )
 
     # this replace SaleOrderLine._action_launch_stock_rule solution because picking are not allways created

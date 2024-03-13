@@ -9,10 +9,12 @@ class ProductSupplierInfo(models.Model):
     _name = 'product.supplierinfo'
     _inherit = ['product.supplierinfo', 'mail.thread', 'mail.activity.mixin']
 
-    _sql_constraints = [("supplierinfo_product_tmpl_id_no_null",
-                         "CHECK((product_tmpl_id IS NOT NULL))",
-                         "Supplier pricelist need product template"),
-                        ]
+    # Commented out because breaking basic Odoo tests. See if this is really needed.
+
+    # _sql_constraints = [("supplierinfo_product_tmpl_id_no_null",
+    #                      "CHECK((product_tmpl_id IS NOT NULL))",
+    #                      "Supplier pricelist need product template"),
+    #                     ]
 
     # This while avoid the database to save those record with lost product_tmpl_id
     @api.depends('supplier_list_price', 'supplier_discount_percent')

@@ -81,9 +81,6 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']" position="after">
-                <field name="date_order" string="Quotation Date"/>
-            </xpath>
             <xpath expr="//field[@name='date_order']" position="after">
                 <field name="purpose"/>
             </xpath>

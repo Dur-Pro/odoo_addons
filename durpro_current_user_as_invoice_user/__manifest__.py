@@ -17,19 +17,14 @@
 #    DEALINGS IN THE SOFTWARE.
 #
 {
-    'name': 'Durpro Stock',
-    'version': '15.0.1.0.2',
-    'summary': 'Durpro Customizations for Inventory Module',
-    'category': 'Inventory/Inventory',
+    'name': 'Current User as Invoice User',
+    'version': '15.0.1.0.0',
+    'summary': 'Instead of the salesperson, use the currently logged in user as the responsible user on invoice.',
+    'category': 'Accounting',
     'author': 'Bemade Inc.',
     'website': 'http://www.bemade.org',
     'license': 'OPL-1',
-    'depends': ['stock'],
-    'data': [
-        'views/picking_view.xml',
-        'views/stock_move_line_views.xml',
-    ],
-    'assets': {},
+    'depends': ['sale'],
     'installable': True,
-    'auto_install': False
+    'auto_install': False,
 }

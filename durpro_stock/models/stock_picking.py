@@ -4,9 +4,6 @@ from odoo import models, fields, api, _
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    def _calculate_note(self):
-        return self.sale_id.note if self.sale_id else ""
-
     package_type = fields.Char(
         string='Package type',
         size=32
@@ -50,10 +47,6 @@ class StockPicking(models.Model):
     expected_date = fields.Date(
         string='Expected Ship Date',
         help="Expected delivery date based on promised dates from suppliers."
-    )
-    note = fields.Html(
-        string='Notes',
-        default=_calculate_note
     )
     display_name = fields.Char(
         compute="_compute_display_name",

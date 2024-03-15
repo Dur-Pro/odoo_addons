@@ -6,5 +6,8 @@ class SaleMakeInvoiceAdvance(models.TransientModel):
 
     def _prepare_invoice_values(self, order, name, amount, so_line):
         invoice_vals = super()._prepare_invoice_values(order, name, amount, so_line)
-        invoice_vals['invoice_user_id'] = self.env.user.id
+        invoice_vals.update({
+            'invoice_user_id': self.env.user.id,
+            'user_id': self.env.user.id,
+        })
         return invoice_vals

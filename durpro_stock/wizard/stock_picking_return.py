@@ -20,7 +20,7 @@ class ReturnPicking(models.TransientModel):
             res.update({'picking_id': picking.id})
             if picking.state != 'done':
                 raise UserError(_("You may only return Done pickings"))
-            for move in picking.move_lines:
+            for move in picking.move_line_ids:
                 if move.state == 'cancel':
                     continue
                 if move.scrapped:

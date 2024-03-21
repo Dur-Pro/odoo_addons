@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  
     Copyright (C) Cetmix OÜ
@@ -33,10 +33,9 @@
         <field name="model">cetmix.conversation</field>
         <field name="arch" type="xml">
             <tree decoration-bf="message_needaction==True">
-                <field name="subject_display" />
-                <field name="message_needaction" invisible="1" />
-            </tree>
-        </field>
+                <field name="subject_display"/>
+                <field invisible="1" name="message_needaction"/>
+            </tree></field>
     </record>
     <!--## Form ##-->
     <record id="cetmix_conversation_form" model="ir.ui.view">
@@ -45,142 +44,79 @@
         <field name="arch" type="xml">
             <form string="Conversation">
                 <header>
-                    <button
-                        name="join"
-                        type="object"
-                        string="Join"
-                        confirm="Are you sure?"
-                        class="btn-primary"
-                        attrs="{'invisible' : [('is_participant', '=', True)]}"
-                    />
-                    <button
-                        name="leave"
-                        type="object"
-                        string="Leave"
-                        confirm="Are you sure?"
-                        class="btn-primary"
-                        attrs="{'invisible' : [('is_participant', '=', False)]}"
-                    />
-                    <button
-                        name="move"
-                        type="object"
-                        string="Move Messages"
-                        confirm="Conversation will be deleted after messages are moved! Are you sure?"
-                        class="btn-primary"
-                    />
-                    <button
-                        name="unlink"
-                        type="object"
-                        icon="fa-trash"
-                        string="Delete"
-                        confirm="Are you sure?"
-                    />
-                    <button
-                        name="archive"
-                        type="object"
-                        icon="fa-archive"
-                        string="Archive"
-                        confirm="Are you sure?"
-                        attrs="{'invisible' : [('active', '=', False)]}"
-                    />
-                    <button
-                        name="archive"
-                        type="object"
-                        icon="fa-archive"
-                        string="Unarchive"
-                        confirm="Are you sure?"
-                        attrs="{'invisible' : [('active', '=', True)]}"
-                    />
+                    <button class="btn-primary" confirm="Are you sure?" invisible="is_participant == True" name="join" string="Join" type="object"/>
+                    <button class="btn-primary" confirm="Are you sure?" invisible="is_participant == False" name="leave" string="Leave" type="object"/>
+                    <button class="btn-primary" confirm="Conversation will be deleted after messages are moved! Are you sure?" name="move" string="Move Messages" type="object"/>
+                    <button confirm="Are you sure?" icon="fa-trash" name="unlink" string="Delete" type="object"/>
+                    <button confirm="Are you sure?" icon="fa-archive" invisible="active == False" name="archive" string="Archive" type="object"/>
+                    <button confirm="Are you sure?" icon="fa-archive" invisible="active == True" name="archive" string="Unarchive" type="object"/>
                 </header>
                 <sheet class="custom_sheet">
-                    <div
-                        name="caption"
-                        colspan="2"
-                        class="oe_form_box_info oe_text_center"
-                    >
+                    <div class="oe_form_box_info oe_text_center" colspan="2" name="caption">
                         <p>
                             Posted messages will be sent to all participants
-                            <br />
+                            <br/>
                             If all messages are moved or deleted from Conversation it
                             will be deleted
                         </p>
                     </div>
                     <div class="oe_title">
                         <h1>
-                            <field name="name" placeholder="Subject..." />
+                            <field name="name" placeholder="Subject..."/>
                         </h1>
-                        <label for="author_id" string="Started by" />
-                        <field name="author_id" readonly="1" />
-                        <field name="active" invisible="1" />
-                        <field name="is_participant" invisible="1" />
+                        <label for="author_id" string="Started by"/>
+                        <field name="author_id" readonly="1"/>
+                        <field invisible="1" name="active"/>
+                        <field invisible="1" name="is_participant"/>
                     </div>
-                    <b>Participants</b>
-                    <field
-                        name="partner_ids"
-                        widget="many2many"
-                        options="{'not_delete': True}"
-                    >
-                        <kanban quick_create="false" create="true" delete="true">
-                            <field name="color" />
-                            <field name="name" />
-                            <field name="title" />
-                            <field name="email" />
-                            <field name="function" />
-                            <field name="phone" />
-                            <field name="mobile" />
-                            <field name="image_128" />
+                    <b>
+                        Participants
+                    </b>
+                    <field name="partner_ids" options="{'not_delete': True}" widget="many2many">
+                        <kanban create="true" delete="true" quick_create="false">
+                            <field name="color"/>
+                            <field name="name"/>
+                            <field name="title"/>
+                            <field name="email"/>
+                            <field name="function"/>
+                            <field name="phone"/>
+                            <field name="mobile"/>
+                            <field name="image_128"/>
                             <templates>
                                 <t t-name="kanban-box">
-                                    <t
-                                        t-set="color"
-                                        t-value="kanban_color(record.color.raw_value)"
-                                    />
-                                    <div
-                                        t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'"
-                                    >
-                                        <a
-                                            t-if="!read_only_mode"
-                                            type="delete"
-                                            class="fa fa-times pull-right"
-                                            title="delete"
-                                        />
+                                    <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+                                    <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
+                                        <a class="fa fa-times pull-right" t-if="!read_only_mode" title="delete" type="delete"/>
                                         <div class="o_kanban_image">
-                                            <img
-                                                t-if="record.image_128.raw_value"
-                                                t-att-src="'data:image/png;base64,'+record.image_128.raw_value"
-                                                t-att-alt="record.name"
-                                            />
+                                            <img t-att-alt="record.name" t-att-src="'data:image/png;base64,'+record.image_128.raw_value" t-if="record.image_128.raw_value"/>
                                             <t t-if="!record.image_128.raw_value">
-
                                             </t>
                                         </div>
                                         <div class="oe_kanban_details">
-                                            <field name="name" />
+                                            <field name="name"/>
                                             <div t-if="record.function.raw_value">
-                                                <field name="function" />
+                                                <field name="function"/>
                                             </div>
                                             <div t-if="record.email.raw_value">
-                                                <field name="email" widget="email" />
+                                                <field name="email" widget="email"/>
                                             </div>
                                             <div t-if="record.phone.raw_value">
-                                                <field name="phone" />
+                                                <field name="phone"/>
                                             </div>
                                             <div t-if="record.mobile.raw_value">
-                                                <field name="mobile" />
+                                                <field name="mobile"/>
                                             </div>
                                         </div>
                                     </div>
                                 </t>
                             </templates>
-                        </kanban>
-                    </field>
+                        </kanban></field>
                 </sheet>
                 <div class="oe_chatter">
                     <!--                    <field name="message_follower_ids" widget="mail_followers"/>-->
-                    <field name="message_ids" widget="mail_thread" />
+                    <field name="message_ids" widget="mail_thread"/>
                 </div>
-            </form>
-        </field>
+            </form></field>
     </record>
     <!--## Search ##-->
     <record id="cetmix_conversation_search" model="ir.ui.view">
@@ -188,52 +124,22 @@
         <field name="model">cetmix.conversation</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name" />
-                <field name="author_id" />
-                <field name="last_message_by" />
-                <field name="partner_ids" />
-                <filter
-                    string="Unread Messages"
-                    name="message_needaction"
-                    domain="[('message_needaction','=',True)]"
-                />
-                <separator />
-                <filter
-                    string="I participate"
-                    name="participate"
-                    domain="[('partner_ids', 'in', [uid])]"
-                />
-                <separator />
-                <filter
-                    string="Archived"
-                    name="archived"
-                    domain="[('active', '=', False)]"
-                />
+                <field name="name"/>
+                <field name="author_id"/>
+                <field name="last_message_by"/>
+                <field name="partner_ids"/>
+                <filter domain="[('message_needaction','=',True)]" name="message_needaction" string="Unread Messages"/>
+                <separator/>
+                <filter domain="[('partner_ids', 'in', [uid])]" name="participate" string="I participate"/>
+                <separator/>
+                <filter domain="[('active', '=', False)]" name="archived" string="Archived"/>
                 <group string="Group By">
-                    <filter
-                        string="Author"
-                        name='groupby_author'
-                        domain="[]"
-                        context="{'group_by':'author_id'}"
-                    />
-                    <separator />
-                    <filter
-                        string="Last Message"
-                        name='groupby_lastmessage'
-                        domain="[]"
-                        context="{'group_by':'last_message_post'}"
-                    />
+                    <filter context="{'group_by':'author_id'}" domain="[]" name="groupby_author" string="Author"/>
+                    <separator/>
+                    <filter context="{'group_by':'last_message_post'}" domain="[]" name="groupby_lastmessage" string="Last Message"/>
                 </group>
-            </search>
-        </field>
+            </search></field>
     </record>
     <!--## Menu ##-->
-    <menuitem
-        id="menu_conversations"
-        name="Conversations"
-        action="action_conversations"
-        parent="prt_messages_root"
-        groups="group_conversation_own"
-        sequence="1"
-    />
+    <menuitem action="action_conversations" groups="group_conversation_own" id="menu_conversations" name="Conversations" parent="prt_messages_root" sequence="1"/>
 </odoo>

@@ -35,8 +35,7 @@
     'website': 'http://libeo.com',
     'depends': [
         'sale',
-        'stock',
-        'delivery',
+        'stock_delivery',
         'purchase',
     ],
     'data': [

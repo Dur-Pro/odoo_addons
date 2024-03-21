@@ -45,7 +45,7 @@
                 <field name="carrier"/>
                 <field name="carrier_account"/>
             </xpath>
-            <xpath expr="//page[@name='note']" position="replace"/>
+            <xpath expr="//page[@name='extra']" position="replace"/>
             <xpath expr="//notebook" position="after">
                 <field name="note" string="Note" placeholder="Add an internal note that will be printed on the Picking Operations sheet" modifiers="{}"/>
             </xpath>

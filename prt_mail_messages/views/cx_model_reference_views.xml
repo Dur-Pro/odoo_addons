@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
- 
-    Copyright (C) Cetmix OÜ
+
+    Copyright (C) 2020 Cetmix OÜ
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
@@ -27,7 +27,7 @@
                     <group>
                         <field name="ir_model_id" />
                         <field name="custom_name" />
-                        <field name="object" />
+                        <field name="model" />
                     </group>
                 </sheet>
             </form>
@@ -42,7 +42,7 @@
                 <field name="sequence" widget="handle" />
                 <field name="ir_model_id" />
                 <field name="custom_name" />
-                <field name="object" optional="hide" />
+                <field name="model" optional="hide" />
             </tree>
         </field>
     </record>

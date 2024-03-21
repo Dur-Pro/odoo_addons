@@ -1,2 +1,2 @@
-from . import models  # noqa
-from . import wizard  # noqa
+from . import models
+from . import wizard

@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
- 
-    Copyright (C) Cetmix OÜ
+
+    Copyright (C) 2020 Cetmix OÜ
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
@@ -26,17 +26,20 @@
         <field name="model">cx.message.partner.assign.wiz</field>
         <field name="arch" type="xml">
             <form string="Assign Author">
-                <div name="pro" colspan="2" class="oe_form_box_info oe_text_center">
-                    <p>
-                        Please purchase
-                        <a
-                            target="_blank"
-                            href="https://apps.odoo.com/apps/modules/11.0/prt_mail_messages_pro"
-                        >
-                            Pro Version
-                        </a>
-                        to use this feature
-                    </p>
+                <div
+                    name="pro"
+                    role="alert"
+                    colspan="2"
+                    class="alert alert-warning alert-dismissible fade show text-center"
+                >
+                    Please purchase
+                    <a
+                        target="_blank"
+                        href="https://apps.odoo.com/apps/modules/16.0/prt_mail_messages_pro"
+                    >
+                        <strong>Pro Version</strong>
+                    </a>
+                    to use this feature
                 </div>
                 <group>
                     <field name="name" />

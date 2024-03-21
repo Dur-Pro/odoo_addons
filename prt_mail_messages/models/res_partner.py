@@ -1,6 +1,6 @@
 ###################################################################################
-# 
-#    Copyright (C) Cetmix OÜ
+#
+#    Copyright (C) 2020 Cetmix OÜ
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
@@ -17,7 +17,7 @@
 #
 ###################################################################################
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 ################
@@ -27,99 +27,63 @@ class Partner(models.Model):
     _inherit = "res.partner"
 
     messages_from_count = fields.Integer(
-        string="Messages From", compute="_compute_messages_from_count"
+        string="Messages From", compute="_compute_messages_count"
     )
     messages_to_count = fields.Integer(
-        string="Messages To", compute="_compute_messages_to_count"
+        string="Messages To", compute="_compute_messages_count"
     )
 
-    # -- Count messages from
-    @api.depends("message_ids")
-    def _compute_messages_from_count(self):
+    def _compute_messages_count(self):
+        """Compute count messages from/to"""
+        MailMessage = self.env["mail.message"]
         for rec in self:
-            if rec.id:
-                rec.messages_from_count = self.env["mail.message"].search_count(
-                    [
-                        ("author_id", "child_of", rec.id),
-                        ("message_type", "in", ["email", "comment"]),
-                        ("model", "!=", "mail.channel"),
-                    ]
-                )
-            else:
-                rec.messages_from_count = 0
-
-    # -- Count messages from
-    @api.depends("message_ids")
-    def _compute_messages_to_count(self):
-        for rec in self:
-            rec.messages_to_count = self.env["mail.message"].search_count(
-                [
-                    ("partner_ids", "in", [rec.id]),
-                    ("message_type", "in", ["email", "comment"]),
-                    ("model", "!=", "mail.channel"),
-                ]
+            rec.update(
+                {
+                    "messages_from_count": MailMessage.search_count(
+                        self._prepare_message_domain(record_from_id=rec.id)
+                    ),
+                    "messages_to_count": MailMessage.search_count(
+                        self._prepare_message_domain(record_to_ids=rec.ids)
+                    ),
+                }
             )
 
-    # -- Open related
+    @api.model
+    def _prepare_message_domain(self, record_to_ids=None, record_from_id=None):
+        """Prepare message domain to display"""
+        domain = [
+            ("message_type", "in", ["email", "comment"]),
+            ("model", "!=", "mail.channel"),
+        ]
+        author_id_domain = ("author_id", "child_of", record_from_id)
+        partner_ids_domain = ("partner_ids", "in", record_to_ids)
+        if record_to_ids and record_from_id:
+            return [*domain, "|", partner_ids_domain, author_id_domain]
+        if record_from_id:
+            return [*domain, author_id_domain]
+        if record_to_ids:
+            return [*domain, partner_ids_domain]
+        return domain
+
+    def _domain_by_open_mode(self):
+        """Choose what messages to display"""
+        return {
+            "from": self._prepare_message_domain(record_from_id=self.id),
+            "to": self._prepare_message_domain(record_to_ids=self.ids),
+            "all": self._prepare_message_domain(self.ids, self.id),
+        }
+
     def partner_messages(self):
+        """Open partner related messages"""
         self.ensure_one()
-
-        # Choose what messages to display
-        open_mode = self._context.get("open_mode", "from")
-
-        if open_mode == "from":
-            domain = [
-                ("message_type", "in", ["email", "comment"]),
-                ("author_id", "child_of", self.id),
-                ("model", "!=", "mail.channel"),
-            ]
-        elif open_mode == "to":
-            domain = [
-                ("message_type", "in", ["email", "comment"]),
-                ("partner_ids", "in", [self.id]),
-                ("model", "!=", "mail.channel"),
-            ]
-        else:
-            domain = [
-                ("message_type", "in", ["email", "comment"]),
-                ("model", "!=", "mail.channel"),
-                "|",
-                ("partner_ids", "in", [self.id]),
-                ("author_id", "child_of", self.id),
-            ]
-
-        tree_view_id = self.env.ref("prt_mail_messages.prt_mail_message_tree").id
-        form_view_id = self.env.ref("prt_mail_messages.prt_mail_message_form").id
-
-        return {
-            "name": _("Messages"),
-            "views": [[tree_view_id, "tree"], [form_view_id, "form"]],
-            "res_model": "mail.message",
-            "type": "ir.actions.act_window",
-            "context": "{'check_messages_access': True}",
-            "target": "current",
-            "domain": domain,
-        }
-
-    # -- Send email from partner's form view
-    def send_email(self):
-        self.ensure_one()
-
-        return {
-            "name": _("New message"),
-            "views": [[False, "form"]],
-            "res_model": "mail.compose.message",
-            "type": "ir.actions.act_window",
-            "target": "new",
-            "context": {
-                "default_res_id": False,
-                "default_parent_id": False,
-                "default_model": False,
-                "default_partner_ids": [self.id],
-                "default_attachment_ids": False,
-                "default_is_log": False,
-                "default_body": False,
-                "default_wizard_mode": "compose",
-                "default_no_auto_thread": False,
-            },
-        }
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "prt_mail_messages.action_prt_mail_messages"
+        )
+        action.update(
+            context={"check_messages_access": True},
+            domain=self._domain_by_open_mode().get(
+                self._context.get("open_mode", "all")
+            ),
+            target="current",
+        )
+        return action

@@ -1,6 +1,6 @@
 ###################################################################################
-# 
-#    Copyright (C) Cetmix OÜ
+#
+#    Copyright (C) 2020 Cetmix OÜ
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
@@ -39,3 +39,98 @@ MONTHS = {
     11: _("Nov"),
     12: _("Dec"),
 }
+
+# List of forbidden models
+FORBIDDEN_MODELS = ["mail.channel", "mail.message"]
+
+# Search for 'ghost' models is performed
+GHOSTS_CHECKED = False
+
+# Used to render html field in TreeView
+TREE_TEMPLATE = (
+    '<table style="width:100%%;border:none;%(background_color)s" title="%(title)s">'
+    "<tbody>"
+    "<tr>"
+    '<td style="width: 1%%;"><img class="rounded-circle"'
+    ' style="width: 64px; padding:10px;" src="data:image/png;base64,%(avatar)s"'
+    ' alt="Avatar" title="%(author_display)s" width="100" border="0" /></td>'
+    '<td style="width: 99%%;">'
+    '<table style="width: 100%%; border: none;">'
+    "<tbody>"
+    "<tr>"
+    '<td id="author"><strong>%(author_display)s</strong> &nbsp; '
+    '<span id="subject">%(subject)s</span></td>'
+    '<td id="date" style="text-align:right;">'
+    '<span title="%(message_date)s" id="date">%(date_display)s</span></td>'
+    "</tr>"
+    "<tr>"
+    "<td>"
+    '<p id="related-record" style="font-size: x-small;">'
+    "<strong>%(record_ref)s</strong></p></td>"
+    '<td id="notifications" style="text-align: right;">%(icons)s</td>'
+    "</tr>"
+    "</tbody>"
+    "</table>"
+    "<b id='daleted-days' class='text-danger'>"
+    "%(display_number_days_after_deletion)s"
+    "</b>"
+    '<p id="text-preview" style="color: #808080;">%(body)s</p>'
+    "</td>"
+    "</tr>"
+    "</tbody>"
+    "</table>"
+)
+
+BLOCK_QUOTE = (
+    "<p><br/></p>"
+    "<br/>"
+    "<blockquote>----- Original message ----- <br/> Date: %(date)s <br/>"
+    " From: %(author)s <br/> Subject: %(subject)s <br/><br/>%(body)s</blockquote>"
+)
+
+# Used to render html field in TreeView
+CONVERSATION_TREE_TEMPLATE = (
+    '<table style="width: 100%%; border: none;" title="Conversation">'
+    "<tbody>"
+    "<tr>"
+    '<td style="width: 1%%;"><img class="rounded-circle" '
+    'style="height: auto; width: 64px; padding:10px;"'
+    ' src="data:image/png;base64, %(avatar)s" alt="Avatar" '
+    'title="%(title)s" width="100" border="0" /></td>'
+    '<td style="width: 99%%;">'
+    '<table style="width: 100%%; border: none;">'
+    "<tbody>"
+    "<tr>"
+    '<td id="author"><strong>%(author)s</strong> &nbsp; '
+    '<span id="subject">%(subject)s</span></td>'
+    '<td id="date" style="text-align: right;" title="%(date)s">%(date_display)s</td>'
+    "</tr>"
+    "<tr>"
+    '<td><p id="notifications" style="font-size: x-small;">'
+    "<strong>%(msg_count_text)s</strong></p></td>"
+    '<td id="participants" style="text-align: right;">%(participant)s</td>'
+    "</tr>"
+    "</tbody>"
+    "</table>"
+    "%(body)s"
+    "</td>"
+    "</tr>"
+    "</tbody>"
+    "</table>"
+)
+
+PARTICIPANT_IMG = (
+    '<img class="rounded-circle"'
+    ' style="width:24px;max-height:24px;margin:2px;"'
+    ' title="%(title)s" src="data:image/png;base64, %(img)s"/>'
+)
+
+PLAIN_BODY = (
+    '<img class="rounded-circle"'
+    ' style="width:16px;max-height:16px;margin:2px;"'
+    ' title="%(title)s" src="data:image/png;base64, %(img)s"/>'
+    ' <span id="text-preview"'
+    ' style="color:#808080;vertical-align:middle;">%(body)s</p>'
+)
+
+DEFAULT_SIGNATURE_LOCATION = "a"

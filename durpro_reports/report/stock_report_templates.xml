@@ -58,7 +58,7 @@
     </template>
 
 
-    <template id="report_delivery_document2" inherit_id="delivery.report_delivery_document2">
+    <template id="report_delivery_document2" inherit_id="stock_delivery.report_delivery_document2">
         <!-- Remove "Total Weight" from the information block -->
         <xpath expr="//div[@t-if='o.shipping_weight']" position="replace"></xpath>
     </template>

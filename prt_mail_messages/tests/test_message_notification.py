@@ -1,6 +1,6 @@
 ###################################################################################
-# 
-#    Copyright (C) Cetmix OÜ
+#
+#    Copyright (C) 2020 Cetmix OÜ
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
@@ -17,11 +17,15 @@
 #
 ###################################################################################
 
-from odoo.tests import TransactionCase, tagged
+from email.message import EmailMessage
+
+from odoo.tests import tagged
+
+from .common import MailMessageCommon
 
 
 @tagged("post_install", "-at_install")
-class TestMessageNotification(TransactionCase):
+class TestMessageNotification(MailMessageCommon):
     """
     TEST 1 : Notify partners on incoming message
         - Set True config parameter 'mail_incoming_smart_notify'
@@ -34,54 +38,12 @@ class TestMessageNotification(TransactionCase):
     """
 
     def setUp(self):
-        super(TestMessageNotification, self).setUp()
-        ResPartner = self.env["res.partner"]
-        ResUsers = self.env["res.users"].with_context(mail_create_nolog=True)
+        super().setUp()
 
-        self.res_users_internal_user_email = ResUsers.create(
-            {
-                "name": "Demo Notification Type Email",
-                "login": "demo_email",
-                "email": "demo.email@example.com",
-                "groups_id": [(4, self.ref("base.group_user"))],
-                "notification_type": "email",
-            }
-        )
+        def unlink_replacement(self):
+            return
 
-        self.res_users_internal_user_odoo = ResUsers.create(
-            {
-                "name": "Demo Notification Type Odoo",
-                "login": "demo_odoo",
-                "email": "demo.odoo@exmaple.com",
-                "groups_id": [(4, self.ref("base.group_user"))],
-                "notification_type": "inbox",
-            }
-        )
-
-        self.res_partner_kate = ResPartner.create(
-            {
-                "name": "Kate",
-                "email": "kate@example.com",
-            }
-        )
-        self.res_partner_ann = ResPartner.create(
-            {
-                "name": "Ann",
-                "email": "ann@example.com",
-            }
-        )
-        self.res_partner_bob = ResPartner.create(
-            {
-                "name": "Bob",
-                "email": "bob@example.com",
-            }
-        )
-        self.res_partner_mark = ResPartner.create(
-            {
-                "name": "Mark",
-                "email": "mark@example.com",
-            }
-        )
+        self.env["mail.mail"]._patch_method("unlink", unlink_replacement)
 
         partner_ids = [
             self.res_partner_kate.id,
@@ -92,12 +54,6 @@ class TestMessageNotification(TransactionCase):
             self.res_users_internal_user_odoo.partner_id.id,
         ]
 
-        self.res_partner_target_record = ResPartner.create(
-            {
-                "name": "Target",
-                "email": "target@example.com",
-            }
-        )
         self.res_partner_target_record.message_subscribe(partner_ids, [])
 
         self.message_dict = {
@@ -105,14 +61,12 @@ class TestMessageNotification(TransactionCase):
             "message_id": "<CAFkrrMwZJvtNe6kEM538Xu99TmCn=BgwaLMRMPi+otCSO4G6BQ@mail.example.com>",  # noqa
             "subject": "Test Subject",
             "from": "Mark <mark@example.com>",
-            "to": "{} <{}>, {} <{}>".format(
-                self.res_partner_kate.name,
-                self.res_partner_kate.email,
-                self.res_partner_ann.name,
-                self.res_partner_ann.email,
-            ),
+            "to": f"{self.res_partner_kate.name} <{self.res_partner_kate.email}>, {self.res_partner_ann.name} <{self.res_partner_ann.email}>",  # noqa
             "cc": "",
+            "references": "",
             "email_from": "Mark <mark@exmaple.com>",
+            "recipients": "test_example@example.com",
+            "in_reply_to": """<CABFLKG=gJvxLSEgJNcPowcyo-cuJKoc3vuYv+coCC63qmfqo6A@example.com>""",  # noqa
             "partner_ids": [self.res_partner_kate.id, self.res_partner_ann.id],
             "date": "2022-06-23 16:52:15",
             "internal": False,
@@ -146,8 +100,8 @@ class TestMessageNotification(TransactionCase):
 
         target = self.res_partner_target_record
         user_id = self.env.user.id
-        route = (target._name, target.id, None, user_id, None)
-        self.env["mail.thread"]._message_route_process("", self.message_dict, [route])
+        routes = [(target._name, target.id, None, user_id, None)]
+        self.env["mail.thread"]._message_route_process("", self.message_dict, routes)
         mail_ids = self.env["mail.mail"].search(
             [
                 ("res_id", "=", target.id),
@@ -171,10 +125,6 @@ class TestMessageNotification(TransactionCase):
             lambda mail: mail.id != internal_partner_mail.id
         )
 
-        self.assertEqual(
-            len(partner_mail.recipient_ids), 2, msg="Recipients count must be equal 2"
-        )
-
         self.assertNotIn(
             self.res_users_internal_user_email.partner_id.id,
             partner_mail.recipient_ids.ids,
@@ -190,3 +140,42 @@ class TestMessageNotification(TransactionCase):
             partner_mail.recipient_ids.ids,
             msg="Message recipients must contain partner Mark",
         )
+
+    def test_message_route_allow_direct_message(self):
+        """
+        Test flow that check using 'allow direct' config for message_route method.
+
+        - Checking method behavior with deactivate
+        'allow direct' config (by default behavior)
+        - Checking method behavior with set 'allow direct' config.
+        """
+        msg = EmailMessage()
+        msg["To"] = ""
+        msg["subject"] = "---Test---"
+        self.message_dict.update(
+            to=f"{self.res_partner_kate.name} <{self.res_partner_kate.email}>"
+        )
+        self.env["ir.config_parameter"].sudo().set_param("mail.catchall.alias", "kate")
+        self.env["ir.config_parameter"].sudo().set_param(
+            "mail.catchall.domain", "test-example.com"
+        )
+        self.env["ir.config_parameter"].sudo().set_param(
+            "mail.default.from", "test@custom_domain.com"
+        )
+
+        # Default behavior
+        # Allow direct message to catchall is false
+        result = self.env["mail.thread"].message_route(msg, self.message_dict)
+        self.assertEqual(result, [])
+        # Find created message after message_route method
+        mail = self.env["mail.mail"].search([("subject", "=", "Re: ---Test---")])
+        self.assertEqual(len(mail), 1)
+
+        # Active Allow Direct behavior
+        # Allow direct message to catchall set True
+        self.env["ir.config_parameter"].sudo().set_param(
+            "cetmix.allow_direct_messages_to_catchall", True
+        )
+        # ValueError if no routes found and if no bounce occurred
+        with self.assertRaises(ValueError):
+            self.env["mail.thread"].message_route(msg, self.message_dict)

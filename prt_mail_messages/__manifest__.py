@@ -1,6 +1,6 @@
 ###################################################################################
-# 
-#    Copyright (C) Cetmix OÜ
+#
+#    Copyright (C) 2020 Cetmix OÜ
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
@@ -18,12 +18,8 @@
 ###################################################################################
 
 {
-    "name": "Mail Messages Easy."
-    " Show all messages, Show sent messages,"
-    " Reply to message, Forward message,"
-    " Archive message, Delete Undelete message,"
-    " Quote message, Move message",
-    "version": "17.0.1.0.0",
+    "name": "Mail Messages Easy",
+    "version": "17.0.1.0.13",
     "summary": """
 Read and manage all Odoo messages in one place!
 Show all messages, Show sent message, Reply to messages,
@@ -41,13 +37,13 @@ Forward messages, Edit messages, Delete messages, Move messages, Quote messages
         "security/ir.model.access.csv",
         "security/rules.xml",
         "data/data.xml",
-        "data/data_cron.xml",
-        "views/mail_message.xml",
-        "views/conversation.xml",
-        "views/partner.xml",
-        "views/cx_model_reference_views.xml",
-        "views/res_config_settings.xml",
+        "data/ir_cron_data.xml",
         "views/actions.xml",
+        "views/mail_message_views.xml",
+        "views/cetmix_conversation_views.xml",
+        "views/res_partner_views.xml",
+        "views/cx_model_reference_views.xml",
+        "views/res_config_settings_views.xml",
         "report/mail_message_paperformat.xml",
         "report/mail_message_report.xml",
         "wizard/message_edit.xml",
@@ -55,10 +51,10 @@ Forward messages, Edit messages, Delete messages, Move messages, Quote messages
         "wizard/message_move.xml",
         "wizard/mail_compose_message.xml",
     ],
+    "demo": ["demo/demo.xml"],
     "assets": {
         "web.assets_backend": [
-            "prt_mail_messages/static/src/js/list_mixin.esm.js",
-            "prt_mail_messages/static/src/js/mail_messages_update_view_list.esm.js",
+            "prt_mail_messages/static/src/views/list/*",
         ],
     },
     "installable": True,

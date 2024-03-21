@@ -1,6 +1,6 @@
 ###################################################################################
-# 
-#    Copyright (C) Cetmix OÜ
+#
+#    Copyright (C) 2020 Cetmix OÜ
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
@@ -17,7 +17,9 @@
 #
 ###################################################################################
 
-from odoo import _, fields, models
+from odoo import fields, models
+
+from .common import DEFAULT_SIGNATURE_LOCATION
 
 
 ###################
@@ -48,15 +50,22 @@ class ResConfigSettings(models.TransientModel):
         config_parameter="cetmix.mail_incoming_smart_notify",
         default=False,
     )
-
-    def action_configure_cron(self):
-        return {
-            "name": _("Edit cron"),
-            "views": [(False, "form")],
-            "res_model": "ir.cron",
-            "res_id": self.env.ref(
-                "prt_mail_messages.ir_cron_ptr_mail_messages_action_unlink"
-            ).id,
-            "type": "ir.actions.act_window",
-            "target": "new",
-        }
+    message_signature_location = fields.Selection(
+        selection=[
+            ("a", "Message bottom"),
+            ("b", "Before quote"),
+            ("n", "No signature"),
+        ],
+        default=DEFAULT_SIGNATURE_LOCATION,
+        string="Default Signature Location",
+        help="Set default signature location",
+        config_parameter="cetmix.message_signature_location",
+    )
+    message_quote_number = fields.Integer(
+        string="Massage Quote Number",
+        default=0,
+        config_parameter="cetmix.message_quote_number",
+    )
+    allow_direct_messages_to_catchall = fields.Boolean(
+        config_parameter="cetmix.allow_direct_messages_to_catchall"
+    )

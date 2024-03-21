@@ -1,6 +1,6 @@
 ###################################################################################
-# 
-#    Copyright (C) Cetmix OÜ
+#
+#    Copyright (C) 2020 Cetmix OÜ
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
@@ -17,7 +17,11 @@
 #
 ###################################################################################
 
+from lxml.html import fromstring, tostring
+
 from odoo import _, api, fields, models, tools
+
+from ..models.common import BLOCK_QUOTE, DEFAULT_SIGNATURE_LOCATION
 
 
 ########################
@@ -26,16 +30,119 @@ from odoo import _, api, fields, models, tools
 class MailComposer(models.TransientModel):
     _inherit = "mail.compose.message"
 
-    wizard_mode = fields.Char()
+    def _default_signature_location(self):
+        """Set default signature location"""
+        return (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param(
+                "cetmix.message_signature_location",
+                DEFAULT_SIGNATURE_LOCATION,
+            )
+        )
+
+    wizard_mode = fields.Selection(
+        selection=[
+            ("quote", "Quote Message"),
+            ("forward", "Forward Message"),
+            ("compose", "Compose New Message"),
+        ]
+    )
     forward_ref = fields.Reference(
-        string="Attach to record", selection="_referenceable_models_fwd", readonly=False
+        string="Attach to record",
+        selection="_referenceable_models_fwd",
+        compute="_compute_forward_ref",
+        inverse="_inverse_forward_ref",
     )
     signature_location = fields.Selection(
-        [("b", "Before quote"), ("a", "Message bottom"), ("n", "No signature")],
-        default="b",
+        [("a", "Message bottom"), ("b", "Before quote"), ("n", "No signature")],
+        default=_default_signature_location,
         required=True,
         help="Whether to put signature before or after the quoted text.",
     )
+
+    @api.depends("model", "res_id")
+    def _compute_forward_ref(self):
+        """Forward ref is computed only when composing new message.
+        Otherwise this field is left empty.
+        """
+        for rec in self:
+            if rec.wizard_mode == "compose" and rec.model and rec.res_id:
+                rec.forward_ref = self.env[rec.model].browse(rec.res_id)
+            else:
+                rec.forward_ref = None
+
+    @api.model
+    def _prepare_quoted_body(self, quoted_message, is_quote):
+        """Prepare Quoted Body by parent message record
+
+        :param quoted_message: "mail.message" record
+        :param is_quote: message is quote
+        :return: prepared body with quotation block
+        """
+        body = BLOCK_QUOTE % {
+            "date": tools.misc.format_datetime(self.env, quoted_message.date),
+            "author": quoted_message.author_display,
+            "subject": quoted_message.subject or "",
+            "body": quoted_message.body or "",
+        }
+        if not is_quote:
+            return body
+        quote_number = int(
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("cetmix.message_quote_number", 0)
+        )
+        return self._trim_quote_blocks(body, quote_number)
+
+    @api.model
+    def default_get(self, fields_list):
+        result = super().default_get(fields_list)
+        parent_id = result.get("parent_id")
+        wizard_mode = result.get("wizard_mode") or self._context.get(
+            "default_wizard_mode"
+        )
+        if not wizard_mode:
+            return result
+        if parent_id and wizard_mode in ["quote", "forward"]:
+            parent = self.env["mail.message"].browse(parent_id)
+            result.update(
+                body=self._prepare_quoted_body(parent, wizard_mode == "quote")
+            )
+        if wizard_mode == "forward":
+            result.update(parent_id=False)
+        return result
+
+    @api.model
+    def _trim_quote_blocks(self, body, limit):
+        """Trimming  <blockquote> which exceeding the limit from message body
+
+        :param body: message body
+        :param limit: quoted block limit
+        :return: cleaned message body
+        """
+        if limit <= 0:
+            return body
+        tree = fromstring(body)
+        blocks = tree.xpath("//blockquote")
+        if not blocks:
+            return body
+        remove_blocks = blocks[limit:]
+        if not remove_blocks:
+            return body
+        remove_blocks[0].getparent().remove(remove_blocks[0])
+        return tostring(tree, encoding="unicode")
+
+    def _inverse_forward_ref(self):
+        if self.forward_ref:
+            self.update(
+                {"model": self.forward_ref._name, "res_id": self.forward_ref.id}
+            )
+
+    # -- Ref models
+    @api.model
+    def _referenceable_models_fwd(self):
+        return self.env["cx.model.reference"].referenceable_models()
 
     # -- Send
     def _action_send_mail(self, auto_commit=False):
@@ -47,81 +154,41 @@ class MailComposer(models.TransientModel):
             ),
         )._action_send_mail(auto_commit=auto_commit)
 
-    # -- Ref models
     @api.model
-    def _referenceable_models_fwd(self):
-        IrModelAccess = self.env["ir.model.access"].with_user(self.env.user.id)
-        return [
-            (x.object, x.custom_name)
-            for x in self.env["cx.model.reference"].search([])
-            if IrModelAccess.check(x.object, "read", False)
-        ]
-
-    # -- Record ref change
-    @api.onchange("forward_ref")
-    def ref_change(self):
-        self.ensure_one()
-        if self.forward_ref:
-            self.update(
-                {"model": self.forward_ref._name, "res_id": self.forward_ref.id}
+    def _prepare_valid_record_partners(self, parent, partner_ids):
+        """Prepare partners for record"""
+        partner_ids = partner_ids + [
+            (4, p.id)
+            for p in parent.partner_ids.filtered(
+                lambda rec: rec.email
+                not in [self.env.user.email, self.env.user.company_id.email]
             )
+        ]
+        if self._context.get("is_private") and parent.author_id:
+            # check message is private then add author also in partner list.
+            partner_ids += [(4, parent.author_id.id)]
+        return partner_ids
 
-    # -- Get record data
     @api.model
     def get_record_data(self, values):
-        """
-        Copy-pasted mail.compose.message original function so stay
-         aware in case it is changed in Odoo core!
-
-        Returns a defaults-like dict with initial values for the composition
-        wizard when sending an email related a previous email (parent_id) or
-        a document (model, res_id). This is based on previously computed default
-        values."""
-        result = {}
+        # Get record data
+        result = super().get_record_data(values)
+        subject = False
         subj = self._context.get("default_subject", False)
-        subject = tools.ustr(subj) if subj else False
-        if not subject:
-            if values.get("parent_id"):
-                parent = self.env["mail.message"].browse(values.get("parent_id"))
-                result["record_name"] = (parent.record_name,)
-                subject = tools.ustr(parent.subject or parent.record_name or "")
-                if not values.get("model"):
-                    result["model"] = parent.model
-                if not values.get("res_id"):
-                    result["res_id"] = parent.res_id
-                partner_ids = values.get("partner_ids", list()) + [
-                    (4, xid)
-                    for xid in parent.partner_ids.filtered(
-                        lambda rec: rec.email
-                        not in [self.env.user.email, self.env.user.company_id.email]
-                    ).ids
-                ]
-                if (
-                    self._context.get("is_private") and parent.author_id
-                ):  # check message is private then add author also in partner list.
-                    partner_ids += [(4, parent.author_id.id)]
-                result["partner_ids"] = partner_ids
-            elif values.get("model") and values.get("res_id"):
-                doc_name_get = (
-                    self.env[values.get("model")]
-                    .browse(values.get("res_id"))
-                    .name_get()
-                )
-                result["record_name"] = doc_name_get and doc_name_get[0][1] or ""
-                subject = tools.ustr(result["record_name"])
-
-            # Change prefix in case we are forwarding
-            re_prefix = (
-                _("Fwd:")
-                if self._context.get("default_wizard_mode", False) == "forward"
-                else _("Re:")
+        if subj:
+            return {"subject": tools.ustr(subj)}
+        if values.get("parent_id"):
+            parent = self.env["mail.message"].browse(values.get("parent_id"))
+            result["partner_ids"] = self._prepare_valid_record_partners(
+                parent, values.get("partner_ids", list())
             )
+            subject = tools.ustr(parent.subject or parent.record_name or "")
+        elif values.get("model") and values.get("res_id"):
+            subject = tools.ustr(result.get("record_name"))
 
-            if subject and not (
-                subject.startswith("Re:") or subject.startswith(re_prefix)
-            ):
-                subject = " ".join((re_prefix, subject))
-
-        result["subject"] = subject
-
+        # Change prefix in case we are forwarding
+        if self._context.get("default_wizard_mode") == "forward" and subject:
+            re_prefix = _("Fwd:")
+            if not (subject.startswith("Fwd:") or subject.startswith(re_prefix)):
+                result.update(subject=f"{re_prefix} {subject}")
         return result

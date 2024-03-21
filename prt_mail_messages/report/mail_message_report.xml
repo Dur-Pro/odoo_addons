@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
- 
-    Copyright (C) Cetmix OÜ
+
+    Copyright (C) 2020 Cetmix OÜ
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
@@ -21,11 +21,18 @@
         <t t-call="web.html_container">
             <div class="article" t-att-data-oe-model="docs and docs._name">
                 <t t-foreach="docs" t-as="doc">
-                    <div class="container">
+                    <div class="oe_structure" />
+                    <t
+                        t-set="doc"
+                        t-value="doc.with_context({'lang':user.partner_id.lang})"
+                    />
+                    <div class="container mt-1">
+                        <i t-field="doc.date" style="float: right;" /><br />
                         <hr />
                         <p t-field="doc.body" />
                         <hr />
                     </div>
+                    <div class="oe_structure" />
                 </t>
             </div>
         </t>
@@ -46,9 +53,7 @@
         </style>
         <div class="oe_structure" />
         <div class="container">
-            <h2>
-                <t t-esc="doc.subject" />
-            </h2>
+            <h2 t-esc="doc.subject" />
             <div>
                 <div class="header-block" t-if="doc.author_avatar">
                     <img
@@ -58,11 +63,15 @@
                     />
                 </div>
                 <div class="header-block subject">
-                    <b>From:</b>
+                    <strong>From:</strong>
                     <span class="m-0" t-field="doc.author_id.name" />
                     <div t-if="doc.ref_partner_ids">
-                        <b>Partners:</b>
-                        <span t-foreach="doc.partner_ids" t-as="partner">
+                        <strong>Partners:</strong>
+                        <span
+                            class="m-0"
+                            t-foreach="doc.ref_partner_ids"
+                            t-as="partner"
+                        >
                             <t t-esc="partner.email_formatted" />
                             <t t-if="not partner_last">,</t>
                         </span>
@@ -94,7 +103,9 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">prt_mail_messages.report_mailmessage</field>
         <field name="report_file">prt_mail_messages.report_mailmessage</field>
-        <field name="print_report_name">'%s' % (object.subject)</field>
+        <field
+            name="print_report_name"
+        >'%s' % (object.subject or 'Report messages all fields')</field>
         <field name="binding_model_id" ref="model_mail_message" />
         <field name="binding_type">report</field>
         <field
@@ -108,7 +119,9 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">prt_mail_messages.report_mailmessage_body</field>
         <field name="report_file">prt_mail_messages.report_mailmessage_body</field>
-        <field name="print_report_name">'%s' % (object.subject)</field>
+        <field
+            name="print_report_name"
+        >'%s' % (object.subject or 'Report messages body only')</field>
         <field name="binding_model_id" ref="model_mail_message" />
         <field name="binding_type">report</field>
         <field

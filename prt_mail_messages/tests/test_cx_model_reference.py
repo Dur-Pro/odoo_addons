@@ -1,6 +1,6 @@
 ###################################################################################
-# 
-#    Copyright (C) Cetmix OÜ
+#
+#    Copyright (C) 2020 Cetmix OÜ
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
@@ -17,32 +17,18 @@
 #
 ###################################################################################
 
-from odoo.tests import TransactionCase
+from .common import MailMessageCommon
 
 
-class TestCxModelReference(TransactionCase):
+class TestCxModelReference(MailMessageCommon):
     """
     TEST 1 : Check 'custom_name' field value
     TEST 2 : Check selection value
+    TEST 3 : Check referenceable models list
     """
 
     def setUp(self):
-        super(TestCxModelReference, self).setUp()
-        self.group_conversation_own_id = self.ref(
-            "prt_mail_messages.group_conversation_own"
-        )
-        self.res_users_model_id = self.ref("base.model_res_users")
-        self.test_user = self.env["res.users"].create(
-            {
-                "name": "Test User #1",
-                "login": "test_user",
-                "email": "testuser1@example.com",
-                "groups_id": [(4, self.ref("base.group_user"))],
-            }
-        )
-        self.cx_model_reference_partner = self.env.ref(
-            "prt_mail_messages.cx_model_reference_res_partner"
-        )
+        super().setUp()
 
     # -- TEST 1 : Check 'custom_name' field value
     def test_onchange_ir_model_id_record(self):
@@ -54,7 +40,7 @@ class TestCxModelReference(TransactionCase):
         self.assertEqual(
             self.cx_model_reference_partner.custom_name,
             expected_value,
-            msg="Custom name must be equal to '{}'".format(expected_value),
+            msg=f"Custom name must be equal to '{expected_value}'",
         )
 
         self.cx_model_reference_partner.onchange_ir_model_id()
@@ -63,17 +49,19 @@ class TestCxModelReference(TransactionCase):
         self.assertEqual(
             self.cx_model_reference_partner.custom_name,
             expected_value,
-            msg="Custom name must be equal to '{}'".format(expected_value),
+            msg=f"Custom name must be equal to '{expected_value}'",
         )
 
-        self.cx_model_reference_partner.write({"ir_model_id": self.res_users_model_id})
+        self.cx_model_reference_partner.write(
+            {"ir_model_id": self.ref("base.model_res_users")}
+        )
         self.cx_model_reference_partner.onchange_ir_model_id()
 
         expected_value = self.env.ref("base.model_res_users").name
         self.assertEqual(
             self.cx_model_reference_partner.custom_name,
             expected_value,
-            msg="Custom name must be equal to '{}'".format(expected_value),
+            msg=f"Custom name must be equal to '{expected_value}'",
         )
 
     # -- TEST 2 : Check selection value
@@ -99,7 +87,7 @@ class TestCxModelReference(TransactionCase):
         self.assertEqual(
             res_partner_obj,
             "res.partner",
-            msg="Object name must be equal to 'res.partner'",
+            msg="Model name must be equal to 'res.partner'",
         )
         self.assertEqual(
             res_partner_custom_name,
@@ -109,7 +97,7 @@ class TestCxModelReference(TransactionCase):
         self.assertEqual(
             cetmix_conversation_obj,
             "cetmix.conversation",
-            msg="Object name must be equal to 'cetmix.conversation'",
+            msg="Model name must be equal to 'cetmix.conversation'",
         )
         self.assertEqual(
             cetmix_conversation_custom_name,
@@ -129,7 +117,7 @@ class TestCxModelReference(TransactionCase):
         self.assertEqual(
             res_partner_obj,
             "res.partner",
-            msg="Object must be equal to 'res.partner'",
+            msg="Model must be equal to 'res.partner'",
         )
         self.assertEqual(
             res_partner_custom_name,
@@ -137,7 +125,9 @@ class TestCxModelReference(TransactionCase):
             msg="Custom name must be equal to 'Contact'",
         )
 
-        self.test_user.write({"groups_id": [(4, self.group_conversation_own_id)]})
+        self.test_user.write(
+            {"groups_id": [(4, self.ref("prt_mail_messages.group_conversation_own"))]}
+        )
         referable_models_selected = PrtMessageMoveWiz.with_user(
             self.test_user
         )._referenceable_models()
@@ -155,7 +145,7 @@ class TestCxModelReference(TransactionCase):
         self.assertEqual(
             res_partner_obj,
             "res.partner",
-            msg="Object name must be equal to 'res.partner'",
+            msg="Model name must be equal to 'res.partner'",
         )
         self.assertEqual(
             res_partner_custom_name,
@@ -165,10 +155,41 @@ class TestCxModelReference(TransactionCase):
         self.assertEqual(
             cetmix_conversation_obj,
             "cetmix.conversation",
-            msg="Object name must be equal to 'cetmix.conversation'",
+            msg="Model name must be equal to 'cetmix.conversation'",
         )
         self.assertEqual(
             cetmix_conversation_custom_name,
             "Conversation",
             msg="Custom name must be equal to 'Conversation'",
+        )
+
+    # -- TEST 3 : Check referenceable models list
+    def test_get_referenceable_models_for_user(self):
+        """Check referenceable models list"""
+        CxModelReference = self.env["cx.model.reference"]
+
+        models_list = CxModelReference.referenceable_models()
+        self.assertEqual(len(models_list), 2, msg="Models count must be equal to 2")
+        self.assertListEqual(
+            list(dict(models_list).keys()),
+            ["res.partner", "cetmix.conversation"],
+            msg="Models list must be the same",
+        )
+        models_list = CxModelReference.with_user(self.test_user).referenceable_models()
+        self.assertEqual(len(models_list), 1, msg="Models count must be equal to 1")
+        self.assertListEqual(
+            list(dict(models_list).keys()),
+            ["res.partner"],
+            msg="Models list must be the same",
+        )
+        conversation_group_id = self.env.ref(
+            "prt_mail_messages.group_conversation_own"
+        ).id
+        self.test_user.write({"groups_id": [(4, conversation_group_id)]})
+        models_list = CxModelReference.referenceable_models()
+        self.assertEqual(len(models_list), 2, msg="Models count must be equal to 2")
+        self.assertListEqual(
+            list(dict(models_list).keys()),
+            ["res.partner", "cetmix.conversation"],
+            msg="Models list must be the same",
         )

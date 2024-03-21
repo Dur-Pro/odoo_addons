@@ -1,6 +1,6 @@
 ###################################################################################
-# 
-#    Copyright (C) Cetmix OÜ
+#
+#    Copyright (C) 2020 Cetmix OÜ
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
@@ -45,7 +45,7 @@ class TestUserAccessMessage(common.TransactionCase):
     """
 
     def setUp(self):
-        super(TestUserAccessMessage, self).setUp()
+        super().setUp()
         self.Users = self.env["res.users"]
         self.CetmixConversation = self.env["cetmix.conversation"]
         self.MailMessage = self.env["mail.message"]

@@ -53,7 +53,7 @@
                     <button confirm="Are you sure?" help="Archive message" icon="fa-archive" invisible="active == False" name="archive" string="Archive" type="object"/>
                     <button confirm="Are you sure?" help="Unarchive message" icon="fa-archive" invisible="active == True" name="archive" string="Unarchive" type="object"/>
                     <button help="Edit message" icon="fa-edit" invisible="0" name="message_edit" string="Edit" type="object"/>
-                    <button icon="fa-envelope" invisible="thread_messages_count < 2" name="thread_messages" string="Open Thread" type="object"/>
+                    <button icon="fa-envelope" invisible="thread_messages_count &lt; 2" name="thread_messages" string="Open Thread" type="object"/>
                     <button class="oe_highlight" icon="fa-file" invisible="needaction == False" name="mark_read_multi" string="Mark read" type="object"/>
                     <button icon="fa-check" invisible="starred == True" name="toggle_message_starred" string="Star" type="object"/>
                     <button class="oe_highlight" icon="fa-star" invisible="starred == False" name="toggle_message_starred" string="Unstar" type="object"/>

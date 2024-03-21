@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  
     Copyright (C) Cetmix OÜ
@@ -21,64 +21,36 @@
         # Message Move Wizard #
         #######################-->
     <!-- ## Form view ## -->
-    <record model="ir.ui.view" id="prt_message_move_form">
+    <record id="prt_message_move_form" model="ir.ui.view">
         <field name="name">prt.message.move.form</field>
         <field name="model">prt.message.move.wiz</field>
         <field name="arch" type="xml">
-            <form create='false' edit='false' string="Move messages">
-                <div name="pro" colspan="2" class="oe_form_box_info oe_text_center">
+            <form create="false" edit="false" string="Move messages">
+                <div class="oe_form_box_info oe_text_center" colspan="2" name="pro">
                     <p>
                         Please purchase
-                        <a
-                            target="_blank"
-                            href="https://apps.odoo.com/apps/modules/11.0/prt_mail_messages_pro"
-                        >
+                        <a href="https://apps.odoo.com/apps/modules/11.0/prt_mail_messages_pro" target="_blank">
                             Pro Version
                         </a>
                         to use this feature
                     </p>
                 </div>
                 <group>
-                    <label for="model_to" />
+                    <label for="model_to"/>
                     <div class="o_row">
-                        <field name="model_to" context="{'message_move_wiz':1}" />
-                        <button
-                            name="%(prt_mail_messages.cx_model_reference_action)d"
-                            class="oe_link"
-                            icon="fa-arrow-right"
-                            type="action"
-                            string="Configure referable"
-                            groups="base.group_system"
-                        />
+                        <field context="{'message_move_wiz':1}" name="model_to"/>
+                        <button class="oe_link" groups="base.group_system" icon="fa-arrow-right" name="%(prt_mail_messages.cx_model_reference_action)d" string="Configure referable" type="action"/>
                     </div>
-                    <field name="notify" />
-                    <field name="is_conversation" invisible="1" />
-                    <field name="is_lead" invisible="1" />
-                    <field
-                        name="lead_delete"
-                        attrs="{'invisible':[('is_lead', '=', False)]}"
-                    />
-                    <field
-                        name="opp_delete"
-                        attrs="{'invisible':['|', ('is_lead', '=', False),('lead_delete', '=', False)]}"
-                    />
+                    <field name="notify"/>
+                    <field invisible="1" name="is_conversation"/>
+                    <field invisible="1" name="is_lead"/>
+                    <field invisible="is_lead == False" name="lead_delete"/>
+                    <field invisible="is_lead == False or lead_delete == False" name="opp_delete"/>
                 </group>
                 <footer>
-                    <button
-                        name="message_move"
-                        string="Move"
-                        special="cancel"
-                        class="oe_link"
-                        invisible="1"
-                    />
-                    <button
-                        name="cancel"
-                        string="Cancel"
-                        special="cancel"
-                        class="oe_link"
-                    />
+                    <button class="oe_link" invisible="1" name="message_move" special="cancel" string="Move"/>
+                    <button class="oe_link" name="cancel" special="cancel" string="Cancel"/>
                 </footer>
-            </form>
-        </field>
+            </form></field>
     </record>
 </odoo>

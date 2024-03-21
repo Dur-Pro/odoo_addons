@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  
     Copyright (C) Cetmix OÜ
@@ -24,40 +24,18 @@
     <record id="prt_mail_compose_messae_view_form" model="ir.ui.view">
         <field name="name">prt.mail.compose.message.form</field>
         <field name="model">mail.compose.message</field>
-        <field name="inherit_id" ref="mail.email_compose_message_wizard_form" />
+        <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
         <field name="arch" type="xml">
             <field name="subject" position="after">
-                <field name="wizard_mode" invisible="1" />
-                <label
-                    for="forward_ref"
-                    attrs="{'invisible':[('wizard_mode', 'not in', ['forward', 'compose'])],
-                                'required':[('wizard_mode', 'in', ['forward','compose'])]}"
-                />
-                <div
-                    class="o_row"
-                    attrs="{'invisible':[('wizard_mode', 'not in', ['forward', 'compose'])],
-                                'required':[('wizard_mode', 'in', ['forward','compose'])]}"
-                >
-                    <field name="forward_ref" />
-                    <button
-                        name="%(prt_mail_messages.cx_model_reference_action)d"
-                        class="oe_link"
-                        icon="fa-arrow-right"
-                        type="action"
-                        string="Configure referable"
-                        groups="base.group_system"
-                    />
-                </div>
-            </field>
+                <field invisible="1" name="wizard_mode"/>
+                <label for="forward_ref" invisible="wizard_mode not in ['forward', 'compose']" required="wizard_mode in ['forward', 'compose']"/>
+                <div class="o_row" invisible="wizard_mode not in ['forward', 'compose']" required="wizard_mode in ['forward', 'compose']">
+                    <field name="forward_ref"/>
+                    <button class="oe_link" groups="base.group_system" icon="fa-arrow-right" name="%(prt_mail_messages.cx_model_reference_action)d" string="Configure referable" type="action"/>
+                </div></field>
             <field name="body" position="after">
                 <group>
-                    <field
-                        name="signature_location"
-                        attrs="{'invisible':[('wizard_mode', 'not in', ['forward', 'quote'])],
-             'required':[('wizard_mode', 'in', ['forward','quote'])]}"
-                    />
-                </group>
-            </field>
-        </field>
+                    <field invisible="wizard_mode not in ['forward', 'quote']" name="signature_location" required="wizard_mode in ['forward', 'quote']"/>
+                </group></field></field>
     </record>
 </odoo>

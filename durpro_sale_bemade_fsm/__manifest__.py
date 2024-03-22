@@ -18,7 +18,7 @@
 #
 {
     'name': 'Durpro Sale and Bemade FSM',
-    'version': '15.0.1.0.0',
+    'version': '17.0.1.0.0',
     'summary': 'Features to match Durpro Sale configurations with bemade_fsm module',
     'category': 'Services/Field Service',
     'author': 'Bemade Inc.',

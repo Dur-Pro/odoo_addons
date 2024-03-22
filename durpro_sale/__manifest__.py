@@ -26,17 +26,14 @@
     "license": "Other proprietary",
     "author": "Durpro Ltd",
     "category": "Generic Modules",
-    "depends": [
-        "sale",
-        "stock_dropshipping",
-        "product",
-        "durpro_accounting",
-    ],
-    "description": """
-        Module for setting up the Sales app according to Durpro's needs.
-        
-        Pickings.
-    """,
+    "depends": ["sale",
+                "stock_dropshipping",
+                "product",
+                "durpro_accounting",
+                "durpro_base",
+                ],
+    "description": """Module for setting up the Sales app according to Durpro's
+    needs.""",
     "demo": [],
     'data': [
         "views/sale_view.xml",
@@ -46,8 +43,6 @@
     ],
     'test': [],
     'installable': True,
+    'auto-install': True,
     'active': False,
-    'assets': {
-
-    }
 }

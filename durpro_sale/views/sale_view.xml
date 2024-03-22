@@ -22,7 +22,10 @@
                 <attribute name="optional">show</attribute>
             </xpath>
             <xpath expr="//button[@id='send_by_email']" position="attributes">
-                <attribute name="invisible">[('state', 'in', ['sent', 'sale', 'done'])]</attribute>
+                <attribute name="invisible">state in ['sent', 'sale', 'done']</attribute>
+            </xpath>
+            <xpath expr="//tree/field[@name='sequence']" position="after">
+                <field name="sequence_no" string="#"/>
             </xpath>
             <xpath expr="//div[hasclass('oe_chatter')]" position="before">
                 <div class="o_attachment_preview"/>
@@ -78,8 +81,8 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']" position="after">
-                <field name="date_order" string="Quotation Date"/>
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="purpose"/>
             </xpath>
             <xpath expr="//field[@name='state']" position="attributes">
                 <attribute name="invisible">0</attribute>

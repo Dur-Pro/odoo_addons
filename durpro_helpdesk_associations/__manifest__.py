@@ -11,6 +11,7 @@
     'author': 'Dur-Pro Ltée',
     'maintainer': 'Marc Durepos (mdurepos@durpro.com)',
     'depends': [
+        'crm',
         'account',
         'sale',
         'purchase',

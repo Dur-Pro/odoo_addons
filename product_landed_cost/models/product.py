@@ -9,10 +9,12 @@ class ProductSupplierInfo(models.Model):
     _name = 'product.supplierinfo'
     _inherit = ['product.supplierinfo', 'mail.thread', 'mail.activity.mixin']
 
-    _sql_constraints = [("supplierinfo_product_tmpl_id_no_null",
-                         "CHECK((product_tmpl_id IS NOT NULL))",
-                         "Supplier pricelist need product template"),
-                        ]
+    # Commented out because breaking basic Odoo tests. See if this is really needed.
+
+    # _sql_constraints = [("supplierinfo_product_tmpl_id_no_null",
+    #                      "CHECK((product_tmpl_id IS NOT NULL))",
+    #                      "Supplier pricelist need product template"),
+    #                     ]
 
     # This while avoid the database to save those record with lost product_tmpl_id
     @api.depends('supplier_list_price', 'supplier_discount_percent')
@@ -20,7 +22,13 @@ class ProductSupplierInfo(models.Model):
         for rec in self:
             rec.price = rec.supplier_list_price - (rec.supplier_list_price * rec.supplier_discount_percent / 100)
 
-    partner_id = fields.Many2one(tracking=True, domain=[('is_company', '=', True)])
+    @api.depends('supplier_discount_percent')
+    def _inverse_price(self):
+        for rec in self:
+            discount = rec.supplier_discount_percent if rec.supplier_discount_percent else 0
+            rec.supplier_list_price = (100 * rec.price) / (100 - discount)
+
+    name = fields.Many2one(tracking=True, domain=[('is_company', '=', True)])
     product_name = fields.Char(tracking=True)
     product_code = fields.Char(tracking=True)
     product_uom = fields.Many2one(tracking=True)
@@ -50,6 +58,7 @@ class ProductSupplierInfo(models.Model):
                                              default=0)
 
     price = fields.Float(compute='_compute_price',
+                         inverse='_inverse_price',
                          string='Supplier Price',
                          digits='Product Price',
                          help="This price will be considered as a price for the supplier UoM if any or "

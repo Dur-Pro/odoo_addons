@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="industry_fsm_report.task_custom_report" model="ir.actions.report">
+            <field name="print_report_name">'%s %s %s' % (
+                object.planned_date_begin.strftime('%Y-%m-%d') if object.planned_date_begin
+                    else time.strftime('%Y-%m-%d'),
+                object.work_order_number,
+                object.sale_order_id.purpose if object.sale_order_id and object.sale_order_id.purpose else ''
+            )
+            </field>
+        </record>
+    </data>
+</odoo>

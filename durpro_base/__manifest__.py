@@ -13,12 +13,6 @@
         "product_landed_cost",
         "sale_reference",
         "hr_expense",
-
-        # Extensions supplémentaires
-        "mass_editing",
-
-        # Bemade.org
-        "bemade_helpdesk_mailcow_blacklist",
     ],
     "description": """
     This module adds basic adjustments and dependencies for Durpro.

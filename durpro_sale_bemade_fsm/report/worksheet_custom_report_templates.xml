@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="workorder_page_info_block" inherit_id="bemade_fsm.workorder_page_info_block">
+            <xpath expr="//h1//span[@name='work_order_number']" position="after">
+                <span name="sale_purpose" t-if="doc.sale_order_id.purpose">
+                         - <t t-out="doc.sale_order_id.purpose"/>
+                </span>
+            </xpath>
+        </template>
+    </data>
+</odoo>

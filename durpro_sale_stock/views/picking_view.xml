@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.view.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="durpro_stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="location_det_id" position="before">
+                <field name="sale_order_line_description" string="Description"/>
+            </field>
+            <field name="shipper" position="before">
+                <field name="client_order_ref"/>
+            </field>
+        </field>
+    </record>
+</odoo>

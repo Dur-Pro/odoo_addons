@@ -61,14 +61,16 @@ class MailComposer(models.TransientModel):
         help="Whether to put signature before or after the quoted text.",
     )
 
-    @api.depends("model", "res_id")
+    @api.depends("model", "res_ids")
     def _compute_forward_ref(self):
         """Forward ref is computed only when composing new message.
         Otherwise this field is left empty.
         """
         for rec in self:
-            if rec.wizard_mode == "compose" and rec.model and rec.res_id:
-                rec.forward_ref = self.env[rec.model].browse(rec.res_id)
+            if rec.wizard_mode == "compose" and rec.model and rec.res_ids:
+                # FIXME this should not be going to only rec.res_ids[0], MD
+                # changed to pass upgrade all in 17.0
+                rec.forward_ref = self.env[rec.model].browse(rec.res_ids[0])
             else:
                 rec.forward_ref = None
 
@@ -135,8 +137,10 @@ class MailComposer(models.TransientModel):
 
     def _inverse_forward_ref(self):
         if self.forward_ref:
-            self.update(
-                {"model": self.forward_ref._name, "res_id": self.forward_ref.id}
+            self.update({
+                    "model": self.forward_ref._name,
+                    "res_ids": [(4, 0, self.forward_ref.id)],
+                }
             )
 
     # -- Ref models

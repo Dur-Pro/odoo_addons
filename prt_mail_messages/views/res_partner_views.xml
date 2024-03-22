@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 
     Copyright (C) 2020 Cetmix OÜ
@@ -25,68 +25,34 @@
         <field name="name">prt.res.partner.form</field>
         <field name="model">res.partner</field>
         <field name="priority">100</field>
-        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
-                <button
-                    name="partner_messages"
-                    type="object"
-                    class="oe_stat_button"
-                    icon="fa-envelope"
-                    attrs="{'invisible': [('messages_from_count', '=', 0)]}"
-                    context="{'open_mode': 'from'}"
-                >
-                    <field
-                        name="messages_from_count"
-                        widget="statinfo"
-                        string="Author"
-                    />
+                <button class="oe_stat_button" context="{'open_mode': 'from'}" icon="fa-envelope" invisible="messages_from_count == 0" name="partner_messages" type="object">
+                    <field name="messages_from_count" string="Author" widget="statinfo"/>
                 </button>
-                <button
-                    name="partner_messages"
-                    type="object"
-                    class="oe_stat_button"
-                    icon="fa-envelope"
-                    attrs="{'invisible': [('messages_to_count', '=', 0)]}"
-                    context="{'open_mode': 'to'}"
-                >
-                    <field
-                        name="messages_to_count"
-                        widget="statinfo"
-                        string="Recipient"
-                    />
+                <button class="oe_stat_button" context="{'open_mode': 'to'}" icon="fa-envelope" invisible="messages_to_count == 0" name="partner_messages" type="object">
+                    <field name="messages_to_count" string="Recipient" widget="statinfo"/>
                 </button>
             </div>
             <xpath expr="//field[@name='email']" position="replace">
                 <!--                <label for="email"/>-->
                 <div class="o_row">
                     <span style="display:contents!important">
-                        <field name="email" />
+                        <field name="email"/>
                     </span>
-                    <button
-                        type="action"
-                        name="%(partner_send_email)d"
-                        class="btn-xs btn-link mb4 fa fa-envelope-o"
-                        attrs="{'invisible':[('email', '=', False)]}"
-                        context="{'field_name': 'email'}"
-                    />
+                    <button class="btn-xs btn-link mb4 fa fa-envelope-o" context="{'field_name': 'email'}" invisible="email == False" name="%(partner_send_email)d" type="action"/>
                 </div>
-            </xpath>
-        </field>
+            </xpath></field>
     </record>
     <!--## Search ##-->
     <record id="prt_res_partner_view_search" model="ir.ui.view">
         <field name="name">prt.res.partner.search</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
         <field name="arch" type="xml">
             <filter name="inactive" position="before">
-                <filter
-                    name="filter_conversations"
-                    domain="[('category_id', '=', 'Conversations')]"
-                    string="From Conversations"
-                />
-            </filter>
-        </field>
+                <filter domain="[('category_id', '=', 'Conversations')]" name="filter_conversations" string="From Conversations"/>
+            </filter></field>
     </record>
 </odoo>

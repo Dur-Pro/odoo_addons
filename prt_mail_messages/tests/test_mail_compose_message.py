@@ -75,7 +75,7 @@ class TestMailComposeMessage(MailMessageCommon):
         keys = list(record_data.keys())
         self.assertListEqual(
             keys,
-            ["record_name", "model", "res_id", "partner_ids", "subject"],
+            ["record_name", "model", "res_ids", "partner_ids", "subject"],
             msg="Keys must be the same",
         )
         self.assertEqual(
@@ -94,7 +94,7 @@ class TestMailComposeMessage(MailMessageCommon):
             msg="Model must be equal to 'res.partner'",
         )
         self.assertEqual(
-            record_data.get("res_id"),
+            record_data.get("res_ids")[0],
             self.res_partner_kate.id,
             msg=f"Res ID must be equal to {self.res_partner_kate.id}",
         )
@@ -103,8 +103,10 @@ class TestMailComposeMessage(MailMessageCommon):
             "Re: Kate",
             msg="Subject value must be equal to 'Re: Kate'",
         )
-        record_data = self.env["mail.compose.message"].get_record_data(
-            {"model": "res.partner", "res_id": self.res_partner_kate.id}
+        record_data = self.env["mail.compose.message"].get_record_data({
+            "model": "res.partner",
+            "res_ids": [(4, 0, self.res_partner_kate.id)],
+        }
         )
         keys = list(record_data.keys())
         self.assertListEqual(

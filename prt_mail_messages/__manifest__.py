@@ -19,7 +19,7 @@
 
 {
     "name": "Mail Messages Easy",
-    "version": "17.0.1.1.0",
+    "version": "17.0.1.1.1",
     "summary": """
 Read and manage all Odoo messages in one place!
 Show all messages, Show sent message, Reply to messages,

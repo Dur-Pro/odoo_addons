@@ -740,181 +740,181 @@ class MailMessage(models.Model):
 
     # -- Override _search
     # flake8: noqa: C901
-    @api.model
-    def _search(
-        self,
-        args,
-        offset=0,
-        limit=None,
-        order=None,
-        count=False,
-        access_rights_uid=None,
-    ):
-        """Mail.message overrides generic '_search' defined in 'model' to
-         implement own logic for message access rights.
-        However sometimes this does not work for us because
-         we would like to show only messages posted to the records
-        user actually has access to
-        Following key in context is used:
-        - 'check_messages_access': if not set legacy 'search' is performed
-        For the moment we do not show messages posted to mail.channel
-         Model (Discussion Channels)
-        Finally we check the following:
-        After having received ids of a classic search, keep only:
-        - uid has access to related record
-        - otherwise: remove the id
-        """
-        # Skip if not using our own _search
-        if not self._context.get("check_messages_access", False):
-            return super()._search(
-                args=args,
-                offset=offset,
-                limit=limit,
-                order=order,
-                count=count,
-                access_rights_uid=access_rights_uid,
-            )
-        # Rules do not apply to administrator
-        if self.env.is_superuser():
-            return super()._search(
-                args,
-                offset=offset,
-                limit=limit,
-                order=order,
-                count=count,
-                access_rights_uid=access_rights_uid,
-            )
-        # Non-employee see only messages with a subtype (aka, no internal logs)
-        if not self.env.user.has_group("base.group_user"):
-            subtype_domain = [
-                ("subtype_id", "!=", False),
-                ("subtype_id.internal", "=", False),
-            ]
-            args = expression.AND([subtype_domain, list(args)])
-
-        # Get forbidden models
-        forbidden_models = self._get_forbidden_models()
-
-        # Remaining amount of records we need to fetch
-        limit_remaining = limit
-
-        # List of filtered ids we return
-        id_list = []
-
-        # id of the last message fetched
-        # (in case we need to perform more fetches to fill the limit)
-        last_id = False
-        # Scrolling message list pages back (arrow left)
-        scroll_back = False
-        search_args = False
-        # Fetch messages
-        while limit_remaining if limit else True:
-            # Check which records are we trying to fetch
-            # For initial query only
-            if not last_id:
-                # If fetching not the first page or performing search_count
-                if offset != 0:
-                    last_offset = self._context.get("last_offset", 0)
-
-                    # Scrolling back
-                    if offset < last_offset:
-                        scroll_back = True
-                        search_args = ("id", ">", self._context["first_id"])
-                        order = "id asc"
-
-                    # Scrolling reverse from first to last page
-                    elif last_offset == 0 and offset / limit > 1:
-                        scroll_back = True
-                        order = "id asc"
-
-                    # Scrolling forward
-                    elif offset > last_offset:
-                        search_args = ("id", "<", self._context["last_id"])
-                        order = "id desc"
-
-                    # Returning from form view
-                    else:
-                        search_args = ("id", "<=", self._context["first_id"])
-                        order = "id desc"
-                else:
-                    search_args = False
-
-            # Post fetching records
-            else:
-                if scroll_back:
-                    search_args = ("id", ">", last_id)
-                    order = "id asc"
-                else:
-                    search_args = ("id", "<", last_id)
-                    order = "id desc"
-
-            # Check for forbidden models and compose final args
-            if search_args and len(forbidden_models) > 0:
-                model_domain = expression.AND(
-                    [[("model", "not in", forbidden_models)], [search_args]]
-                )
-                query_args = expression.AND([model_domain, list(args)])
-            elif search_args:
-                query_args = expression.AND([[search_args], list(args)])
-            elif len(forbidden_models) > 0:
-                query_args = expression.AND(
-                    [[("model", "not in", forbidden_models)], list(args)]
-                )
-            else:
-                query_args = args
-
-            # Get messages (id, model, res_id)
-            res = self._search_messages(args=query_args, limit=limit, order=order)
-
-            # All done, no more messages left
-            if len(res) == 0:
-                break
-
-            # Check model access
-            model_ids = {}
-            for m_id, rmod, rid in res:
-                if rmod and rid:
-                    model_ids.setdefault(rmod, {}).setdefault(rid, set()).add(m_id)
-
-            allowed_ids, failed_models = self._find_allowed_doc_ids_plus(model_ids)
-
-            # Append to list of allowed ids,
-            # re-construct a list based on ids,
-            # because set did not keep the original order
-            sorted_ids = []
-            messages_added_count = 0
-
-            # Keep adding message ids until we have all remaining messages added
-            for msg in res:
-                if limit and messages_added_count == limit_remaining:
-                    break
-                msg_id = msg[0]
-                if msg_id in allowed_ids:
-                    sorted_ids.append(msg_id)
-                    messages_added_count += 1
-
-            if len(sorted_ids) > 0:
-                id_list += sorted_ids
-
-            # Break if search was initially limitless
-            if not limit:
-                break
-
-            # Add failed models to forbidden models
-            if len(failed_models) > 0:
-                forbidden_models += failed_models
-
-            # Set last id
-            last_id = res[-1][0]
-
-            # Deduct remaining amount
-            if limit_remaining:
-                limit_remaining -= len(sorted_ids)
-
-        if count:
-            return len(id_list)
-        else:
-            return reversed(id_list) if scroll_back else id_list
+    # @api.model
+    # def _search(
+    #     self,
+    #     args,
+    #     offset=0,
+    #     limit=None,
+    #     order=None,
+    #     count=False,
+    #     access_rights_uid=None,
+    # ):
+    #     """Mail.message overrides generic '_search' defined in 'model' to
+    #      implement own logic for message access rights.
+    #     However sometimes this does not work for us because
+    #      we would like to show only messages posted to the records
+    #     user actually has access to
+    #     Following key in context is used:
+    #     - 'check_messages_access': if not set legacy 'search' is performed
+    #     For the moment we do not show messages posted to mail.channel
+    #      Model (Discussion Channels)
+    #     Finally we check the following:
+    #     After having received ids of a classic search, keep only:
+    #     - uid has access to related record
+    #     - otherwise: remove the id
+    #     """
+    #     # Skip if not using our own _search
+    #     if not self._context.get("check_messages_access", False):
+    #         return super()._search(
+    #             args=args,
+    #             offset=offset,
+    #             limit=limit,
+    #             order=order,
+    #             count=count,
+    #             access_rights_uid=access_rights_uid,
+    #         )
+    #     # Rules do not apply to administrator
+    #     if self.env.is_superuser():
+    #         return super()._search(
+    #             args,
+    #             offset=offset,
+    #             limit=limit,
+    #             order=order,
+    #             count=count,
+    #             access_rights_uid=access_rights_uid,
+    #         )
+    #     # Non-employee see only messages with a subtype (aka, no internal logs)
+    #     if not self.env.user.has_group("base.group_user"):
+    #         subtype_domain = [
+    #             ("subtype_id", "!=", False),
+    #             ("subtype_id.internal", "=", False),
+    #         ]
+    #         args = expression.AND([subtype_domain, list(args)])
+    #
+    #     # Get forbidden models
+    #     forbidden_models = self._get_forbidden_models()
+    #
+    #     # Remaining amount of records we need to fetch
+    #     limit_remaining = limit
+    #
+    #     # List of filtered ids we return
+    #     id_list = []
+    #
+    #     # id of the last message fetched
+    #     # (in case we need to perform more fetches to fill the limit)
+    #     last_id = False
+    #     # Scrolling message list pages back (arrow left)
+    #     scroll_back = False
+    #     search_args = False
+    #     # Fetch messages
+    #     while limit_remaining if limit else True:
+    #         # Check which records are we trying to fetch
+    #         # For initial query only
+    #         if not last_id:
+    #             # If fetching not the first page or performing search_count
+    #             if offset != 0:
+    #                 last_offset = self._context.get("last_offset", 0)
+    #
+    #                 # Scrolling back
+    #                 if offset < last_offset:
+    #                     scroll_back = True
+    #                     search_args = ("id", ">", self._context["first_id"])
+    #                     order = "id asc"
+    #
+    #                 # Scrolling reverse from first to last page
+    #                 elif last_offset == 0 and offset / limit > 1:
+    #                     scroll_back = True
+    #                     order = "id asc"
+    #
+    #                 # Scrolling forward
+    #                 elif offset > last_offset:
+    #                     search_args = ("id", "<", self._context["last_id"])
+    #                     order = "id desc"
+    #
+    #                 # Returning from form view
+    #                 else:
+    #                     search_args = ("id", "<=", self._context["first_id"])
+    #                     order = "id desc"
+    #             else:
+    #                 search_args = False
+    #
+    #         # Post fetching records
+    #         else:
+    #             if scroll_back:
+    #                 search_args = ("id", ">", last_id)
+    #                 order = "id asc"
+    #             else:
+    #                 search_args = ("id", "<", last_id)
+    #                 order = "id desc"
+    #
+    #         # Check for forbidden models and compose final args
+    #         if search_args and len(forbidden_models) > 0:
+    #             model_domain = expression.AND(
+    #                 [[("model", "not in", forbidden_models)], [search_args]]
+    #             )
+    #             query_args = expression.AND([model_domain, list(args)])
+    #         elif search_args:
+    #             query_args = expression.AND([[search_args], list(args)])
+    #         elif len(forbidden_models) > 0:
+    #             query_args = expression.AND(
+    #                 [[("model", "not in", forbidden_models)], list(args)]
+    #             )
+    #         else:
+    #             query_args = args
+    #
+    #         # Get messages (id, model, res_id)
+    #         res = self._search_messages(args=query_args, limit=limit, order=order)
+    #
+    #         # All done, no more messages left
+    #         if len(res) == 0:
+    #             break
+    #
+    #         # Check model access
+    #         model_ids = {}
+    #         for m_id, rmod, rid in res:
+    #             if rmod and rid:
+    #                 model_ids.setdefault(rmod, {}).setdefault(rid, set()).add(m_id)
+    #
+    #         allowed_ids, failed_models = self._find_allowed_doc_ids_plus(model_ids)
+    #
+    #         # Append to list of allowed ids,
+    #         # re-construct a list based on ids,
+    #         # because set did not keep the original order
+    #         sorted_ids = []
+    #         messages_added_count = 0
+    #
+    #         # Keep adding message ids until we have all remaining messages added
+    #         for msg in res:
+    #             if limit and messages_added_count == limit_remaining:
+    #                 break
+    #             msg_id = msg[0]
+    #             if msg_id in allowed_ids:
+    #                 sorted_ids.append(msg_id)
+    #                 messages_added_count += 1
+    #
+    #         if len(sorted_ids) > 0:
+    #             id_list += sorted_ids
+    #
+    #         # Break if search was initially limitless
+    #         if not limit:
+    #             break
+    #
+    #         # Add failed models to forbidden models
+    #         if len(failed_models) > 0:
+    #             forbidden_models += failed_models
+    #
+    #         # Set last id
+    #         last_id = res[-1][0]
+    #
+    #         # Deduct remaining amount
+    #         if limit_remaining:
+    #             limit_remaining -= len(sorted_ids)
+    #
+    #     if count:
+    #         return len(id_list)
+    #     else:
+    #         return reversed(id_list) if scroll_back else id_list
 
     # -- Prepare context for reply or quote message
     def reply_prep_context(self):

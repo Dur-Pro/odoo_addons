@@ -53,10 +53,4 @@
     'test': [],
     'installable': True,
     'active': False,
-    'assets': {
-        # 'web.assets_backend': [
-        #     'durpro_reports/static/src/js/account_reports_currency_dropdown.js',
-        #     'durpro_reports/static/src/js/M2MFilters.js',
-        # ],
-    }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_saleorder_document" inherit_id="durpro_sale.report_saleorder_document">
+        <div name="currency" position="after">
+            <div t-if="doc.carrier" class="col-3 mb-2" >
+                <strong>Carrier</strong>
+                <p t-field="doc.carrier"/>
+            </div>
+            <div t-if="doc.carrier_account"  class="col-3 mb-2" >
+                <strong>Carrier Account</strong>
+                <p t-field="doc.carrier_account"/>
+            </div>
+        </div>
+    </template>
+</odoo>

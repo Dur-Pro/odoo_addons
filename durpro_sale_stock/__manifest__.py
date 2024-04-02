@@ -27,6 +27,7 @@
     'depends': ['durpro_sale', 'durpro_stock'],
     'data': [
         'views/sales_order_view.xml',
+        'report/sale_report_templates.xml',
     ],
     'assets': {},
     'installable': True,

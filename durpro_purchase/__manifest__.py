@@ -7,15 +7,15 @@
     "depends": [
         "purchase",
         "durpro_base",
+        "fims_purchase_down_payments",
+        "product_pricelist_supplierinfo",
     ],
     "description": """
     This module adds basic adjustments to the purchase module for Durpro.
     """,
-    "demo": [],
     'data': [
         'data/groups.xml',
         'views/purchase_view.xml',
-        'report/purchase_templates.xml',
     ],
     'test': [],
     'installable': True,

@@ -134,7 +134,8 @@
 <!--        </field>-->
 <!--    </record>-->
 
-    <function name="delete_rule" model="sale.order" />
+<!-- MD: Removed as it breaks an Odoo test of spreadsheet (dashboards)    -->
+<!--    <function name="delete_rule" model="sale.order" />-->
 
     <record id="action_orders_and_quotation" model="ir.actions.act_window">
         <field name="name">Sales Orders</field>

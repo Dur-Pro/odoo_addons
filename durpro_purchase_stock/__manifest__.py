@@ -29,6 +29,7 @@
     'data': [
         'views/purchase_view.xml',
         'views/stock_move_views.xml',
+        'reports/purchase_templates.xml',
     ],
     'assets': {},
     'installable': True,

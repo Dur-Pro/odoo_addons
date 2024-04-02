@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="report_purcahseorder_document_durpro" inherit_id="purchase.report_purchaseorder_document">
         <!-- Finish the row with the broker information-->

@@ -59,7 +59,7 @@ class StockPicking(models.Model):
         for rec in self:
             rec.items_summary = ""
             for index, line in enumerate(rec.move_line_ids):
-                rec.items_summary += str(round(line.product_qty)) + "x " + (line.product_id.default_code or "")
+                rec.items_summary += str(round(line.quantity)) + "x " + (line.product_id.default_code or "")
                 if index < len(rec.move_line_ids) - 1:
                     rec.items_summary += ", "
                 if index > 4:

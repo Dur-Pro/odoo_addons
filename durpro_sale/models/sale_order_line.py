@@ -1,6 +1,6 @@
 from odoo import models, fields, api, _
-
 from odoo.addons.stock_dropshipping.models import sale
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
@@ -33,9 +33,3 @@ class SaleOrderLine(models.Model):
             return qty
         else:
             return super(sale.SaleOrderLine, self)._get_qty_procurement(previous_product_uom_qty=previous_product_uom_qty)
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        recs = super().create(vals_list)
-        recs.order_id.update_sequence_nos()
-        return recs

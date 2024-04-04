@@ -13,6 +13,8 @@ def migrate(cr, version):
         'discuss_search_view_cr',
         'document_knowledge',
         'document_page',
+        'durpro_extended',
+        'durpro_fso',
         'hr_attendance_fix',
         'mail_attach_existing_attachment',
         'mail_show_follower',

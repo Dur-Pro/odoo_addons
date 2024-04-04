@@ -74,11 +74,12 @@ class Conversation(models.Model):
         string="Messages", compute="_compute_message_count", compute_sudo=True
     )
 
-    def name_get(self):
+    def _compute_display_name(self):
         """Name get. Currently using it only for Move Wizard!"""
         if not self._context.get("message_move_wiz", False):
-            return super().name_get()
-        return [(rec.id, f"{rec.name} - {rec.author_id.name}") for rec in self]
+            return super()._compute_display_name()
+        for rec in self:
+            rec.display_name = f"{rec.name} - {rec.author_id.name}"
 
     @api.depends("message_ids")
     def _compute_message_count(self):

@@ -15,15 +15,18 @@ class PurchaseOrder(models.Model):
                                                string="Shipping Timing")
 
     def button_approve(self, force=False):
-        self.write({'name': self.name.replace('RFQ', 'PO')})
+        if self.name:
+            self.write({'name': self.name.replace('RFQ', 'PO')})
         super(PurchaseOrder, self).button_approve()
 
     def button_done(self, force=False):
-        self.write({'name': self.name.replace('RFQ', 'PO')})
+        if self.name:
+            self.write({'name': self.name.replace('RFQ', 'PO')})
         super(PurchaseOrder, self).button_done()
 
     def button_cancel(self, force=False):
-        self.write({'name': self.name.replace('PO', 'RFQ')})
+        if self.name:
+            self.write({'name': self.name.replace('PO', 'RFQ')})
         super(PurchaseOrder, self).button_cancel()
 
     def action_create_invoice(self):

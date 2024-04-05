@@ -1,5 +1,5 @@
 def migrate(cr, version):
-    modules_to_uninstall = [
+    modules_to_uninstall = (
         'account_payment_term_discount',
         'amount_residual_signed_fix',
         'bemade_multiple_billing_contacts',
@@ -26,12 +26,12 @@ def migrate(cr, version):
         'purchase_delivery_split_date',
         'purchase_location_by_line',
         'zb_alias_name',
-    ]
+    )
 
     sql = f"""
     UPDATE ir_module_module
     SET state='to remove'
-    WHERE name in ({modules_to_uninstall}) and state='installed'
+    WHERE name in {modules_to_uninstall} and state='installed'
     """
 
     cr.execute(sql)

@@ -10,6 +10,7 @@ def migrate(cr, version):
         'bemade_open_project_details',
         'bemade_user_custom_apps_order',
         'crm_phonecall',
+        'database_cleanup_test',
         'discuss_search_view_cr',
         'document_knowledge',
         'document_page',

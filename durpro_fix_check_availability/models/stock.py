@@ -15,7 +15,8 @@ class StockMove(models.Model):
             available = 0.0
             if move.product_id:
                 available = self.env['stock.quant']._get_available_quantity(move.product_id, move.location_id)
-            missing_reserved_uom_quantity = move.product_uom_qty - move.reserved_availability
+            reserved_availability = sum([q.reserved_quantity for q in move.mapped('move_line_ids').mapped('quant_id')])
+            missing_reserved_uom_quantity = move.product_uom_qty - reserved_availability
             need = move.product_uom._compute_quantity(missing_reserved_uom_quantity,
                                                       move.product_id.uom_id, rounding_method='HALF-UP')
             if available and need:

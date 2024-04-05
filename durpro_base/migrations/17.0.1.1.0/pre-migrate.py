@@ -1,5 +1,3 @@
-from odoo import api, SUPERUSER_ID
-
 def migrate(cr, version):
     modules_to_uninstall = [
         'account_payment_term_discount',
@@ -30,10 +28,10 @@ def migrate(cr, version):
         'zb_alias_name',
     ]
 
-    sql = """
+    sql = f"""
     UPDATE ir_module_module
     SET state='to remove'
-    WHERE name in %s and state='installed'
+    WHERE name in ({modules_to_uninstall}) and state='installed'
     """
 
-    cr.execute(sql, (tuple(modules_to_uninstall)))
+    cr.execute(sql)

@@ -12,7 +12,7 @@ class AccountPayment(models.Model):
                                                                  raise_if_not_found=True)
         ctx = {
             'default_model': 'account.payment',
-            'default_res_id': self.id,
+            'default_res_ids': [self.id],
             'default_use_template': bool(template_id),
             'default_template_id': template_id,
             'default_composition_mode': 'comment',

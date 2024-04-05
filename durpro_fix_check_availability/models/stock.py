@@ -20,7 +20,7 @@ class StockMove(models.Model):
             need = move.product_uom._compute_quantity(missing_reserved_uom_quantity,
                                                       move.product_id.uom_id, rounding_method='HALF-UP')
             if available and need:
-                taken_quantity = move._update_reserved_quantity(need, available, move.location_id)
+                taken_quantity = move._update_reserved_quantity(need, move.location_id)
                 comp = float_compare(taken_quantity, need, precision_rounding=rounding)
                 if comp == 0:
                     move.state = 'assigned'

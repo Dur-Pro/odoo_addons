@@ -7,6 +7,7 @@ def migrate(cr, version):
         'bemade_odoo_partner_scrapper_js_only',
         'bemade_open_project_details',
         'bemade_user_custom_apps_order',
+        'menu_sequence_per_user',
         'crm_phonecall',
         'database_cleanup_test',
         'discuss_search_view_cr',

@@ -19,8 +19,8 @@
                 <field name="verifier"/>
                 <field name="package_type"/>
                 <field name="shipping_cost"/>
-                <field name="promised_date" invisible="promised_date is False"/>
-                <field name="expected_date" invisible="expected_date is False"/>
+                <field name="promised_date" invisible="promised_date == False"/>
+                <field name="expected_date" invisible="expected_date == False"/>
                 <field name="carrier"/>
                 <field name="carrier_account"/>
             </xpath>

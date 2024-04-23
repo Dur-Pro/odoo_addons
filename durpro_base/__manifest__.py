@@ -6,7 +6,6 @@
     "category": "Generic Modules",
     "depends": [
         # Extensions Durpro
-        "account_invoice_reference",
         "baseline_selling_checklist",
         "customer_product_code",
         "durpro_customer_reference",

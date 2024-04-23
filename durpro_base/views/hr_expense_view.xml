@@ -12,7 +12,7 @@
                         force_save="1"
                         widget="monetary"
                         options="{'currency_field': 'currency_id', 'field_digits': True}"
-                        invisible="product_has_cost == False"
+                        invisible="not product_has_cost"
                 />
 <!--                        readonly="sheet_is_editable == False"-->
 <!--                />-->

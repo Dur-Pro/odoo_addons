@@ -9,7 +9,6 @@
     "depends": [
         "account_accountant",
         "account_3way_match",
-        "account_invoice_reference",
     ],
     "demo": [],
     'data': [

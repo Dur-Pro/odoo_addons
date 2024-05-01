@@ -30,8 +30,10 @@ class AccountMove(models.Model):
     def create(self, vals_list):
         moves = super().create(vals_list)
         for move in moves.filtered('helpdesk_ticket_id'):
-            move.message_post_with_view('helpdesk.ticket_creation',
-                                        values={'self': move,
-                                                'ticket': move.helpdesk_ticket_id},
-                                        subtype_id=self.env.ref('mail.mt_note').id)
+            move.message_post_with_source(
+                'helpdesk.ticket_creation',
+                values={'self': move,
+                        'ticket': move.helpdesk_ticket_id},
+                subtype_id=self.env.ref('mail.mt_note').id
+            )
         return moves

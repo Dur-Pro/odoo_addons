@@ -32,8 +32,10 @@ class AccountMove(models.Model):
         for move in moves.filtered('helpdesk_ticket_id'):
             move.message_post_with_source(
                 'helpdesk.ticket_creation',
-                values={'self': move,
-                        'ticket': move.helpdesk_ticket_id},
+                render_values={
+                    'self': move,
+                    'ticket': move.helpdesk_ticket_id
+                },
                 subtype_id=self.env.ref('mail.mt_note').id
             )
         return moves

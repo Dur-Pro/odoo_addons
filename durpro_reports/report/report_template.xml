@@ -1,36 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="durpro_layout_standard" inherit_id="l10n_ca.l10n_ca_external_layout_standard">
-        <xpath expr="//div[contains(string(), 'PST')]" position="attributes">
-            <attribute name="invisible">1</attribute>
-        </xpath>
+        <t t-if="company.account_fiscal_country_id.code == 'CA' and company.l10n_ca_pst" class="mt16" position="replace"></t>
         <div t-field="company.report_footer" position="after">
             <t t-call="durpro_reports.report_footer"/>
         </div>
     </template>
 
     <template id="durpro_layout_bold" inherit_id="l10n_ca.l10n_ca_external_layout_bold">
-        <xpath expr="//div[contains(string(), 'PST')]" position="attributes">
-            <attribute name="invisible">1</attribute>
-        </xpath>
+        <t t-if="company.account_fiscal_country_id.code == 'CA' and company.l10n_ca_pst" class="mt16" position="replace"></t>
         <span t-field="company.company_details" position="after">
             <t t-call="durpro_reports.report_footer"/>
         </span>
     </template>
 
     <template id="durpro_layout_boxed" inherit_id="l10n_ca.l10n_ca_external_layout_boxed">
-        <xpath expr="//div[contains(string(), 'PST')]" position="attributes">
-            <attribute name="invisible">1</attribute>
-        </xpath>
+        <t t-if="company.account_fiscal_country_id.code == 'CA' and company.l10n_ca_pst" class="mt16" position="replace"></t>
         <div t-field="company.report_footer" position="after">
             <t t-call="durpro_reports.report_footer"/>
         </div>
     </template>
 
     <template id="durpro_layout_striped" inherit_id="l10n_ca.l10n_ca_external_layout_striped">
-        <xpath expr="//div[contains(string(), 'PST')]" position="attributes">
-            <attribute name="invisible">1</attribute>
-        </xpath>
+        <t t-if="company.account_fiscal_country_id.code == 'CA' and company.l10n_ca_pst" class="mt16" position="replace"></t>
         <div t-field="company.report_footer">
             <t t-call="durpro_reports.report_footer"/>
         </div>

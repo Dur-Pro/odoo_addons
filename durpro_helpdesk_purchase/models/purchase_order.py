@@ -1,5 +1,6 @@
 from odoo import models, fields, api, _
 
+
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
@@ -17,7 +18,11 @@ class PurchaseOrder(models.Model):
     def create(self, vals_list):
         pos = super().create(vals_list)
         for po in pos.filtered('helpdesk_ticket_id'):
-            po.message_post_with_view('helpdesk.ticket_creation',
-                                      values={'self': po, 'ticket': po.helpdesk_ticket_id},
-                                      subtype_id=self.env.ref('mail.mt_note').id)
+            po.message_post_with_source(
+                'helpdesk.ticket_creation',
+                render_values={
+                    'self': po, 'ticket': po.helpdesk_ticket_id
+                },
+                subtype_id=self.env.ref('mail.mt_note').id
+            )
         return pos

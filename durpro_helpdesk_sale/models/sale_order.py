@@ -27,9 +27,11 @@ class SaleOrder(models.Model):
     def create(self, vals_list):
         sos = super().create(vals_list)
         for so in sos.filtered('helpdesk_ticket_id'):
-            so.message_post_with_view('helpdesk.ticket_creation',
-                                      values={'self': so,
-                                              'ticket': so.helpdesk_ticket_id},
-                                      subtype_id=self.env.ref('mail.mt_note').id)
+            so.message_post_with_source(
+                'helpdesk.ticket_creation',
+                render_values={
+                    'self': so,
+                    'ticket': so.helpdesk_ticket_id
+                }, subtype_id=self.env.ref('mail.mt_note').id
+            )
         return sos
-

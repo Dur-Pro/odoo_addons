@@ -22,7 +22,7 @@
 
 {
     "name": "Durpro Reports",
-    "version": "17.0.1.0.1",
+    "version": "17.0.1.0.2",
     "license": "Other proprietary",
     "author": "Durpro Ltd",
     "category": "Generic Modules",
@@ -42,11 +42,11 @@
         'data/res_country_data.xml',
         # 'views/account_report_search_template_view.xml',
         'report/report_template.xml',
-        'report/account_report.xml',
+        # 'report/account_report.xml',
         'report/stock_report_templates.xml',
         'report/report_invoice_document_durpro.xml',
         'report/stock_report_views.xml',
-        'report/report_payment_receipt_templates.xml',
+        # 'report/report_payment_receipt_templates.xml',
         'report/report_client_account_statement.xml',
         'report/partner_report.xml',
     ],

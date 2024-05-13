@@ -29,13 +29,9 @@ class SaleOrderLine(models.Model):
         if is_dropship and purchase_lines_sudo.filtered(lambda r: r.state != 'cancel'):
             qty = 0.0
             for po_line in purchase_lines_sudo.filtered(lambda r: r.state != 'cancel'):
-                qty += po_line.product_uom._compute_quantity(po_line.product_qty, self.product_uom, rounding_method='HALF-UP')
+                qty += po_line.product_uom._compute_quantity(po_line.product_qty, self.product_uom,
+                                                             rounding_method='HALF-UP')
             return qty
         else:
-            return super(sale.SaleOrderLine, self)._get_qty_procurement(previous_product_uom_qty=previous_product_uom_qty)
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        recs = super().create(vals_list)
-        recs.order_id.update_sequence_nos()
-        return recs
+            return super(sale.SaleOrderLine, self)._get_qty_procurement(
+                previous_product_uom_qty=previous_product_uom_qty)

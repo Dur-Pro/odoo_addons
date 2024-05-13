@@ -22,7 +22,7 @@
 
 {
     "name": "Durpro Reports",
-    "version": "17.0.1.0.2",
+    "version": "17.0.1.0.3",
     "license": "Other proprietary",
     "author": "Durpro Ltd",
     "category": "Generic Modules",

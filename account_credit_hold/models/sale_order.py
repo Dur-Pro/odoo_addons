@@ -14,4 +14,4 @@ class SaleOrder(models.Model):
         if any(self.mapped('client_on_hold')):
             raise UserError(_("This client is on credit hold. No new orders can be confirmed until past-due invoices "
                               "are paid or the accounting team postpones the hold."))
-        super().action_confirm()
+        return super().action_confirm()

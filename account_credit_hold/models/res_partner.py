@@ -34,14 +34,16 @@ class Partner(models.Model):
 
     @api.autovacuum
     def _cleanup_expired_hold_postponements(self):
-        expired_holds = self.search([('postpone_hold_until', '<=', date.today())])
-        expired_holds.write({'postpone_hold_until': False})
+        expired_holds = self.env['res.partner'].search([('postpone_hold_until', '<=', date.today())])
+        if expired_holds:
+            expired_holds.write({'postpone_hold_until': False})
 
     def action_credit_hold(self):
         message = _('Placed on credit hold')
         for rec in self:
             rec.hold_bg = True
             rec.message_post()
+        return True
 
     def _execute_followup_partner(self):
         res = super()._execute_followup_partner()

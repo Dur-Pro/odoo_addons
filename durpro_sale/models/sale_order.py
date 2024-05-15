@@ -30,20 +30,6 @@ class SaleOrder(models.Model):
         if self.env.ref('sale.menu_sale_order', raise_if_not_found=False):
             self.env.ref('sale.menu_sale_order').unlink()
 
-    def write(self, fields_list):
-        res = super().write(fields_list)
-        # Make sure the sale order lines are cleanly numbered
-        for rec in self:
-            for index, line in enumerate(rec.order_line):
-                if index == 0:
-                    prev_seq = line.sequence
-                else:
-                    if line.sequence <= prev_seq:
-                        line.sequence = prev_seq + 1
-                        # line.sequence_no = line.sequence
-                    prev_seq = line.sequence
-        return res
-
     def action_sale_order_send(self):
         ''' Opens a wizard to compose an email, with relevant mail template loaded by default '''
         self.ensure_one()
@@ -83,15 +69,3 @@ class SaleOrder(models.Model):
             raise ValidationError(_("Customer reference (PO number) is required to confirm an order."))
         else:
             return super(SaleOrder, self).action_confirm()
-
-    def update_sequence_nos(self):
-        """ Since sale order lines get added with a simple default sequence of 10, we sometimes want to re-number
-        them since Durpro uses the sequence numbers on their printed quotations and orders."""
-        for rec in self:
-            # Order lines are already well sorted, so we just go ahead and make sure each line has a number higher
-            # than the last.
-            last_line = None
-            for line in rec.order_line:
-                if last_line and line.sequence <= last_line.sequence:
-                    line.sequence = last_line.sequence+1
-                last_line = line

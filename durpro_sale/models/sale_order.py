@@ -26,20 +26,6 @@ class SaleOrder(models.Model):
         if self.env.ref('sale.menu_sale_order', raise_if_not_found=False):
             self.env.ref('sale.menu_sale_order').unlink()
 
-    def write(self, fields_list):
-        res = super().write(fields_list)
-        # Make sure the sale order lines are cleanly numbered
-        for rec in self:
-            for index, line in enumerate(rec.order_line):
-                if index == 0:
-                    prev_seq = line.sequence
-                else:
-                    if line.sequence <= prev_seq:
-                        line.sequence = prev_seq + 1
-                        # line.sequence_no = line.sequence
-                    prev_seq = line.sequence
-        return res
-
     def action_sale_order_send(self):
         ''' Opens a wizard to compose an email, with relevant mail template loaded by default '''
         self.ensure_one()

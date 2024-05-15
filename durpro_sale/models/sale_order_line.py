@@ -5,21 +5,6 @@ from odoo.addons.stock_dropshipping.models import sale
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    sequence_no = fields.Integer(
-        string="#",
-        compute="_compute_sequence_no",
-        inverse="_inverse_sequence_no",
-    )
-
-    @api.depends('sequence')
-    def _compute_sequence_no(self):
-        for rec in self:
-            rec.sequence_no = rec.sequence
-
-    def _inverse_sequence_no(self):
-        for rec in self:
-            rec.sequence = rec.sequence_no
-
     def _get_qty_procurement(self, previous_product_uom_qty):
         # Overwrite the version from stock_dropshipping to overcome a bug where it assumes an SO line is a drop ship
         # just because it has a related RFQ. This comes up specifically with the app rfq_from_quotation.

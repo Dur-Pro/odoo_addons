@@ -29,6 +29,11 @@
         'report/worksheet_custom_reports.xml',
         'report/worksheet_custom_report_templates.xml',
     ],
+    'assets': {
+        'web.assets_tests': [
+            'durpro_sale_bemade_fsm/static/tests/tours/*'
+        ],
+    },
     'installable': True,
     'auto_install': True,
 }

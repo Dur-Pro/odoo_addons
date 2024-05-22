@@ -1,13 +1,12 @@
 {
     "name": "Durpro base",
-    "version": "15.0.1.1.1",
+    "version": "15.0.1.2.0",
     "license": "Other proprietary",
     "author": "Durpro Ltd (Frédérick Capovilla, Libeo)",
     "category": "Generic Modules",
     "depends": [
         # Extensions Durpro
         "account_invoice_reference",
-        "baseline_selling_checklist",
         "customer_product_code",
         "durpro_customer_reference",
         "product_landed_cost",

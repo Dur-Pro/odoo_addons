@@ -16,6 +16,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: durpro_reports
+#: model:ir.actions.report,print_report_name:durpro_reports.action_sdi_report_delivery
+msgid ""
+"'SDI Delivery Slip - %s - %s' % (object.partner_id.name or '', object.name)"
+msgstr ""
+"'Bon de livraison SDI - %s - %s' % (object.partner_id.name or '', object.name)"
+
+#. module: durpro_reports
 #: model_terms:ir.ui.view,arch_db:durpro_reports.search_template
 msgid "<span class=\"fa fa-folder\"/>Currency"
 msgstr "<span class=\"fa fa-folder\"/>Devise"

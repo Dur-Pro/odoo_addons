@@ -1,6 +1,6 @@
 {
     'name': 'Account Credit Hold',
-    'version': '15.0.2.0.0.2',
+    'version': '15.0.2.0.1.0',
     'summary': 'Allows setting clients on credit hold, blocking the ability confirm a new sales order.',
     'description': 'Allows setting clients on hold, blocking the ability confirm a new sales order.',
     'category': 'Accounting/Accounting',

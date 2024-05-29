@@ -27,9 +27,16 @@ class Partner(models.Model):
         # by an SQL query every time
         self._compute_hold_bg()
         for rec in self:
+            # If the parent company is on hold, so are all its sub-contacts and subsidiaries
+            if rec.commercial_partner_id and rec.commercial_partner_id.on_hold:
+                rec.on_hold = True
+                return
+            # If there is no parent company or the parent is not on hold, we compute for ourselves
             if rec.hold_bg and not (rec.postpone_hold_until and rec.postpone_hold_until > date.today()):
                 rec.on_hold = True
             else:
+                if rec.on_hold:
+                    rec.message_post(_("Credit hold lifted."))
                 rec.on_hold = False
 
     @api.autovacuum

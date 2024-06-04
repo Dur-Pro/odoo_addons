@@ -1,4 +1,4 @@
-from odoo import api, models, fields, _
+from odoo import api, models, fields, _, SUPERUSER_ID
 from odoo.exceptions import ValidationError
 
 class SaleOrder(models.Model):
@@ -65,7 +65,11 @@ class SaleOrder(models.Model):
             'durpro_sale.require_sale_reference',
             False
         )
-        if ref_required and not self.client_order_ref:
+        # We allow portal users to confirm their own orders with credit card payment without entering a PO #
+        if (ref_required
+                and not self.client_order_ref
+                and not self.env.user.has_group('base.group_portal')
+                and self.env.user.id != SUPERUSER_ID):
             raise ValidationError(_("Customer reference (PO number) is required to confirm an order."))
         else:
             return super(SaleOrder, self).action_confirm()

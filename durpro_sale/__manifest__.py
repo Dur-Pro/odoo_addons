@@ -22,7 +22,7 @@
 
 {
     "name": "Durpro Sale",
-    "version": "15.0.1.2.6",
+    "version": "15.0.1.2.7",
     "license": "Other proprietary",
     "author": "Durpro Ltd",
     "category": "Generic Modules",

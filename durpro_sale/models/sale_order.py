@@ -68,7 +68,7 @@ class SaleOrder(models.Model):
         # We allow portal users to confirm their own orders with credit card payment without entering a PO #
         if (ref_required
                 and not self.client_order_ref
-                and not self.env.user.has_group('base.group_portal')
+                and self.env.user.has_group('base.group_user')
                 and self.env.user.id != SUPERUSER_ID):
             raise ValidationError(_("Customer reference (PO number) is required to confirm an order."))
         else:

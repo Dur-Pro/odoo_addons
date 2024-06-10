@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mrp_production_view_tree_inherit" model="ir.ui.view">
+        <field name="name">mrp.production.view.tree.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view">
+            <field name="date_start" position="attributes">
+                <attribute name="widget"></attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

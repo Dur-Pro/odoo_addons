@@ -52,14 +52,19 @@ class StockPicking(models.Model):
         compute="_compute_display_name",
         compute_sudo=True,
     )
-    items_summary = fields.Char("Items Summary", compute="_compute_items_summary")
+    items_summary = fields.Char("Items Summary",
+                                compute="_compute_items_summary")
 
     @api.depends('move_line_ids')
     def _compute_items_summary(self):
         for rec in self:
             rec.items_summary = ""
             for index, move in enumerate(rec.move_ids):
-                rec.items_summary += str(round(move.quantity)) + "x " + (move.product_id.default_code or "")
+                rec.items_summary += (str(
+                    round(move.product_uom_quantity))
+                    + "x "
+                    + (move.product_id.default_code or "")
+                )
                 if index < len(rec.move_ids) - 1:
                     rec.items_summary += ", "
                 if index > 4:

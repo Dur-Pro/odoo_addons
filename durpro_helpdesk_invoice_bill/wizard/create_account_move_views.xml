@@ -29,7 +29,7 @@
                             </group>
                         </group>
                     </sheet>
-                    <footer invisible="move_type != 'out_invoice'">
+                    <footer>
                         <button string="Create &amp; View Invoice"
                                 class="btn btn-primary"
                                 name="action_generate_and_view_invoice"

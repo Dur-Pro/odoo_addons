@@ -33,8 +33,8 @@ class AccountMove(models.Model):
             move.message_post_with_source(
                 'helpdesk.ticket_creation',
                 render_values={
-                    'self': move,
-                    'ticket': move.helpdesk_ticket_id
+                    'self': move.id,
+                    'ticket': move.helpdesk_ticket_id.id,
                 },
                 subtype_id=self.env.ref('mail.mt_note').id
             )

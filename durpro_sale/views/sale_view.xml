@@ -29,9 +29,14 @@
             <xpath expr="//button[@name='action_confirm']" position="attributes">
                 <attribute name="data-hotkey"></attribute>
             </xpath>
-            <field name="date_order" position="attributes">
+            <xpath expr="//group/field[@name='date_order'][1]"
+                   position="attributes">
                 <attribute name="readonly">state == 'cancel'</attribute>
-            </field>
+            </xpath>
+            <xpath expr="//group/field[@name='date_order'][2]"
+                   position="attributes">
+                <attribute name="readonly">state == 'cancel'</attribute>
+            </xpath>
             <!-- There is a second button but it has the same name and no ID... so we go by hotkey the second time -->
 <!--            <xpath expr="//button[@data-hotkey='v']" position="attributes">-->
 <!--                <attribute name="data-hotkey"></attribute>-->

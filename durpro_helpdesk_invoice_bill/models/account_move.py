@@ -5,37 +5,37 @@ from odoo import api, models, fields
 
 
 class AccountMove(models.Model):
-    _inherit = 'account.move'
+    _inherit = "account.move"
 
     helpdesk_ticket_id = fields.Many2one(
-        comodel_name='helpdesk.ticket',
-        string='Ticket',
-        help='Ticket this invoice was generated from',
-        readonly=True
+        comodel_name="helpdesk.ticket",
+        string="Ticket",
+        help="Ticket this invoice was generated from",
+        readonly=True,
     )
 
     @property
     def SELF_READABLE_FIELDS(self):
-        return super().SELF_READABLE_FIELDS | {'helpdesk_ticket_id'}
+        return super().SELF_READABLE_FIELDS | {"helpdesk_ticket_id"}
 
     def action_view_ticket(self):
         return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'helpdesk.ticket',
-            'view_mode': 'form',
-            'res_id': self.helpdesk_ticket_id.id,
+            "type": "ir.actions.act_window",
+            "res_model": "helpdesk.ticket",
+            "view_mode": "form",
+            "res_id": self.helpdesk_ticket_id.id,
         }
 
     @api.model_create_multi
     def create(self, vals_list):
         moves = super().create(vals_list)
-        for move in moves.filtered('helpdesk_ticket_id'):
+        for move in moves.filtered("helpdesk_ticket_id"):
             move.message_post_with_source(
-                'helpdesk.ticket_creation',
+                "helpdesk.ticket_creation",
                 render_values={
-                    'self': move.id,
-                    'ticket': move.helpdesk_ticket_id.id,
+                    "self": move,
+                    "ticket": move.helpdesk_ticket_id,
                 },
-                subtype_id=self.env.ref('mail.mt_note').id
+                subtype_id=self.env.ref("mail.mt_note").id,
             )
         return moves

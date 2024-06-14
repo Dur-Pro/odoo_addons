@@ -6,7 +6,6 @@
     "category": "Generic Modules",
     "depends": [
         # Extensions Durpro
-        "baseline_selling_checklist",
         "customer_product_code",
         "durpro_customer_reference",
         "product_landed_cost",
@@ -17,16 +16,16 @@
     This module adds basic adjustments and dependencies for Durpro.
     """,
     "demo": [],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/hr_expense_view.xml',
-        'views/payment_view.xml',
-        'views/product_view.xml',
-        'views/res_company.xml',
+    "data": [
+        "security/ir.model.access.csv",
+        "views/hr_expense_view.xml",
+        "views/payment_view.xml",
+        "views/product_view.xml",
+        "views/res_company.xml",
         # 'wizard/inventory_valuation.xml',
-        'wizard/pricelist_import.xml',
+        "wizard/pricelist_import.xml",
     ],
-    'test': [],
-    'installable': True,
-    'active': False
+    "test": [],
+    "installable": True,
+    "active": False,
 }

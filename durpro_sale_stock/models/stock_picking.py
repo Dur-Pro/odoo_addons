@@ -19,17 +19,18 @@ class StockPicking(models.Model):
 
     # this replace SaleOrderLine._action_launch_stock_rule solution because picking are not allways created
     # before it got called, moving it to the creation of picking should fix it
-    @api.model
-    def create(self, vals):
-        picking = super(StockPicking, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        pickings = super(StockPicking, self).create(vals_list)
 
-        if 'origin' in vals:
-            sale_order = self.env['sale.order'].search([('name', '=', vals['origin'])], limit=1)
-            if sale_order:
-                picking.write({
-                    'carrier': sale_order.carrier,
-                    'carrier_account': sale_order.carrier_account,
-                    'note': sale_order.note,
-                })
-        return picking
-
+        for i, picking in enumerate(pickings):
+            vals = vals_list[i]
+            if 'origin' in vals:
+                sale_order = self.env['sale.order'].search([('name', '=', vals['origin'])], limit=1)
+                if sale_order:
+                    picking.write({
+                        'carrier': sale_order.carrier.id,
+                        'carrier_account': sale_order.carrier_account.id,
+                        'note': sale_order.note,
+                    })
+        return pickings

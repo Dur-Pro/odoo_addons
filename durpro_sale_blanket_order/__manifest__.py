@@ -31,6 +31,7 @@
     ],
     "data": [
         "views/sale_blanket_order_views.xml",
+        "views/sale_order_views.xml",
     ],
     "assets": {},
     "installable": True,

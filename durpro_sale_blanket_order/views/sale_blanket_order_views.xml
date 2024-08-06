@@ -10,6 +10,19 @@
                     <field name="incoterms_id"/>
                 </group>
             </group>
+            <field name="validity_date" position="after">
+                <field name="tag_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+    <record id="sale_blanket_order_view_tree" model="ir.ui.view">
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_tree"/>
+        <field name="model">sale.blanket.order</field>
+        <field name="name">sale.blanket.order.view.tree</field>
+        <field name="arch" type="xml">
+            <field name="validity_date" position="after">
+                <field name="tag_ids" widget="many2many_tags"/>
+            </field>
         </field>
     </record>
 </odoo>

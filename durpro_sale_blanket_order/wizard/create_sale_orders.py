@@ -1,4 +1,4 @@
-from odoo import models, fields, api, _
+from odoo import models, Command
 
 
 class BlanketOrderWizard(models.TransientModel):
@@ -25,5 +25,6 @@ class BlanketOrderWizard(models.TransientModel):
             incoterm=self.blanket_order_id.incoterms_id.id,
             note=self.blanket_order_id.note,
             client_order_ref=self.blanket_order_id.client_order_ref,
+            tag_ids=[Command.set(self.blanket_order_id.tag_ids.ids)],
         )
         return vals

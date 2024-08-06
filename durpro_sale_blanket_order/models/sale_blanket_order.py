@@ -10,3 +10,8 @@ class SaleBlanketOrder(models.Model):
         help="International Commercial Terms are a series of predefined commercial"
         " terms used in international transactions.",
     )
+
+    tag_ids = fields.Many2many(
+        comodel_name="crm.tag",
+        string="Tags",
+    )

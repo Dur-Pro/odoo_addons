@@ -1,6 +1,6 @@
 import odoo.addons.sale_blanket_order.tests.test_blanket_orders as base_tests
 from odoo.tests import Form
-from odoo import fields
+from odoo import fields, Command
 
 
 class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
@@ -10,6 +10,7 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
         cls.blanket_order_note = "Some fancy note"
         cls.incoterms = cls.env.ref("account.incoterm_EXW")
         cls.blanket_client_order_ref = "ABC123"
+        cls.crm_tag = cls.env["crm.tag"].create({"name": "Test Tag"})
 
     def test_extra_fields_carry_to_sale_order(self):
         """We create a blanket order and create one sale orders, to make sure that
@@ -23,6 +24,7 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
             blanket_order.incoterms_id = self.incoterms
             blanket_order.note = self.blanket_order_note
             blanket_order.client_order_ref = self.blanket_client_order_ref
+            blanket_order.tag_ids.add(self.crm_tag)
             with blanket_order.line_ids.new() as line:
                 line.product_id = self.product
                 line.original_uom_qty = 20.0
@@ -45,3 +47,4 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
             f"<p>{self.blanket_order_note}</p>",
         )
         self.assertEqual(order.client_order_ref, self.blanket_client_order_ref)
+        self.assertEqual(order.tag_ids, self.crm_tag)

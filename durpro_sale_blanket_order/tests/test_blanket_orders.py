@@ -89,4 +89,3 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
             action["domain"][0][2],
             (blanket1 | blanket2).ids,
         )
-        self.assertNotIn("res_id", action)

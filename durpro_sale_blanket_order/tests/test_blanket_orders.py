@@ -48,6 +48,7 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
                 line.product_id = self.product
                 line.original_uom_qty = 20.0
                 line.price_unit = 30.0
+                line.name = "Some other test name"
         blanket_order = blanket_order.record
         blanket_order.sudo().action_confirm()
         return blanket_order
@@ -89,3 +90,26 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
             action["domain"][0][2],
             (blanket1 | blanket2).ids,
         )
+
+    def test_sale_order_line_name_set_based_on_blanket(self):
+        blanket = self._generate_confirm_blanket()
+
+        with Form(self.env["sale.order"]) as sale_order:
+            sale_order.partner_id = self.partner
+            with sale_order.order_line.new() as line1:
+                line1.product_id = self.product
+                line1.product_uom_qty = 5
+
+        order_line = sale_order.record.order_line[0]
+        self.assertEqual(order_line.blanket_order_line, blanket.line_ids[0])
+        self.assertEqual(order_line.name, blanket.line_ids[0].name)
+
+    def test_sale_order_line_name_set_based_on_so_when_no_blanket(self):
+        with Form(self.env["sale.order"]) as sale_order:
+            sale_order.partner_id = self.partner
+            with sale_order.order_line.new() as line1:
+                line1.product_id = self.product
+                line1.product_uom_qty = 5
+
+        order_line = sale_order.record.order_line[0]
+        # Just make sure there is no error, nothing to assert

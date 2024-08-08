@@ -26,5 +26,8 @@ class BlanketOrderWizard(models.TransientModel):
             note=self.blanket_order_id.note,
             client_order_ref=self.blanket_order_id.client_order_ref,
             tag_ids=[Command.set(self.blanket_order_id.tag_ids.ids)],
+            purpose=self.blanket_order_id.purpose,
         )
+        if self.blanket_order_id.warehouse_id:
+            vals.update(warehouse_id=self.blanket_order_id.warehouse_id.id)
         return vals

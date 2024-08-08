@@ -11,6 +11,7 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
         cls.incoterms = cls.env.ref("account.incoterm_EXW")
         cls.blanket_client_order_ref = "ABC123"
         cls.crm_tag = cls.env["crm.tag"].create({"name": "Test Tag"})
+        cls.purpose = "Some purpose"
 
     def test_extra_fields_carry_to_sale_order(self):
         """We create a blanket order and create one sale orders, to make sure that
@@ -33,6 +34,7 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
         )
         self.assertEqual(order.client_order_ref, self.blanket_client_order_ref)
         self.assertEqual(order.tag_ids, self.crm_tag)
+        self.assertEqual(order.purpose, self.purpose)
 
     def _generate_confirm_blanket(self):
         with Form(self.blanket_order_obj) as blanket_order:
@@ -44,6 +46,7 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
             blanket_order.note = self.blanket_order_note
             blanket_order.client_order_ref = self.blanket_client_order_ref
             blanket_order.tag_ids.add(self.crm_tag)
+            blanket_order.purpose = self.purpose
             with blanket_order.line_ids.new() as line:
                 line.product_id = self.product
                 line.original_uom_qty = 20.0
@@ -113,3 +116,22 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
 
         order_line = sale_order.record.order_line[0]
         # Just make sure there is no error, nothing to assert
+
+    def test_sale_order_inherits_warehouse(self):
+        with Form(self.env["stock.warehouse"]) as warehouse:
+            warehouse.name = "Test Warehouse"
+            warehouse.code = "TEST"
+        warehouse = warehouse.record
+        blanket = self._generate_confirm_blanket()
+        blanket.warehouse_id = warehouse
+
+        wizard = self.blanket_order_wiz_obj.with_context(
+            active_id=blanket.id,
+            active_model="sale.blanket.order",
+        ).create({})
+        wizard.line_ids[0].qty = 10.0
+        wizard.create_sale_order()
+
+        sale_order = blanket._get_sale_orders()
+
+        self.assertEqual(sale_order.warehouse_id, warehouse)

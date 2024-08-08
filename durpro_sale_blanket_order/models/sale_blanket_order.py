@@ -17,6 +17,12 @@ class SaleBlanketOrder(models.Model):
         string="Tags",
     )
 
+    warehouse_id = fields.Many2one(
+        comodel_name="stock.warehouse",
+    )
+
+    purpose = fields.Char(help="What is this order for?")
+
     # Make note an HTML field like on sales orders and get it the same default
     # Partner-based computes
     note = fields.Html(

@@ -8,9 +8,11 @@
             <group name="invoicing" position="before">
                 <group name="delivery" string="Delivery">
                     <field name="incoterms_id"/>
+                    <field name="warehouse_id"/>
                 </group>
             </group>
             <field name="validity_date" position="after">
+                <field name="purpose"/>
                 <field name="tag_ids" widget="many2many_tags"/>
             </field>
         </field>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="sale_to_blanket_wizard_view_form">
+        <field name="name">sale.to.blanket.wizard.view.form</field>
+        <field name="model">sale.to.blanket.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="sale_order_action"/>
+                    <field name="validity_date"/>
+                </group>
+                <footer>
+                    <button
+                        string="Cancel"
+                        special="cancel"
+                        data-hotkey="x"
+                        class="btn btn-secondary"
+                        />
+                    <button
+                        string="Create Blanket"
+                        name="action_create_blanket"
+                        type="object"
+                        class="btn btn-primary"
+                        data-hotkey="q"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

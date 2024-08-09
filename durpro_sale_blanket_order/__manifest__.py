@@ -30,8 +30,10 @@
         "durpro_sale",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/sale_blanket_order_views.xml",
         "views/sale_order_views.xml",
+        "wizard/sale_order_to_blanket.xml",
     ],
     "assets": {},
     "installable": True,

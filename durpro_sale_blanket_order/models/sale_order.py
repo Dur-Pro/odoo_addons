@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class SaleOrder(models.Model):
@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
     @api.depends("order_line.blanket_order_line")
     def _compute_blanket_order_count(self):
         for rec in self:
-            rec.blanket_order_count = len(rec.order_line.blanket_order_line)
+            rec.blanket_order_count = len(rec.order_line.blanket_order_line.order_id)
 
     def _get_blanket_orders(self):
         return self.order_line.blanket_order_line.order_id
@@ -26,3 +26,13 @@ class SaleOrder(models.Model):
             action["res_id"] = blanket_orders.id
             action["views"] = [(False, "form"), (False, "tree")]
         return action
+
+    def action_create_blanket(self):
+        return {
+            "name": _("Create Blanket Order"),
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "sale.to.blanket.wizard",
+            "context": {"default_sale_order_id": self.id},
+            "target": "new",
+        }

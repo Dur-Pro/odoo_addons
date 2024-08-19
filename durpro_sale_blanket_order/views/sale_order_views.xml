@@ -38,9 +38,9 @@
         <field name="inherit_id" ref="sale_blanket_order.view_order_form"/>
         <field name="arch" type="xml">
             <field name="blanket_order_line" position="attributes">
-                <attribute name="column_invisible" remove="True"/>
+                <attribute name="column_invisible">False</attribute>
+                <attribute name="optional">show</attribute>
             </field>
-
         </field>
     </record>
 </odoo>

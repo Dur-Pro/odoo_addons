@@ -151,3 +151,25 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
         line.blanket_order_line = blanket.line_ids[0]
         line.save()
         sale_order.save()
+
+    def test_remove_blanket_order_line_on_so_line(self):
+        """Supposedly, things crash in sale_blanket_order when blanket_line_id is set to
+        False on a sale order line that previously had a blanket line on it.
+
+        From Barry Hum on 2024-08-19:
+
+        When trying to remove an entry from the Blanket Order Line column, Odoo starts
+        wigging out completely, reloading the delivery address a few times, before
+        ultimately not removing the entry.
+        """
+        blanket = self._generate_confirm_blanket()
+
+        with Form(self.env["sale.order"]) as sale_order:
+            sale_order.partner_id = self.partner
+            with sale_order.order_line.new() as line:
+                line.product_id = self.product
+                line.product_uom_qty = 5.0
+
+        sale_order = sale_order.record
+        line = sale_order.order_line[0]
+        line.blanket_order_line = False

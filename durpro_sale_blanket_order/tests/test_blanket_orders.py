@@ -135,3 +135,19 @@ class TestSaleBlanketOrders(base_tests.TestSaleBlanketOrders):
         sale_order = blanket._get_sale_orders()
 
         self.assertEqual(sale_order.warehouse_id, warehouse)
+
+    def test_blanket_order_line_shows_on_non_blanket_sale_order(self):
+        with Form(self.env["sale.order"]) as sale_order:
+            sale_order.partner_id = self.partner
+            with sale_order.order_line.new() as line:
+                line.product_id = self.product
+                line.product_uom_qty = 5
+
+        blanket = self._generate_confirm_blanket()
+
+        self.assertFalse(sale_order.record.blanket_order_id)
+        # Should throw an error if the field is invisible
+        # FIXME: this test doesn't fail even when column_invisible is True
+        line.blanket_order_line = blanket.line_ids[0]
+        line.save()
+        sale_order.save()
